@@ -1,0 +1,139 @@
+ @media only screen 
+   and (min-device-width: 850px){
+   	#container{
+   		width: 700px;
+   		margin: 0 auto;
+   	}
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: hsla(223, 24%, 12%, 1);
+  font-family: 'Play';
+  user-select: none;
+}
+
+.border {
+	height: 1vh;
+	background: hsla(223, 24%, 12%, 1);
+}
+
+#upper {
+	width: 100%;
+	height: 49vh;
+	/*outline: thin solid red;*/
+	background-color: hsla(223, 24%, 84%, 1);
+}
+
+#lower {
+	width: 100%;
+	height: 49vh;
+	font-size: 2em;
+	color: hsla(223, 24%, 12%, 1);
+	/*outline: thin solid red;*/
+}
+
+#main-menu {
+	display: none;
+}
+
+.menu {
+	height: 12vh;
+	/*outline: thin solid red;*/
+	/*background-color: hsla(223, 24%, 84%, 1);*/
+	border-top: 2px solid black;
+	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
+}
+
+.menu-text {
+	height: 1.5em;
+	margin-top: 0.7em;
+	/*text-shadow: -1px -1px 1px hsla(223, 24%, 55%, 1), 1px 1px 1px hsla(223, 24%, 8%, 1);*/
+	/*line-height: 2.5em;*/
+	cursor: pointer;
+	/*outline: thin solid red;*/
+}
+
+.sub-menu {
+	/*display: none;*/
+	border-top: 2px solid black;
+	height: 49vh;
+	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
+}
+
+#text-menu {
+	/*display: none;*/
+}
+
+#image-menu {
+	display: none;
+}
+
+#color-menu {
+	display: none;
+}
+
+#wordcount-menu {
+	display: none;
+}
+
+.title {
+	line-height: 2em;
+	text-align: center;
+}
+
+#font-selector{
+  display: inline-block;
+  margin: 0 2em;
+}
+
+.font{
+  overflow: hidden;
+}
+
+#font-button{
+  background-color: hsla(223, 24%, 64%, 1);
+  height: 2em;
+  width: 8em;
+  font-size: 1em;
+  text-align: center;
+  font-family: "PT Mono";
+  line-height: 2em;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  /*border: solid 1px red;*/
+}
+
+#font-selector:hover #font-list {
+  display: block;
+  top: 6em;
+}
+
+#font-list {
+  display: none;
+  color: hsla(223, 24%, 12%, 1);
+  font-size: 0.8em;
+  position: absolute;
+  background-color: hsla(223, 24%, 84%, 1);
+  opacity: 0.9;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-left: 5em;
+  padding: 0.5em;
+  /*border: solid 1px red;*/
+}
+
+#font-list div{
+  /*padding-bottom: 0.5em;*/
+}
+
+#font-list div:hover{
+  background-color: hsla(223, 24%, 78%, 1);
+}
