@@ -40,13 +40,32 @@
 					</div>
 				</div>
 			</div>
-			<div class="sub-menu" id="text-menu">
+			<div class="sub-menu" id="wordcount-menu">
+				<div class="title">
+					WORD COUNT
+				</div>
+				<div class="menu-row" id="wordcount-row">
+        			<div class="subtitle">WORDCOUNT:</div>
+        			<input id="count-input" type = "number" step="20000" min="20000" max="600000">
+        			<input id="get-count" type=submit value="GO">
+        		<div>
+			</div>
+			<div id="text-menu" class="sub-menu">
 				<div class="title">
 					TEXT
 				</div>
-				<div id="font-selector">
-					FONT 
-	          		<div id=font-button>Choose Font
+	        	<div class="menu-row"> 
+	        		<div class="subtitle">TITLE</div>
+	        		<input type="text" id="title-input"/>
+	        		<input id="get-details" type=submit value="ADD TEXT"> 
+	        	</div>
+	        	<div class="menu-row">
+	        		<div class="subtitle">AUTHOR</div> 
+	        		<input type="text" id="author-input"/>
+	        	</div>
+				<div class="menu-row" id="font-selector">
+					<div class="subtitle">FONT</div> 
+	          		<div id=font-button>CHOOSE FONT
 	          		</div>
       				<div id="font-list">
 		            <div class="font" id="Alegreya" style="font-family: Alegreya">Book Title and Author
@@ -78,11 +97,6 @@
 		            <div class="font" id="Barrio" style="font-family: Barrio">Book Title and Author
 		            </div>
       			</div>
-			    <div id="details">
-		        	TITLE <input type="text" id="title-input"/></br>
-		        	AUTHOR <input type="text" id="author-input"/></br>
-		        	<input id="get-details" type=submit value="add title and author">
-			    </div>
 			</div>
 			<div class="sub-menu" id="color-menu">
 				<div class="title">
@@ -94,14 +108,10 @@
 					IMAGE
 				</div>
 			</div>
-			<div class="sub-menu" id="wordcount-menu">
-				<div class="title">
-					WORD COUNT
-				</div>
-			</div>
+
 		</div>
-		<div class="border">
-		</div>
+<!-- 		<div class="border">
+		</div> -->
 	</div>
 </body>
 <script src="script.js"></script>

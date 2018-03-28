@@ -67,19 +67,10 @@ body {
 	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
 }
 
+/**/
+/* text menu styles*/
+/**/
 #text-menu {
-	/*display: none;*/
-}
-
-#image-menu {
-	display: none;
-}
-
-#color-menu {
-	display: none;
-}
-
-#wordcount-menu {
 	display: none;
 }
 
@@ -88,10 +79,57 @@ body {
 	text-align: center;
 }
 
-#font-selector{
-  display: inline-block;
-  margin: 0 2em;
+.menu-row {
+	display: block;
+	margin-left: 2em;
+/*	outline: thin solid red;*/
+	width: 80%;
+	margin-bottom: 1em;
 }
+
+.subtitle {
+	display: inline-block;
+	width: 6.5em;
+	/*outline: thin solid red;*/
+}
+
+input[type=text], input[type=number] {
+	height: 2em;
+	font-size: 0.65em;
+	font-family: "Play";
+	line-height: 2em;
+	border: none;
+	border-radius: 0;
+	outline: none;
+	display: inline-block;
+}
+
+input[type=text]{
+	width: 15em;
+	padding-left: 0.5em;
+}
+
+ input[type=number] {
+ 	width: 6em;
+ 	padding-left: 1em;
+ 	margin-left: 1em;
+ }
+
+ input[type=submit] {
+ 	height: 3em;
+	font-size: 0.5em;
+	font-family: "Play";
+	width: 4em;
+	border: none;
+	border-radius: 0;
+	outline: none;
+	white-space: normal;
+	background-color: hsla(223, 24%, 64%, 1);
+	display: ;
+	position: absolute;
+ 	margin-left: 2em;
+ 	margin-top: 2.5em;
+ }
 
 .font{
   overflow: hidden;
@@ -100,40 +138,67 @@ body {
 #font-button{
   background-color: hsla(223, 24%, 64%, 1);
   height: 2em;
-  width: 8em;
-  font-size: 1em;
+  width: 10em;
+  font-size: 0.65em;
   text-align: center;
-  font-family: "PT Mono";
+  font-family: "Play";
   line-height: 2em;
   cursor: pointer;
   display: inline-block;
   position: relative;
-  /*border: solid 1px red;*/
 }
 
 #font-selector:hover #font-list {
   display: block;
-  top: 6em;
+  bottom: 1em;
 }
 
 #font-list {
   display: none;
   color: hsla(223, 24%, 12%, 1);
-  font-size: 0.8em;
+  font-size: 0.6em;
   position: absolute;
-  background-color: hsla(223, 24%, 84%, 1);
+  background-color: hsla(223, 24%, 90%, 1);
   opacity: 0.9;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   z-index: 1;
-  margin-left: 5em;
+  margin-left: 18em;
   padding: 0.5em;
   /*border: solid 1px red;*/
 }
 
-#font-list div{
-  /*padding-bottom: 0.5em;*/
+#font-list div:hover {
+  background-color: hsla(223, 24%, 98%, 1);
+}
+/**/
+/* image menu styles*/
+/**/
+#image-menu {
+	display: none;
 }
 
-#font-list div:hover{
-  background-color: hsla(223, 24%, 78%, 1);
+
+
+/**/
+/* color menu styles*/
+/**/
+#color-menu {
+	display: none;
 }
+
+/**/
+/* wordcount menu styles*/
+/**/
+#wordcount-menu {
+	/*display: none;*/
+}
+
+#wordcount-row {
+	margin-top: 10vh;
+	/*outline: thin solid red;*/
+}
+
+#wordcount-row > input[type=submit] {
+	margin-top: 0;
+}
+
