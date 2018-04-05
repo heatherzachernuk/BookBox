@@ -24,18 +24,24 @@ body {
 	background: hsla(223, 24%, 12%, 1);
 }
 
+#container{
+	height: 100vh;
+}
+
 #upper {
+	display: inline-block;
 	width: 100%;
-	height: 49vh;
+	height: 49%;
 	/*outline: thin solid red;*/
 	background-color: hsla(223, 24%, 84%, 1);
 }
 
 #lower {
+	display: inline-block;
 	width: 100%;
-	height: 49vh;
+	height: 49%;
 	font-size: 2em;
-	color: hsla(223, 24%, 12%, 1);
+	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
 	/*outline: thin solid red;*/
 }
 
@@ -63,8 +69,9 @@ body {
 .sub-menu {
 	/*display: none;*/
 	border-top: 2px solid black;
-	height: 49vh;
+	height: 100%;
 	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
+	outline: thin solid blue;
 }
 
 /**/
@@ -75,22 +82,33 @@ body {
 }
 
 .title {
+	width: 100%;
 	line-height: 2em;
 	text-align: center;
+	outline: thin solid red;
 }
 
-.menu-row {
-	display: block;
+.menu-div{
+	position: relative;
+	top: 30%;
+}
+
+.left-col {
+	display: inline-block;
 	margin-left: 2em;
-/*	outline: thin solid red;*/
-	width: 80%;
-	margin-bottom: 1em;
+	outline: thin solid red;
+	width: 40%;
+}
+
+.right-col {
+	display: inline-block;
+	outline: thin solid red;
+	width: 40%;
 }
 
 .subtitle {
 	display: inline-block;
-	width: 6.5em;
-	/*outline: thin solid red;*/
+	outline: thin solid red;
 }
 
 input[type=text], input[type=number] {
@@ -125,10 +143,8 @@ input[type=text]{
 	outline: none;
 	white-space: normal;
 	background-color: hsla(223, 24%, 64%, 1);
-	display: ;
 	position: absolute;
  	margin-left: 2em;
- 	margin-top: 2.5em;
  }
 
 .font{
@@ -177,7 +193,31 @@ input[type=text]{
 	display: none;
 }
 
+input[type="file"] {
+    display: none;
+}
 
+#cover-file {
+
+}
+
+.custom-file-upload {
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    background-color: hsla(223, 24%, 64%, 1);
+    height: 2em;
+  	width: 10em;
+  	font-size: 0.65em;
+	text-align: center;
+  	font-family: "Play";
+  	line-height: 2em;
+}
+
+#current-filename {
+	font-size: 0.65em;
+	overflow-wrap: break-word;
+}
 
 /**/
 /* color menu styles*/
@@ -193,12 +233,7 @@ input[type=text]{
 	/*display: none;*/
 }
 
-#wordcount-row {
-	margin-top: 10vh;
-	/*outline: thin solid red;*/
-}
 
-#wordcount-row > input[type=submit] {
-	margin-top: 0;
-}
+
+
 
