@@ -17,6 +17,7 @@ body {
   background-color: hsla(223, 24%, 12%, 1);
   font-family: 'Play';
   user-select: none;
+  overflow: hidden;
 }
 
 .border {
@@ -185,6 +186,7 @@ input[type=text]{
 
 #font-list {
   display: none;
+  width: 15em;
   color: hsla(223, 24%, 12%, 1);
   font-size: 0.6em;
   position: absolute;
@@ -192,7 +194,7 @@ input[type=text]{
   opacity: 0.9;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   z-index: 1;
-  margin-left: 18em;
+  margin-left: 10em;
   padding: 0.5em;
   /*border: solid 1px red;*/
 }
@@ -258,12 +260,15 @@ input[type="file"] {
 }
 
 #stripes-box {
+	top: -1em;
 	display: inline-block;
 	height: 1.5em;
 	width: 3em;
 	background-color: lightgray;
 	outline: thin solid black;
 	margin-left: 1em;
+	position: relative;
+    top: -0.7em;
 }
 
 .toggle {
