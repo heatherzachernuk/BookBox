@@ -19,100 +19,24 @@
 		<div id="lower">
 			<div id="main-menu">
 				<div class="menu">
-					<div class="menu-text" id="text">
+					<div class="menu-text" id="text-button">
 					&nbsp;&nbsp;TEXT
 					</div>
 				</div>
 				<div class="menu">
-					<div class="menu-text" id="color">
+					<div class="menu-text" id="color-button">
 					&nbsp;&nbsp;COLOR
 					</div>
 				</div>
 				<div class="menu">
-					<div class="menu-text" id="image">
+					<div class="menu-text" id="image-button">
 					&nbsp;&nbsp;IMAGE
 					</div>
 				</div>
 				<div class="menu">
-					<div class="menu-text" id="word-count">
+					<div class="menu-text" id="wordcount-button">
 					&nbsp;&nbsp;WORD COUNT
 					</div>
-				</div>
-			</div>
-
-			<div class="sub-menu" id="text-menu">
-				<div class="title">
-					TEXT
-				</div>
-				<div class="menu-div">
-					<div class="left-col">
-						<div class="row">
-		        			<div class="subtitle">TITLE</div>
-		        		</div>
-		        		<div class="row">
-		        			<div class="subtitle">AUTHOR</div> 
-		        		</div>
-						<div class="row">		        		
-							<div class="subtitle">FONT</div> 
-						</div>
-		        	</div>
-					<div class="right-col">	
-						<div class="row">						
-		        			<input type="text" id="title-input"/>
-		        		</div>
-						<div class="row">		        		
-		        			<input type="text" id="author-input"/>
-		        		<input id="get-details" type=submit value="ADD TEXT"> 
-		        		</div>
-						<div class="row">		        		
-			          		<div id=font-button>CHOOSE FONT
-							<div id="font-selector">
-				          		</div>
-			      				<div id="font-list">
-					            <div class="font" id="Alegreya" style="font-family: Alegreya">Book Title and Author
-					            </div>
-					            <div class="font" id="Neuton" style="font-family: Neuton">Book Title and Author
-					            </div>          
-					            <div class="font" id="Abril Fatface" style="font-family: 'Abril Fatface'">Book Title and Author
-					            </div>
-					            <div class="font" id="Dosis" style="font-family: Dosis">Book Title and Author
-					            </div>
-					            <div class="font" id="Play" style="font-family: Play">Book Title and Author
-					            </div>
-					            <div class="font" id="Anton" style="font-family: Anton">Book Title and Author
-					            </div>
-					            <div class="font" id="Chango" style="font-family: Chango">Book Title and Author
-					            </div>
-					            <div class="font" id="Londrina Solid" style="font-family: 'Londrina Solid'">Book Title and Author
-					            </div>
-					            <div class="font" id="PT Mono" style="font-family: 'PT Mono'">Book Title and Author
-					            </div>
-					            <div class="font" id="Chicle" style="font-family: Chicle">Book Title and Author
-					            </div>
-					            <div class="font" id="Ceviche One" style="font-family: 'Ceviche One'">Book Title and Author
-					            </div>
-					            <div class="font" id="Sue Ellen Francisco" style="font-family: 'Sue Ellen Francisco'">Book Title and Author
-					            </div>
-					            <div class="font" id="Irish Grover" style="font-family: 'Irish Grover'">Book Title and Author
-					            </div>
-					            <div class="font" id="Barrio" style="font-family: Barrio">Book Title and Author
-					            </div>
-					        </div>
-					    </div>
-	      			</div>
-				</div>
-			</div>
-			<div class="sub-menu" id="wordcount-menu">
-				<div class="title">
-					WORD COUNT
-				</div>
-				<div class="menu-div">
-					<div class="left-col">
-		    			<div class="subtitle">WORDCOUNT:</div>
-		    		</div>
-	    		<div class="right-col">
-	    			<input id="count-input" type = "number" step="20000" min="20000" max="600000">
-	    			<input id="get-count" type=submit value="GO">
 				</div>
 			</div>
 			
@@ -139,7 +63,6 @@
 	        		</div>
 				</div>
 			</div>
-
 			<div class="sub-menu" id="color-menu">
 				<div class="title">
 					COLOR
@@ -174,6 +97,85 @@
 	    			</div>
 				</div>
 			</div>
+
+			<div class="sub-menu" id="text-menu">
+				<div class="title">
+					TEXT
+				</div>
+				<div class="menu-div">
+					<div class="left-col">
+						<div class="row">
+		        			<div class="subtitle">TITLE</div>
+		        		</div>
+		        		<div class="row">
+		        			<div class="subtitle">AUTHOR</div> 
+		        		</div>
+						<div class="row">		        		
+							<div class="subtitle">FONT</div> 
+						</div>
+		        	</div>
+					<div class="right-col">	
+						<div class="row">						
+		        			<input type="text" id="title-input"/>
+		        		</div>
+						<div class="row">		        		
+		        			<input type="text" id="author-input"/>
+		        		<input id="get-details" type=submit value="ADD TEXT"> 
+		        		</div>
+						<div class="row">		        		
+							<div id="font-selector">
+			          			<div id=font-button>CHOOSE FONT
+			          			</div>
+			      				<div id="font-list">
+						            <div class="font" id="Alegreya" style="font-family: Alegreya">Book Title and Author
+						            </div>
+						            <div class="font" id="Neuton" style="font-family: Neuton">Book Title and Author
+						            </div>          
+						            <div class="font" id="Abril Fatface" style="font-family: 'Abril Fatface'">Book Title and Author
+						            </div>
+						            <div class="font" id="Dosis" style="font-family: Dosis">Book Title and Author
+						            </div>
+						            <div class="font" id="Play" style="font-family: Play">Book Title and Author
+						            </div>
+						            <div class="font" id="Anton" style="font-family: Anton">Book Title and Author
+						            </div>
+						            <div class="font" id="Chango" style="font-family: Chango">Book Title and Author
+						            </div>
+						            <div class="font" id="Londrina Solid" style="font-family: 'Londrina Solid'">Book Title and Author
+						            </div>
+						            <div class="font" id="PT Mono" style="font-family: 'PT Mono'">Book Title and Author
+						            </div>
+						            <div class="font" id="Chicle" style="font-family: Chicle">Book Title and Author
+						            </div>
+						            <div class="font" id="Ceviche One" style="font-family: 'Ceviche One'">Book Title and Author
+						            </div>
+						            <div class="font" id="Sue Ellen Francisco" style="font-family: 'Sue Ellen Francisco'">Book Title and Author
+						            </div>
+						            <div class="font" id="Irish Grover" style="font-family: 'Irish Grover'">Book Title and Author
+						            </div>
+						            <div class="font" id="Barrio" style="font-family: Barrio">Book Title and Author
+						            </div>
+						    	</div>
+		      				</div>
+		      			</div>
+					</div>
+				</div>
+			</div>
+			<div class="sub-menu" id="wordcount-menu">
+				<div class="title">
+					WORD COUNT
+				</div>
+				<div class="menu-div">
+					<div class="left-col">
+		    			<div class="subtitle">WORDCOUNT:</div>
+		    		</div>
+	    		<div class="right-col">
+	    			<input id="count-input" type = "number" step="20000" min="20000" max="600000">
+	    			<input id="get-count" type=submit value="GO">
+				</div>
+			</div>
+
+
 
 
 		</div>
