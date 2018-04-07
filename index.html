@@ -7,8 +7,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css" media="all">
 	 <!-- <link href="boxprint.css" media="print" rel="stylesheet" /> -->
 	<link href="https://fonts.googleapis.com/css?family=Dosis|Abril+Fatface|Play|Alegreya|Neuton|Anton|Barrio|Chango|Irish+Grover|Londrina+Solid|Sue+Ellen+Francisco|PT+Mono|Ceviche+One|Chicle" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
 </head>
 <body>
 	<div id="container">
@@ -41,17 +40,38 @@
 				</div>
 			</div>
 
-			<div class="sub-menu" id="wordcount-menu">
+			<div class="sub-menu" id="color-menu">
 				<div class="title">
-					WORD COUNT
+					COLOR
 				</div>
 				<div class="menu-div">
 					<div class="left-col">
-		    			<div class="subtitle">WORDCOUNT:</div>
-		    		</div>
-	    		<div class="right-col">
-	    			<input id="count-input" type = "number" step="20000" min="20000" max="600000">
-	    			<input id="get-count" type=submit value="GO">
+						<div class="row">
+		    				<div class="color" id="background-color"></div>
+		    				<div class="subtitle">BACKGROUND</div>
+		    			</div>
+		    			<div class="row">
+		    				<div class="color" id="detail-color"></div>
+			        		<div class="subtitle">DETAIL</div> 
+			        	</div>
+			        	<div class="row">
+							<div class="subtitle">STRIPES</div>
+							<div id="stripes-box">
+								<div class="toggle" id="toggle-on"><span>ON</span></div>
+								<div class="toggle" id="toggle-off"><span>OFF</span></div>
+							</div> 
+						</div>
+					</div>
+	    			<div class="right-col">
+	    				<div id="selector">
+	    					<div class="color" id="palette">
+	    						<br/><label class="selector-label"><i class="fas fa-eye-dropper"></i><br/>PALETTE</label>
+	    					</div>
+	    					<div class="color" id="cover-select">
+	    						<label class="selector-label"><i class="fas fa-eye-dropper"></i>COVER IMAGE</label>
+	    					</div>
+		    			</div>
+	    			</div>
 				</div>
 			</div>
 			
@@ -64,8 +84,10 @@
 	    				<div class="subtitle">CHOOSE IMAGE:</div>
 	    			</div>
 	    			<div class="right-col">
-		    			<!-- below element needs a type -->
-		    			<input id="take-photo" class="custom-file-upload" name="photo" value="TAKE PHOTO">
+	    				<label id="take-photo" class="custom-file-upload">
+						<input type="file" name="photo" accept="image/*;capture=camera">
+					    TAKE PHOTO
+						</label>
 		    			<label id="cover-file" class="custom-file-upload">
 					    <input type="file" name="pic" accept="image/*">
 					    CHOOSE FILE
@@ -74,6 +96,20 @@
 							current_file.jpg
 						</div>
 	        		</div>
+				</div>
+			</div>
+
+			<div class="sub-menu" id="wordcount-menu">
+				<div class="title">
+					WORD COUNT
+				</div>
+				<div class="menu-div">
+					<div class="left-col">
+		    			<div class="subtitle">WORDCOUNT:</div>
+		    		</div>
+	    		<div class="right-col">
+	    			<input id="count-input" type = "number" step="20000" min="20000" max="600000">
+	    			<input id="get-count" type=submit value="GO">
 				</div>
 			</div>
 
@@ -125,14 +161,6 @@
 				            </div>
 				        </div>
 	      			</div>
-				</div>
-			</div>
-
-			<div class="sub-menu" id="color-menu">
-				<div class="title">
-					COLOR
-				</div>
-				<div class="menu-div">
 				</div>
 			</div>
 

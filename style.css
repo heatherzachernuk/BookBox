@@ -71,7 +71,7 @@ body {
 	border-top: 2px solid black;
 	height: 100%;
 	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
-	outline: thin solid blue;
+	/*outline: thin solid blue;*/
 }
 
 /**/
@@ -85,30 +85,34 @@ body {
 	width: 100%;
 	line-height: 2em;
 	text-align: center;
-	outline: thin solid red;
+	/*outline: thin solid red;*/
 }
 
 .menu-div{
 	position: relative;
-	top: 30%;
+ 	display: flex;
+    align-items: center;
+    /*outline: thin solid blue;*/
 }
 
 .left-col {
 	display: inline-block;
 	margin-left: 2em;
-	outline: thin solid red;
+	margin: 0 auto;
+	/*outline: thin solid red;*/
 	width: 40%;
 }
 
 .right-col {
 	display: inline-block;
-	outline: thin solid red;
+	/*outline: thin solid red;*/
 	width: 40%;
+	margin: 0 auto;
 }
 
 .subtitle {
 	display: inline-block;
-	outline: thin solid red;
+	/*outline: thin solid red;*/
 }
 
 input[type=text], input[type=number] {
@@ -223,14 +227,92 @@ input[type="file"] {
 /* color menu styles*/
 /**/
 #color-menu {
-	display: none;
+	/*display: none;*/
+}
+
+.row{
+	width: 100%;
+	padding-bottom: 0.5em;
+	/*outline: solid thin green;*/
+}
+
+.color{
+	height: 2em;
+	width: 2em;
+	background-color: white;
+	outline: thin solid black;
+	text-align: center;
+	line-height: 0.35em;
+}
+
+#background-color{
+	display: inline-block;
+}
+
+#detail-color{
+	display: inline-block;
+}
+
+#stripes-box {
+	display: inline-block;
+	height: 1.5em;
+	width: 3em;
+	background-color: lightgray;
+	outline: thin solid black;
+	margin-left: 1em;
+}
+
+.toggle {
+	/*outline: thin solid red;*/
+	display: inline-block;
+	height: 1.5em;
+	text-align: center;
+}
+
+.toggle > span {
+	font-size: 0.5em;
+
+}
+
+#toggle-on{
+	width: 1.5em;
+	background-color: white;
+	border-right: thin solid black; 
+}
+
+#toggle-off{
+}
+
+#selector{
+	height: 4em;
+	width: 2em;
+	/*outline: thin solid yellow;*/
+	margin: 0 auto;
+}
+
+.selector-label {
+	font-size: 0.4em;
+}
+
+#palette {
+	display: block;
+}
+
+#cover-select {
+	display: block;
+	background-color: lightgray;
+}
+
+.fa-eye-dropper{
+	font-size: 1.5em;
+	padding: 0.4em 0.4em 0 0.4em;
 }
 
 /**/
 /* wordcount menu styles*/
 /**/
 #wordcount-menu {
-	/*display: none;*/
+	display: none;
 }
 
 
