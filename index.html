@@ -17,32 +17,35 @@
 		</div>	
 
 		<div id="lower">
-			<div id="main-menu">
-				<div class="menu">
-					<div class="menu-text" id="text-button">
+			<div id="main-menu" class="menu">
+				<div class="menu-item">
+					<div class="menu-text" data-opens="text-menu" id="text-button">
 					&nbsp;&nbsp;TEXT
 					</div>
 				</div>
-				<div class="menu">
-					<div class="menu-text" id="color-button">
+				<div class="menu-item">
+					<div class="menu-text" data-opens="color-menu" id="color-button">
 					&nbsp;&nbsp;COLOR
 					</div>
 				</div>
-				<div class="menu">
-					<div class="menu-text" id="image-button">
+				<div class="menu-item">
+					<div class="menu-text" data-opens="image-menu" id="image-button">
 					&nbsp;&nbsp;IMAGE
 					</div>
 				</div>
-				<div class="menu">
-					<div class="menu-text" id="wordcount-button">
+				<div class="menu-item">
+					<div class="menu-text" data-opens="wordcount-menu" id="wordcount-button">
 					&nbsp;&nbsp;WORD COUNT
 					</div>
 				</div>
 			</div>
 			
-			<div class="sub-menu" id="image-menu">
+			<div class="menu sub-menu" id="image-menu">
 				<div class="title">
 					IMAGE
+					<span class="close-submenu" data-opens="main-menu">
+						X
+					<span>
 				</div>
 				<div class="menu-div">
 					<div class="left-col">
@@ -63,9 +66,13 @@
 	        		</div>
 				</div>
 			</div>
-			<div class="sub-menu" id="color-menu">
+
+			<div class="menu sub-menu" id="color-menu">
 				<div class="title">
 					COLOR
+					<span class="close-submenu" data-opens="main-menu">
+						X
+					<span>
 				</div>
 				<div class="menu-div">
 					<div class="left-col">
@@ -98,9 +105,12 @@
 				</div>
 			</div>
 
-			<div class="sub-menu" id="text-menu">
+			<div class="menu sub-menu" id="text-menu">
 				<div class="title">
 					TEXT
+					<span class="close-submenu" data-opens="main-menu">
+						X
+					<span>
 				</div>
 				<div class="menu-div">
 					<div class="left-col">
@@ -161,9 +171,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="sub-menu" id="wordcount-menu">
+
+			<div class="menu sub-menu" id="wordcount-menu">
 				<div class="title">
 					WORD COUNT
+					<span class="close-submenu" data-opens="main-menu">
+						X
+					<span>
 				</div>
 				<div class="menu-div">
 					<div class="left-col">
