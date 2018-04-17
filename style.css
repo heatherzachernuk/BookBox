@@ -50,7 +50,7 @@ body {
 	/*display: none;*/
 }
 
-.menu {
+.menu-item {
 	height: 12vh;
 	/*outline: thin solid red;*/
 	/*background-color: hsla(223, 24%, 84%, 1);*/
@@ -69,6 +69,9 @@ body {
 
 .sub-menu {
 	/*display: none;*/
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	border-top: 2px solid black;
 	height: 100%;
 	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
@@ -76,16 +79,36 @@ body {
 }
 
 .title {
+	position: relative;
 	width: 100%;
 	line-height: 2em;
 	text-align: center;
 	/*outline: thin solid red;*/
 }
 
-.menu-div{
-	position: relative;
+.close-submenu {
+	display: inline;
+	position: absolute;
+	top: -0.9em;
+	right: 0.5em;
+	font-size: 0.5em;
+	cursor: pointer;
+}
+
+
+.vertical-hold{
  	display: flex;
+    flex-direction: column;
+    height: 90%;
+    /*outline: thin solid red;*/
+}
+
+.horizontal-hold{
+ 	display: flex;
+ 	flex-direction: row;
     align-items: center;
+    width: 100%;
+    height: 80%;
     /*outline: thin solid blue;*/
 }
 
@@ -159,8 +182,11 @@ input[type=text]{
 	background-color: hsla(223, 24%, 64%, 1);
 	position: absolute;
  	margin-left: 0.5em;
- 	margin-top: -2em;
- }
+}
+
+#get-details {
+	margin-top: -2em;
+}
 
 .font{
   overflow: hidden;
