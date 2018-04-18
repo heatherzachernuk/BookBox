@@ -1,9 +1,14 @@
  @media only screen 
-   and (min-device-width: 850px){
+   and (max-device-width: 800px){
+   	body{
+   		font-size: 0.75em;
+   		padding: 0;
+		margin: 0;
+		overflow: hidden;
+   	}
    	#container{
-   		width: 700px;
-   		margin: 0 auto;
-   		height: 100vh;
+   		width: 100vw;
+   		height: 50vh;
    	}
 }
 
@@ -351,8 +356,3 @@ input[type="file"] {
 #wordcount-menu {
 	display: none;
 }
-
-
-
-
-
