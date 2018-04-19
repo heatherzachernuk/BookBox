@@ -1,22 +1,62 @@
- @media only screen 
-   and (max-device-width: 800px){
-   	body{
-   		font-size: 0.75em;
-   		padding: 0;
-		margin: 0;
-		width: 100%;
-		height: 100%;
-		overflow: hidden;
-   	}
+@media only screen 
+   and (min-device-width: 850px){
    	#container{
-   		width: 100%;
-		height: 100%;
+   		width: 700px;
+   		margin: 0 auto;
+   		height: 100vh;
+   	}
+   input[type=number] {
+   		margin-left: 1em;
+   }
+   input[type=text] {
+   		width: 12em;
+   		margin-left: -2em;
+   }
+   #count-input {
+   		margin-left: -2em;
    	}
 }
 
-html {
-  margin: 0;
-  padding: 0;
+@media only screen 
+   and (max-device-width: 500px){
+	html {
+		height: 100%;
+		width: 100%;
+	}
+
+   	body {
+		width: 100%;
+   		height: 100%;
+        /*font-size: 2em;*/
+   	}
+   	#container {
+   		width: 100%;
+   		height: 100%;
+   }
+   .subtitle {
+   		font-size: 0.8em;
+   }
+   input[type=number] {
+   	margin-left: -2em;
+   }
+   input[type=text] {
+   		width: 7em;
+   		margin-left: -3em;
+   }
+   #count-input {
+   		width: 5em;
+   		margin-left: -1.8em;
+   	}
+   	#font-button {
+   		margin-left: -3em;
+   	}
+   	#image-right {
+   		margin-left: -3em;
+   	}
+   	#color-left{
+   		width: 70%;
+   		margin-left: 1em;
+   	}
 }
 
 body {
@@ -29,7 +69,7 @@ body {
 }
 
 .border {
-	height: 1vh;
+	height: 0.5vh;
 	background: hsla(223, 24%, 12%, 1);
 }
 
@@ -40,7 +80,7 @@ body {
 #upper {
 	display: inline-block;
 	width: 100%;
-	height: 49%;
+	height: 50%;
 	/*outline: thin solid red;*/
 	background-color: hsla(223, 24%, 84%, 1);
 }
@@ -48,7 +88,7 @@ body {
 #lower {
 	display: inline-block;
 	width: 100%;
-	height: 49%;
+	height: 50%;
 	font-size: 2em;
 	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
 	/*outline: thin solid red;*/
@@ -69,6 +109,7 @@ body {
 .menu-text {
 	height: 1.5em;
 	margin-top: 0.7em;
+	margin-left: 1em;
 	/*text-shadow: -1px -1px 1px hsla(223, 24%, 55%, 1), 1px 1px 1px hsla(223, 24%, 8%, 1);*/
 	/*line-height: 2.5em;*/
 	cursor: pointer;
@@ -167,15 +208,13 @@ input[type=text], input[type=number] {
 }
 
 input[type=text]{
-	width: 12em;
-	margin-left: -1.5em;
 	padding-left: 0.5em;
 }
 
  input[type=number] {
  	width: 6em;
  	padding-left: 1em;
- 	margin-left: 1em;
+ 	/*margin-left: 1em;*/
  }
 
  input[type=submit] {
@@ -358,3 +397,4 @@ input[type="file"] {
 #wordcount-menu {
 	display: none;
 }
+
