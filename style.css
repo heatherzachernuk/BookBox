@@ -7,9 +7,22 @@
    	}
 }
 
-html {
-  margin: 0;
-  padding: 0;
+@media only screen 
+   and (max-device-width: 500px){
+	html {
+		height: 100%;
+		width: 100%;
+	}
+
+   	body {
+		width: 100%;
+   		height: 100%;
+        /*font-size: 2em;*/
+   	}
+   	#container {
+   		width: 100%;
+   		height: 100%;
+   }
 }
 
 body {
@@ -22,7 +35,7 @@ body {
 }
 
 .border {
-	height: 1vh;
+	height: 0.5vh;
 	background: hsla(223, 24%, 12%, 1);
 }
 
@@ -33,7 +46,7 @@ body {
 #upper {
 	display: inline-block;
 	width: 100%;
-	height: 49%;
+	height: 50%;
 	/*outline: thin solid red;*/
 	background-color: hsla(223, 24%, 84%, 1);
 }
@@ -41,7 +54,7 @@ body {
 #lower {
 	display: inline-block;
 	width: 100%;
-	height: 49%;
+	height: 50%;
 	font-size: 2em;
 	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
 	/*outline: thin solid red;*/
