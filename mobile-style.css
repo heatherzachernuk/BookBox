@@ -1,40 +1,13 @@
+/* GENERAL MOBILE */
 @media only screen 
-   and (min-device-width: 850px){
-   	#container{
-   		width: 700px;
-   		margin: 0 auto;
-   		height: 100vh;
-   	}
-   input[type=number] {
-   		margin-left: 1em;
-   }
-   input[type=text] {
-   		width: 12em;
-   		margin-left: -2em;
-   }
-   #count-input {
-   		margin-left: -2em;
-   	}
-}
-
-@media only screen 
-   and (max-device-width: 500px){
-	html {
-		height: 100%;
-		width: 100%;
-	}
-
+   	and (max-device-width: 768px) {
    	body {
 		width: 100%;
    		height: 100%;
-        /*font-size: 2em;*/
    	}
    	#container {
    		width: 100%;
    		height: 100%;
-   }
-   .subtitle {
-   		font-size: 0.8em;
    }
    input[type=number] {
    	margin-left: -2em;
@@ -45,7 +18,7 @@
    }
    #count-input {
    		width: 5em;
-   		margin-left: -1.8em;
+   		margin-left: -3em;
    	}
    	#font-button {
    		margin-left: -3em;
@@ -57,7 +30,97 @@
    		width: 70%;
    		margin-left: 1em;
    	}
+   	#font-list{
+   		width: 12em;
+		margin-left: -9em;
+   	}
+   	.custom-file-upload {
+   		width: 8em;
+   	}
 }
+
+/* TINY MOBILE RULES */
+@media only screen 
+   and (max-device-width: 375px){
+   	.subtitle {
+   		font-size: 1em;
+   	}
+   	.no-row-subtitle {
+   		font-size: 0.7em;
+   	}
+   	.row{
+		width: 150%;
+		font-size: 0.65em;
+	}
+	#current-filename {
+		font-size: 0.5em;
+	}
+	.menu-text{
+		font-size: 0.9em;
+		line-height: 0.9em;
+	}
+}
+
+/* BIGGER MOBILE RULES */
+@media only screen 
+   	and (min-device-width: 375px) 
+   	and (max-device-width: 768px) {
+   	.row{
+		width: 150%;
+		font-size: 0.9em;
+	}
+	.no-row-subtitle {
+   		font-size: 0.8em;
+   	}
+	#current-filename {
+	font-size: 0.65em;
+	}
+	.subtitle {
+   		font-size: 0.8em;
+   }
+   	.menu-text{
+		line-height: 1.2em;
+	}
+}
+
+/* NON-MOBILE RULES */
+@media only screen 
+   and (min-device-width: 768px){
+   	#container{
+   		width: 700px;
+   		margin: 0 auto;
+   		height: 100vh;
+   	}
+   .row{
+		width: 100%;
+	}
+   input[type=number] {
+   		margin-left: 1em;
+   }
+   input[type=text] {
+   		width: 12em;
+   		margin-left: -2em;
+   }
+   #count-input {
+   		margin-left: -5em;
+   	}
+	#font-list{
+   		width: 12em;
+		margin-left: 10em;
+   	}
+   	.custom-file-upload {
+   		width: 12em;
+   	}
+   	#current-filename {
+		font-size: 0.65em;
+	}
+}
+/*GENERAL RULES*/
+html {
+	height: 100%;
+	width: 100%;
+}
+
 
 body {
   margin: 0;
@@ -111,7 +174,6 @@ body {
 	margin-top: 0.7em;
 	margin-left: 1em;
 	/*text-shadow: -1px -1px 1px hsla(223, 24%, 55%, 1), 1px 1px 1px hsla(223, 24%, 8%, 1);*/
-	/*line-height: 2.5em;*/
 	cursor: pointer;
 	/*outline: thin solid red;*/
 }
@@ -177,7 +239,7 @@ body {
 }
 
 .row{
-	width: 100%;
+	/*width: 100%;*/
 	padding-bottom: 0.5em;
 	/*outline: solid thin green;*/
 }
@@ -259,7 +321,6 @@ input[type=text]{
 
 #font-list {
   display: none;
-  width: 15em;
   color: hsla(223, 24%, 12%, 1);
   font-size: 0.6em;
   position: absolute;
@@ -267,7 +328,6 @@ input[type=text]{
   opacity: 0.9;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   z-index: 1;
-  margin-left: 10em;
   padding: 0.5em;
   /*border: solid 1px red;*/
 }
@@ -296,7 +356,6 @@ input[type="file"] {
     cursor: pointer;
     background-color: hsla(223, 24%, 64%, 1);
     height: 2em;
-  	width: 10em;
   	font-size: 0.65em;
 	text-align: center;
   	font-family: "Play";
@@ -304,7 +363,7 @@ input[type="file"] {
 }
 
 #current-filename {
-	font-size: 0.65em;
+	/*font-size: 0.65em;*/
 	overflow-wrap: break-word;
 }
 
