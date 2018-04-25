@@ -56,14 +56,13 @@
 		font-size: 0.5em;
 	}
 	.menu-text{
-		font-size: 0.9em;
 		line-height: 0.9em;
 	}
 }
 
 /* BIGGER MOBILE RULES */
 @media only screen 
-   	and (min-device-width: 375px) 
+   	and (min-device-width: 375px)
    	and (max-device-width: 768px) {
    	.row{
 		width: 150%;
@@ -114,6 +113,10 @@
    	#current-filename {
 		font-size: 0.65em;
 	}
+	.menu-text{
+		line-height: 1.3em;
+	}
+
 }
 /*GENERAL RULES*/
 @import url(//fonts.googleapis.com/css?family=Dosis|Abril+Fatface|Play|Alegreya|Neuton|Anton|Barrio|Chango|Irish+Grover|Londrina+Solid|Sue+Ellen+Francisco|PT+Mono|Ceviche+One|Chicle|Lato);
