@@ -8,8 +8,8 @@
 }
 
 html {
-/*  margin: 0;
-  padding: 0;*/
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -151,7 +151,7 @@ body {
 input[type=text], input[type=number] {
 	height: 2em;
 	font-size: 0.65em;
-	font-family: "Play";
+	font-family: "Sue Ellen Francisco";
 	line-height: 2em;
 	border: none;
 	border-radius: 0;
