@@ -17,11 +17,16 @@ var addText = document.getElementById("add-text");
 var fontButton = document.getElementById("font-button");
 var fontList = document.getElementById("font-list");
 
-// var backgroundColor = document.getElementById("background-color");
-// var detailColor = document.getElementById("detail-color");
 
-// var paletteColor = document.getElementById("palette-color");
-// var coverColor = document.getElementById("cover-color");
+var backgroundColor = document.getElementById("background");
+var detailColor = document.getElementById("set-color-box");
+var setColorBox = document.getElementById("set-color-box");
+var colorMode = "background";
+
+var paletteSource = document.getElementById("palette");
+var coverSource = document.getElementById("color-source-box");
+var colorSourceBox = document.getElementById("color-source-box");
+var source = "palette";
 
 var stripesOn = document.getElementById("stripes-on");
 var stripesOff = document.getElementById("stripes-box");
@@ -36,21 +41,17 @@ var countInput = document.getElementById("count-input");
 var getCount = document.getElementById("get-count");
 
 var exampleText = document.getElementById("example-content");
+var exampleTitle = document.getElementById("example-title");
+var exampleAuthor = document.getElementById("example-author");
 
 // event listeners to add:
 addText.addEventListener("click", textOn, false);
-
 var fontClick = fontList.addEventListener("click", changeFont, false);
 
-// backgroundColor.addEventListener("click", setBackgroundColor, false);
-
-// detailColor.addEventListener("click", setDetailColor, false);
-
+setColorBox.addEventListener("click", colorToggle, false);
+colorSourceBox.addEventListener("click", sourceToggle, false);
 stripesBox.addEventListener("click", stripeToggle, false);
 
-// paletteColor.addEventListener("click", colorInput, false);
-
-// coverColor.addEventListener("click", colorInput, false);
 // getCount.addEventListener("click", getDimensions, false);
 
 // takePhotoButton.addEventListener("change", loadCover);
@@ -82,6 +83,35 @@ stripesBox.addEventListener("click", stripeToggle, false);
 
 // loadConfig();
 
+//color toggle
+function colorToggle(){
+	if(colorMode === "background"){
+		backgroundColor.style.backgroundColor = "rgb(131,140,54)";
+		detailColor.style.backgroundColor = "rgb(236,247,147)";
+		colorMode = "detail";
+	}
+	else if(colorMode === "detail") {
+		backgroundColor.style.backgroundColor = "rgb(236,247,147)";
+		detailColor.style.backgroundColor = "rgb(131,140,54)";
+		colorMode = "background";
+	}
+}
+
+//source toggle
+function sourceToggle(){
+	if(source === "palette"){
+		paletteSource.style.backgroundColor = "rgb(131,140,54)";
+		coverSource.style.backgroundColor = "rgb(236,247,147)";
+		source = "cover";
+	}
+	else if(source === "cover") {
+		paletteSource.style.backgroundColor = "rgb(236,247,147)";
+		coverSource.style.backgroundColor = "rgb(131,140,54)";
+		source = "palette";
+	}
+}
+
+
 //stripe toggle
 function stripeToggle(){
 	if(stripes === "on"){
@@ -104,5 +134,6 @@ function changeFont(fontClick){
 }
 
 function textOn(){
-	exampleText.innerHTML = titleInput.value + "<br/><br/>" + authorInput.value;
+	exampleTitle.innerHTML = titleInput.value;
+	exampleAuthor.innerHTML = authorInput.value;
 }

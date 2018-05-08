@@ -482,18 +482,18 @@ input[type="file"] {
 }
 
 #example-content {
-	height: 10em;
+	height: 9em;
 	width: 10em;
 	outline: thin solid black;
 	text-align: center;
 	margin: 0 auto;
-
+	font-size: 2em;
 }
 
 #example-title {
-	
+	margin-top: 2em;
 }
 
 #example-author {
-	
+	margin-top: 2em;
 }
