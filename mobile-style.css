@@ -11,10 +11,12 @@
    }
    input[type=number] {
    	margin-left: -2em;
+   	
    }
    input[type=text] {
    		width: 7em;
    		margin-left: -3em;
+
    }
    #count-input {
    		width: 5em;
@@ -91,14 +93,16 @@
    		height: 100vh;
    	}
    .row{
-		width: 100%;
+		width: 130%;
 	}
    input[type=number] {
    		margin-left: 1em;
+   		margin-bottom: 1em;
    }
    input[type=text] {
    		width: 12em;
    		margin-left: -2em;
+   		margin-bottom: 0.5em;
    }
    #count-input {
    		margin-left: -5em;
@@ -275,6 +279,7 @@ input[type=text], input[type=number] {
 	border-radius: 0;
 	outline: none;
 	display: inline-block;
+	background-color: rgb(236,247,147);
 }
 
 input[type=text]{
@@ -302,7 +307,7 @@ input[type=text]{
  	margin-left: 0.5em;
 }
 
-#get-details {
+#add-text {
 	margin-top: -2em;
 }
 
@@ -340,7 +345,7 @@ input[type=text]{
 }
 
 #font-list div:hover {
-  background-color: hsla(223, 24%, 98%, 1);
+  background-color: rgb(238,252,121);
 }
 /**/
 /* image menu styles*/
@@ -397,37 +402,37 @@ input[type="file"] {
 	display: inline-block;
 }
 
-#stripes-box {
-	top: -1em;
+.selector-box {
 	display: inline-block;
-	height: 1.5em;
-	width: 3em;
-	background-color: lightgray;
+	height: 1.8em;
+	width: 6em;
+	background-color: rgb(131,140,54);
 	outline: thin solid black;
-	margin-left: 1em;
+	margin-left: -1em;
 	position: relative;
-    top: -0.7em;
 }
 
-.toggle {
+.selector-button {
 	/*outline: thin solid red;*/
 	display: inline-block;
-	height: 1.5em;
+	height: 1.8em;
 	text-align: center;
+	pointer-events: none
 }
 
-.toggle > span {
-	font-size: 0.5em;
-
+.selector-button > span {
+	font-size: 0.35em;
+	font-weight: bold;
 }
 
-#toggle-on{
-	width: 1.5em;
-	background-color: white;
-	border-right: thin solid black; 
+.selector-on{
+	width: 3em;
+	background-color: rgb(236,247,147);
+	box-shadow: 1px 0 black; 
 }
 
-#toggle-off{
+.selector-off{
+	width: 2.8em;
 }
 
 #selector{
@@ -442,11 +447,11 @@ input[type="file"] {
 	font-size: 0.35em;
 }
 
-#palette {
+#palette-color {
 	display: block;
 }
 
-#cover-select {
+#cover-color {
 	display: block;
 	background-color: lightgray;
 }
@@ -463,3 +468,32 @@ input[type="file"] {
 	display: none;
 }
 
+/* example box */
+
+#example-box {
+	height: 18em;
+	width: 18em;
+	outline: double black;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	margin: 0 auto;
+	margin-top: 2em;
+}
+
+#example-content {
+	height: 10em;
+	width: 10em;
+	outline: thin solid black;
+	text-align: center;
+	margin: 0 auto;
+
+}
+
+#example-title {
+	
+}
+
+#example-author {
+	
+}
