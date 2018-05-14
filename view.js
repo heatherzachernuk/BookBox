@@ -44,9 +44,12 @@ var countInput = document.getElementById("count-input");
 var getCount = document.getElementById("get-count");
 
 var exampleBox = document.getElementById("example-box");
-var exampleText = document.getElementById("example-content");
 var exampleTitle = document.getElementById("example-title");
 var exampleAuthor = document.getElementById("example-author");
+
+var width = 150;
+var height = 200;
+var depth = 50;
 
 // event listeners to add:
 addText.addEventListener("click", textOn, false);
@@ -115,7 +118,6 @@ function sourceToggle(){
 	}
 }
 
-
 //stripe toggle:
 function stripeToggle(){
 	if(stripes === "on"){
@@ -131,8 +133,7 @@ function stripeToggle(){
 }
 
 function changeFont(fontClick){
-	exampleText.style.fontFamily = fontClick.target.id;
-
+	exampleBox.style.fontFamily = fontClick.target.id;
 }
 
 function textOn(){
@@ -158,50 +159,141 @@ var geometry;
 
 // this is just a random adjustment at this point
 function getDimensions(){
-	geometry = new THREE.BoxBufferGeometry( 100, 150, 200 );
+	// geometry = new THREE.BoxBufferGeometry( 100, 150, 200 );
 }
 
-var front = document.getElementById("text");
-var frontHeight = upper.offsetHeight;
+// drawing the canvases for the design of the bookbox
+var front = document.getElementById("front");
+var back = document.getElementById("back");
+var topp = document.getElementById("topp");
+var bottom = document.getElementById("bottom");
+var spine = document.getElementById("spine");
+var edge = document.getElementById("edge");
 
-var ctx = front.getContext("2d");
-  ctx.font = "20px Arial";
-  ctx.fillStyle = "#838c36";
-  ctx.fillRect(0, 0, 300, 300);
-  ctx.fillStyle = "#000000";
-  ctx.fillText("Little House on the Prairie",30,30);
+// drawing front canvas
+front.width = width;
+front.height = height;
 
-var camera, scene, renderer, texture, mesh;
+var frontCtx = front.getContext("2d");
+  frontCtx.fillStyle = "#838c36";
+  frontCtx.fillRect(0, 0, width, height);
+  console.log(width);
+  frontCtx.font = "10px Arial";
+  frontCtx.fillStyle = "#000000";
+  frontCtx.fillText("Little House on the Poorie", 10, 30);
+
+// drawing spine canvas
+spine.width = depth;
+spine.height = height;
+
+var spineCtx = spine.getContext("2d");
+  spineCtx.fillStyle = "#5b631b";
+  spineCtx.fillRect(0, 0, depth, height);
+
+// drawing back canvas
+back.width = width;
+back.height = height;
+
+var backCtx = back.getContext("2d");
+  backCtx.fillStyle = "#838c36";
+  backCtx.fillRect(0, 0, width, height);
+
+// drawing top canvas
+topp.width = width;
+topp.height = 3;
+
+var toppCtx = topp.getContext("2d");
+var endGradient = toppCtx.createLinearGradient(width, 0, width, 3);
+  endGradient.addColorStop(0, 'rgb(211, 218, 209)');
+  endGradient.addColorStop(1, 'rgb(190, 173, 121)');
+  toppCtx.fillStyle = endGradient;
+  toppCtx.fillRect(0, 0, width, 3);
+var endPattern = toppCtx.createPattern(topp, "repeat");
+
+  topp.width = width;
+  topp.height = depth;
+  toppCtx.fillStyle = endPattern;
+  toppCtx.fillRect(0, 0, width, depth);
+
+ // drawing bottom canvas
+var bottomCtx = bottom.getContext("2d");
+  bottom.width = width;
+  bottom.height = depth;
+  bottomCtx.fillStyle = endPattern;
+  bottomCtx.fillRect(0, 0, width, depth);
+
+// drawing edge canvas
+edge.width = 3;
+edge.height = height;
+
+var edgeCtx = edge.getContext("2d");
+var edgeGradient = edgeCtx.createLinearGradient(0, height, 3, height);
+  edgeGradient.addColorStop(0, 'rgb(211, 218, 209)');
+  edgeGradient.addColorStop(1, 'rgb(190, 173, 121)');
+  edgeCtx.fillStyle = edgeGradient;
+  edgeCtx.fillRect(0, 0, 3, height);
+var edgePattern = edgeCtx.createPattern(edge, "repeat");
+  edge.width = depth;
+  edge.height = height;
+  edgeCtx.fillStyle = edgePattern;
+  edgeCtx.fillRect(0, 0, depth, height);
+
+
+var camera, scene, renderer, bookBox;
+var frontTexture, backTexture, topTexture, bottomTexture, spineTexture, edgeTexture;
 
 init();
 animate();
 
 
 function init() {
-	camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 500 );
+	camera = new THREE.PerspectiveCamera( 55, width / height, 1, 500 );
 	camera.position.z = 295;
-  	camera.position.y = 110;
+  	camera.position.y = 150;
  	 camera.lookAt(new THREE.Vector3());
 
 	scene = new THREE.Scene();
- 	texture = new THREE.Texture(front);
-	geometry = new THREE.BoxBufferGeometry( 50, 150, 200 );
 
-	var material = new THREE.MeshBasicMaterial( {  map: texture } );
-	mesh = new THREE.Mesh( geometry, material );
-	scene.add( mesh );
+ 	edgeTexture = new THREE.Texture(edge);
+ 	spineTexture = new THREE.Texture(spine);
+ 	topTexture = new THREE.Texture(topp);
+ 	bottomTexture = new THREE.Texture(bottom);
+ 	frontTexture = new THREE.Texture(front);
+ 	backTexture = new THREE.Texture(back);
+
+ 	// FYI depth, width, and height are variables set by me at the top
+	geometry = new THREE.BoxBufferGeometry( width, height, depth );
+
+	var materials = [
+	  new THREE.MeshBasicMaterial({map: edgeTexture}),
+	  new THREE.MeshBasicMaterial({map: spineTexture}),
+	  new THREE.MeshBasicMaterial({map: topTexture}),
+	  new THREE.MeshBasicMaterial({map: bottomTexture}),
+	  new THREE.MeshBasicMaterial({map: frontTexture}),
+	  new THREE.MeshBasicMaterial({map: backTexture})
+	];
+
+
+	bookBox = new THREE.Mesh( geometry, materials );
+	scene.add( bookBox );
 
 	renderer = new THREE.WebGLRenderer({ alpha: true });
 	renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( frontHeight, frontHeight );
+	renderer.setSize( upper.offsetHeight, upper.offsetHeight );
 	exampleBox.appendChild( renderer.domElement );
 }
 
 function animate() {
 	requestAnimationFrame( animate );
-  texture.needsUpdate = true;
-	// mesh.rotation.x += 0.001;
-	mesh.rotation.y += 0.01;
+  	
+  	frontTexture.needsUpdate = true;
+  	backTexture.needsUpdate = true;
+  	topTexture.needsUpdate = true;
+  	bottomTexture.needsUpdate = true;
+  	spineTexture.needsUpdate = true;
+  	edgeTexture.needsUpdate = true;
+	// bookBox.rotation.x += 0.01;
+	bookBox.rotation.y += 0.01;
 	renderer.render( scene, camera );
 }
 

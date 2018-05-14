@@ -15,14 +15,18 @@
 		</div>
 		<div id="upper">
 			<div id="example-box">
-				<div id="example-content">
-					<div id="example-title">
-						Example Title
-					</div>
-					<div id="example-author">
-						Example Author
-					</div>
-				</div>
+				<canvas id="front">
+        		</canvas>
+				<canvas id="topp">
+        		</canvas>
+				<canvas id="edge">
+        		</canvas>
+				<canvas id="bottom">
+        		</canvas>         
+				<canvas id="spine">
+        		</canvas>
+				<canvas id="back">
+        		</canvas>            
 			</div>
 		</div>	
 
@@ -115,6 +119,8 @@
 		    				<div class="row">
 		    					<div class="selector-box" id="color-source-box">
 									<div class="selector-button selector-on" id="palette"><span>PALETTE</span></div>
+									<canvas id="gradient" width="200" height="200">
+        							</canvas>
 									<div class="selector-button selector-off" id="cover-image"><span>COVER</span></div>
 								</div> 
 			    			</div>
@@ -216,14 +222,10 @@
 					</div>
 				</div>
 			</div>
-
-
-
-
 		</div>
-<!-- 		<div class="border">
-		</div> -->
 	</div>
 </body>
-<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
+<script src="view.js"></script>
+<script src="controller.js"></script>
 </html>   
