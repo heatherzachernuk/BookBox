@@ -499,7 +499,10 @@ input[type="file"] {
 
 #front {
 	display: none;
-  	background-color: #e0f14c;
+}
+
+#image {
+	/*display: none;*/
 }
 
 #spine {

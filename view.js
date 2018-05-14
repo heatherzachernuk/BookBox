@@ -39,6 +39,7 @@ var takePhotoButton = document.getElementById("take-photo");
 var coverFileButton = document.getElementById("cover-file");
 var currentFilename = document.getElementById("current-filename");
 var file;
+var image = document.getElementById("image");
 
 var countInput = document.getElementById("count-input");
 var getCount = document.getElementById("get-count");
@@ -151,7 +152,7 @@ function loadCover(changeEvent){
 }
 
 function onCoverFileLoaded(fileLoadEvent){
-	exampleBox.style.backgroundImage = "url('" + fileLoadEvent.target.result + "')";
+	 // = "url('" + fileLoadEvent.target.result + "')";
 	currentFilename.innerHTML = file.name;
 }
 
@@ -175,12 +176,14 @@ front.width = width;
 front.height = height;
 
 var frontCtx = front.getContext("2d");
-  frontCtx.fillStyle = "#838c36";
-  frontCtx.fillRect(0, 0, width, height);
-  console.log(width);
-  frontCtx.font = "10px Arial";
-  frontCtx.fillStyle = "#000000";
-  frontCtx.fillText("Little House on the Poorie", 10, 30);
+	// frontCtx.fillStyle = "#838c36";
+	// frontCtx.fillRect(0, 0, width, height);
+	// frontCtx.font = "10px Arial";
+	// frontCtx.fillStyle = "#000000";
+	// frontCtx.fillText("Little House on the Poorie", 10, 30);
+	image.onload = function(){
+		frontCtx.drawImage(image, 0, 0, width, height);
+	};
 
 // drawing spine canvas
 spine.width = depth;
@@ -202,18 +205,18 @@ var backCtx = back.getContext("2d");
 topp.width = width;
 topp.height = 3;
 
-var toppCtx = topp.getContext("2d");
-var endGradient = toppCtx.createLinearGradient(width, 0, width, 3);
+var topCtx = topp.getContext("2d");
+var endGradient = topCtx.createLinearGradient(width, 0, width, 3);
   endGradient.addColorStop(0, 'rgb(211, 218, 209)');
   endGradient.addColorStop(1, 'rgb(190, 173, 121)');
-  toppCtx.fillStyle = endGradient;
-  toppCtx.fillRect(0, 0, width, 3);
-var endPattern = toppCtx.createPattern(topp, "repeat");
+  topCtx.fillStyle = endGradient;
+  topCtx.fillRect(0, 0, width, 3);
+var endPattern = topCtx.createPattern(topp, "repeat");
 
   topp.width = width;
   topp.height = depth;
-  toppCtx.fillStyle = endPattern;
-  toppCtx.fillRect(0, 0, width, depth);
+  topCtx.fillStyle = endPattern;
+  topCtx.fillRect(0, 0, width, depth);
 
  // drawing bottom canvas
 var bottomCtx = bottom.getContext("2d");
@@ -261,6 +264,14 @@ function init() {
  	frontTexture = new THREE.Texture(front);
  	backTexture = new THREE.Texture(back);
 
+// this hack was added in unwitting response to the error "image is not power of two"
+ 	edgeTexture.minFilter = THREE.LinearFilter;
+ 	spineTexture.minFilter = THREE.LinearFilter;
+ 	topTexture.minFilter = THREE.LinearFilter;
+ 	bottomTexture.minFilter = THREE.LinearFilter;
+ 	frontTexture.minFilter = THREE.LinearFilter;
+ 	backTexture.minFilter = THREE.LinearFilter;
+
  	// FYI depth, width, and height are variables set by me at the top
 	geometry = new THREE.BoxBufferGeometry( width, height, depth );
 
@@ -273,11 +284,10 @@ function init() {
 	  new THREE.MeshBasicMaterial({map: backTexture})
 	];
 
-
 	bookBox = new THREE.Mesh( geometry, materials );
 	scene.add( bookBox );
 
-	renderer = new THREE.WebGLRenderer({ alpha: true });
+	renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( upper.offsetHeight, upper.offsetHeight );
 	exampleBox.appendChild( renderer.domElement );
