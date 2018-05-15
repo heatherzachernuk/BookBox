@@ -152,7 +152,7 @@ function loadCover(changeEvent){
 }
 
 function onCoverFileLoaded(fileLoadEvent){
-	 // = "url('" + fileLoadEvent.target.result + "')";
+	image.src = fileLoadEvent.target.result;
 	currentFilename.innerHTML = file.name;
 }
 
@@ -291,6 +291,7 @@ function init() {
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( upper.offsetHeight, upper.offsetHeight );
 	exampleBox.appendChild( renderer.domElement );
+
 }
 
 function animate() {
