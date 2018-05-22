@@ -58,6 +58,7 @@ var fontClick = fontList.addEventListener("click", changeFont, false);
 setColorBox.addEventListener("click", colorToggle, false);
 coverButton.addEventListener("click", sourceToggle, false);
 paletteButton.addEventListener("click", sourceToggle, false);
+paletteImage.addEventListener("click", hidePalette, false);
 
 stripesBox.addEventListener("click", stripeToggle, false);
 
@@ -355,6 +356,10 @@ function choosePaletteColor(){
 	paletteImage.style.top = setColorBox.getBoundingClientRect().top + "px";
 	paletteImage.style.left = setColorBox.getBoundingClientRect().left + "px";
 	drawColorPicker();
+}
+
+function hidePalette(){
+	paletteImage.style.display = "none";
 }
 
 function drawColorPicker(){
