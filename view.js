@@ -12,7 +12,6 @@ function showMenu(event){
 	menuToShow.style.display = "block";
 }
 
-
 var titleInput = document.getElementById("title-input");
 var authorInput = document.getElementById("author-input");
 var addText = document.getElementById("add-text");
@@ -25,10 +24,10 @@ var detailColor = document.getElementById("set-color-box");
 var setColorBox = document.getElementById("set-color-box");
 var colorMode = "background";
 
-var paletteSource = document.getElementById("palette");
-var coverSource = document.getElementById("color-source-box");
+var paletteButton = document.getElementById("palette-button");
+var coverButton = document.getElementById("cover-color-button");
 var colorSourceBox = document.getElementById("color-source-box");
-var source = "palette";
+var paletteImage = document.getElementById("gradient");
 
 var stripesOn = document.getElementById("stripes-on");
 var stripesOff = document.getElementById("stripes-box");
@@ -40,7 +39,6 @@ var coverFileButton = document.getElementById("cover-file");
 var currentFilename = document.getElementById("current-filename");
 var file;
 var image = document.getElementById("image");
-console.log("orig dimens:", image.width, image.height);
 
 var countInput = document.getElementById("count-input");
 var getCount = document.getElementById("get-count");
@@ -58,9 +56,10 @@ addText.addEventListener("click", textOn, false);
 var fontClick = fontList.addEventListener("click", changeFont, false);
 
 setColorBox.addEventListener("click", colorToggle, false);
-colorSourceBox.addEventListener("click", sourceToggle, false);
-stripesBox.addEventListener("click", stripeToggle, false);
+coverButton.addEventListener("click", sourceToggle, false);
+paletteButton.addEventListener("click", sourceToggle, false);
 
+stripesBox.addEventListener("click", stripeToggle, false);
 
 takePhotoButton.addEventListener("change", loadCover);
 coverFileButton.addEventListener("change", loadCover);
@@ -107,16 +106,15 @@ function colorToggle(){
 }
 
 //source toggle:
-function sourceToggle(){
-	if(source === "palette"){
-		paletteSource.style.backgroundColor = "rgb(131,140,54)";
-		coverSource.style.backgroundColor = "rgb(236,247,147)";
-		source = "cover";
+function sourceToggle(event){
+	if(event.target.id == "palette-button"){
+		paletteButton.style.backgroundColor = "rgb(236,247,147)";
+		colorSourceBox.style.backgroundColor = "rgb(131,140,54)";
+		choosePaletteColor();
 	}
-	else if(source === "cover") {
-		paletteSource.style.backgroundColor = "rgb(236,247,147)";
-		coverSource.style.backgroundColor = "rgb(131,140,54)";
-		source = "palette";
+	else if(event.target.id == "cover-color-button") {
+		paletteButton.style.backgroundColor = "rgb(131,140,54)";
+		colorSourceBox.style.backgroundColor = "rgb(236,247,147)";		
 	}
 }
 
@@ -196,32 +194,26 @@ image.onload = function(){
 		image = document.getElementById("image");
 		imageWidth = image.width;
 		imageHeight = image.height;	
-		console.log("fff", imageWidth, imageHeight);	
 		imageFit();
 	};
 
 function imageFit(){
 	var boxAspect = width/height;
 	var imageAspect = imageWidth/imageHeight;
-	console.log("box and image aspects:", boxAspect, imageAspect);
    // if the box front is proportionally taller and thinner than the cover image,
    // we need a margin at the top, and the image to be the width of the box front
 	if(boxAspect < imageAspect){
-		console.log("box is skinnier!");
 		imageWidth = width;
 		imageHeight = width/imageAspect;
 		topMargin = (height - imageHeight)/2;
 		leftMargin = 0;
 	}
 	else if(boxAspect >= imageAspect){
-		console.log("box is fatter!");
 		imageWidth = height * imageAspect;
 		imageHeight = height;
 		leftMargin = (width - imageWidth)/2;
 		topMargin = 0;	
 	}
-	console.log(imageWidth, imageHeight);
-	console.log(width, height);
 	frontCtx.drawImage(image, leftMargin, topMargin, imageWidth, imageHeight);
 }
 
@@ -339,8 +331,8 @@ function init() {
 	renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( upper.offsetHeight, upper.offsetHeight );
-	exampleBox.appendChild( renderer.domElement );
-
+	upper.appendChild( renderer.domElement );
+	renderer.domElement.style.margin = "0 auto";
 }
 
 function animate() {
@@ -357,5 +349,39 @@ function animate() {
 	renderer.render( scene, camera );
 }
 
+function choosePaletteColor(){
+	paletteImage.style.display = "block";
+	console.log(setColorBox.getBoundingClientRect());
+	paletteImage.style.top = setColorBox.getBoundingClientRect().top;
+	paletteImage.style.left = setColorBox.getBoundingClientRect().left;
+	drawColorPicker();
+}
 
+function drawColorPicker(){
+  var ctx = paletteImage.getContext("2d");           
+  var rainbowGradient = ctx.createLinearGradient( 10, 200, 200, 200);
+  rainbowGradient.addColorStop(0, '#ff0000');
+  rainbowGradient.addColorStop(1/8, '#ff8000');
+  rainbowGradient.addColorStop(2/8, '#ffff00');
+  rainbowGradient.addColorStop(3/8, '#00ff00');
+  rainbowGradient.addColorStop(4/8, ' #0066ff');
+  rainbowGradient.addColorStop(5/8, '#6600ff');
+  rainbowGradient.addColorStop(6/8, '#ff00ff');
+  rainbowGradient.addColorStop(7/8, '#ff0000');
+  rainbowGradient.addColorStop(1, '#000000');
+  ctx.fillStyle = rainbowGradient;
+  ctx.fillRect(10, 10, 200, 200);
+  
+  var whiteGradient = ctx.createLinearGradient(200, 200, 200, 10);
+  whiteGradient.addColorStop(0, 'hsla(0, 0%, 100%, 0)');
+  whiteGradient.addColorStop(1, 'hsla(0, 0%, 100%, 0.95)');
+  ctx.fillStyle = whiteGradient;
+  ctx.fillRect(10, 10, 200, 200);
+  
+  var blackGradient = ctx.createLinearGradient(200, 200, 200, 10);
+  blackGradient.addColorStop(0, 'hsla(0, 0%, 0%, 1)');
+  blackGradient.addColorStop(1, 'hsla(0, 0%, 0%, 0)');
+  ctx.fillStyle = blackGradient;
+  ctx.fillRect(10, 10, 200, 200);
+}
 

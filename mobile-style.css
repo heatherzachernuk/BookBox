@@ -422,12 +422,12 @@ input[type="file"] {
 	display: inline-block;
 	height: 1.8em;
 	text-align: center;
-	pointer-events: none
 }
 
 .selector-button > span {
 	font-size: 0.35em;
 	font-weight: bold;
+	pointer-events: none;
 }
 
 .selector-on{
@@ -458,6 +458,8 @@ input[type="file"] {
 
 #gradient{
   display: none;
+  position: fixed;
+  z-index: 2;
 }
 
 #cover-color {
