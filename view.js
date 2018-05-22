@@ -213,7 +213,7 @@ function imageFit(){
 		topMargin = (height - imageHeight)/2;
 		leftMargin = 0;
 	}
-	else if(boxAspect <= imageAspect){
+	else if(boxAspect >= imageAspect){
 		console.log("box is fatter!");
 		imageWidth = height * imageAspect;
 		imageHeight = height;
@@ -230,8 +230,19 @@ spine.width = depth;
 spine.height = height;
 
 var spineCtx = spine.getContext("2d");
-  spineCtx.fillStyle = "#5b631b";
-  spineCtx.fillRect(0, 0, depth, height);
+	spineCtx.fillStyle = "#5b631b";
+	spineCtx.fillRect(0, 0, depth, height);
+
+	spineCtx.save();
+	spineCtx.translate(depth, 0);
+	spineCtx.rotate(Math.PI/2);
+	spineCtx.font = "10px Arial";
+	spineCtx.fillStyle = "#ffffff";
+	spineCtx.fillText("Little House on the Poorie", 10, 30);
+	spineCtx.restore();
+	spineCtx.fillStyle = "#ffffff";
+	spineCtx.fillText("Laura Ingalls", 10, (height/10)*9);
+
 
 // drawing back canvas
 back.width = width;
