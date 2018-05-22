@@ -40,6 +40,7 @@ var coverFileButton = document.getElementById("cover-file");
 var currentFilename = document.getElementById("current-filename");
 var file;
 var image = document.getElementById("image");
+console.log("orig dimens:", image.width, image.height);
 
 var countInput = document.getElementById("count-input");
 var getCount = document.getElementById("get-count");
@@ -142,6 +143,12 @@ function textOn(){
 	// exampleAuthor.innerHTML = authorInput.value;
 }
 
+var leftMargin = 0;
+var topMargin = 0;
+var imageWidth;
+var imageHeight;
+
+
 // cover image function: 
 
 function loadCover(changeEvent){
@@ -171,6 +178,8 @@ var bottom = document.getElementById("bottom");
 var spine = document.getElementById("spine");
 var edge = document.getElementById("edge");
 
+
+
 // drawing front canvas
 front.width = width;
 front.height = height;
@@ -179,11 +188,42 @@ var frontCtx = front.getContext("2d");
 	// frontCtx.fillStyle = "#838c36";
 	// frontCtx.fillRect(0, 0, width, height);
 	// frontCtx.font = "10px Arial";
-	// frontCtx.fillStyle = "#000000";
 	// frontCtx.fillText("Little House on the Poorie", 10, 30);
-	image.onload = function(){
-		frontCtx.drawImage(image, 0, 0, width, height);
+	frontCtx.fillStyle = "#838c36";
+	frontCtx.fillRect(0, 0, width, height);
+
+image.onload = function(){
+		image = document.getElementById("image");
+		imageWidth = image.width;
+		imageHeight = image.height;	
+		console.log("fff", imageWidth, imageHeight);	
+		imageFit();
 	};
+
+function imageFit(){
+	var boxAspect = width/height;
+	var imageAspect = imageWidth/imageHeight;
+	console.log("box and image aspects:", boxAspect, imageAspect);
+   // if the box front is proportionally taller and thinner than the cover image,
+   // we need a margin at the top, and the image to be the width of the box front
+	if(boxAspect < imageAspect){
+		console.log("box is skinnier!");
+		imageWidth = width;
+		imageHeight = width/imageAspect;
+		topMargin = (height - imageHeight)/2;
+		leftMargin = 0;
+	}
+	else if(boxAspect <= imageAspect){
+		console.log("box is fatter!");
+		imageWidth = height * imageAspect;
+		imageHeight = height;
+		leftMargin = (width - imageWidth)/2;
+		topMargin = 0;	
+	}
+	console.log(imageWidth, imageHeight);
+	console.log(width, height);
+	frontCtx.drawImage(image, leftMargin, topMargin, imageWidth, imageHeight);
+}
 
 // drawing spine canvas
 spine.width = depth;
@@ -241,19 +281,17 @@ var edgePattern = edgeCtx.createPattern(edge, "repeat");
   edgeCtx.fillStyle = edgePattern;
   edgeCtx.fillRect(0, 0, depth, height);
 
-
 var camera, scene, renderer, bookBox;
 var frontTexture, backTexture, topTexture, bottomTexture, spineTexture, edgeTexture;
 
 init();
 animate();
 
-
 function init() {
-	camera = new THREE.PerspectiveCamera( 55, width / height, 1, 500 );
-	camera.position.z = 295;
+	camera = new THREE.PerspectiveCamera( 35, 1, 1, 600 );
+	camera.position.z = 425;
   	camera.position.y = 150;
- 	 camera.lookAt(new THREE.Vector3());
+ 	camera.lookAt(new THREE.Vector3());
 
 	scene = new THREE.Scene();
 
@@ -307,5 +345,6 @@ function animate() {
 	bookBox.rotation.y += 0.01;
 	renderer.render( scene, camera );
 }
+
 
 
