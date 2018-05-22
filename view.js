@@ -352,14 +352,14 @@ function animate() {
 function choosePaletteColor(){
 	paletteImage.style.display = "block";
 	console.log(setColorBox.getBoundingClientRect());
-	paletteImage.style.top = setColorBox.getBoundingClientRect().top;
-	paletteImage.style.left = setColorBox.getBoundingClientRect().left;
+	paletteImage.style.top = setColorBox.getBoundingClientRect().top + "px";
+	paletteImage.style.left = setColorBox.getBoundingClientRect().left + "px";
 	drawColorPicker();
 }
 
 function drawColorPicker(){
   var ctx = paletteImage.getContext("2d");           
-  var rainbowGradient = ctx.createLinearGradient( 10, 200, 200, 200);
+  var rainbowGradient = ctx.createLinearGradient( 0, 200, 200, 200);
   rainbowGradient.addColorStop(0, '#ff0000');
   rainbowGradient.addColorStop(1/8, '#ff8000');
   rainbowGradient.addColorStop(2/8, '#ffff00');
@@ -370,18 +370,18 @@ function drawColorPicker(){
   rainbowGradient.addColorStop(7/8, '#ff0000');
   rainbowGradient.addColorStop(1, '#000000');
   ctx.fillStyle = rainbowGradient;
-  ctx.fillRect(10, 10, 200, 200);
+  ctx.fillRect(0, 0, 200, 200);
   
-  var whiteGradient = ctx.createLinearGradient(200, 200, 200, 10);
+  var whiteGradient = ctx.createLinearGradient(200, 200, 200, 0);
   whiteGradient.addColorStop(0, 'hsla(0, 0%, 100%, 0)');
   whiteGradient.addColorStop(1, 'hsla(0, 0%, 100%, 0.95)');
   ctx.fillStyle = whiteGradient;
-  ctx.fillRect(10, 10, 200, 200);
+  ctx.fillRect(0, 0, 200, 200);
   
-  var blackGradient = ctx.createLinearGradient(200, 200, 200, 10);
+  var blackGradient = ctx.createLinearGradient(200, 200, 200, 0);
   blackGradient.addColorStop(0, 'hsla(0, 0%, 0%, 1)');
   blackGradient.addColorStop(1, 'hsla(0, 0%, 0%, 0)');
   ctx.fillStyle = blackGradient;
-  ctx.fillRect(10, 10, 200, 200);
+  ctx.fillRect(0, 0, 200, 200);
 }
 
