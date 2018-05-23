@@ -18,6 +18,9 @@
    		margin-left: -3em;
 
    }
+   	#current-filename {
+		font-size: 0.4em;
+	}
    #count-input {
    		width: 5em;
    		margin-left: -3em;
@@ -57,9 +60,7 @@
 		width: 150%;
 		font-size: 0.6em;
 	}
-	#current-filename {
-		font-size: 0.5em;
-	}
+
 	.menu-text{
 		line-height: 0.9em;
 	}

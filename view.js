@@ -356,6 +356,7 @@ function choosePaletteColor(){
 	paletteImage.style.top = setColorBox.getBoundingClientRect().top + "px";
 	paletteImage.style.left = setColorBox.getBoundingClientRect().left + "px";
 	drawColorPicker();
+	paletteImage.addEventListener("mousemove", pickColor);
 }
 
 function hidePalette(){
@@ -390,3 +391,18 @@ function drawColorPicker(){
   ctx.fillRect(0, 0, 200, 200);
 }
 
+function pickColor(color){
+	paletteImage.style.cursor = "crosshair";
+	var paletteCtx = paletteImage.getContext("2d");
+	var offsetX = paletteImage.getBoundingClientRect().left;
+  	var offsetY = paletteImage.getBoundingClientRect().top;
+	var colorValue = paletteCtx.getImageData(color.clientX - offsetX, color.clientY - offsetY, 1, 1).data;
+	var rgba = 'rgba(' + colorValue[0] + ', ' + colorValue[1] + ', ' + colorValue[2] + ', ' + (colorValue[3] / 255) + ')';
+	console.log(rgba);
+	frontCtx.fillStyle = rgba;
+	backCtx.fillStyle = rgba;
+	spineCtx.fillStyle = rgba;
+	frontCtx.fillRect(0, 0, width, height);
+	backCtx.fillRect(0, 0, width, height);
+  	spineCtx.fillRect(0, 0, width, height);
+}
