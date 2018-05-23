@@ -39,6 +39,7 @@ var coverFileButton = document.getElementById("cover-file");
 var currentFilename = document.getElementById("current-filename");
 var file;
 var image = document.getElementById("image");
+var coverImage = "not loaded";
 
 var countInput = document.getElementById("count-input");
 var getCount = document.getElementById("get-count");
@@ -114,8 +115,10 @@ function sourceToggle(event){
 		choosePaletteColor();
 	}
 	else if(event.target.id == "cover-color-button") {
-		paletteButton.style.backgroundColor = "rgb(131,140,54)";
-		colorSourceBox.style.backgroundColor = "rgb(236,247,147)";		
+		if(coverImage == "loaded"){
+			paletteButton.style.backgroundColor = "rgb(131,140,54)";
+			colorSourceBox.style.backgroundColor = "rgb(236,247,147)";
+		}		
 	}
 }
 
@@ -160,6 +163,7 @@ function loadCover(changeEvent){
 function onCoverFileLoaded(fileLoadEvent){
 	image.src = fileLoadEvent.target.result;
 	currentFilename.innerHTML = file.name;
+	coverImage = "loaded";
 }
 
 var geometry;
