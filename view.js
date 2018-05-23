@@ -1,24 +1,17 @@
+// MAIN MENU VARIABLES
 var upper = document.getElementById("upper");
 
 var menuArray = Array.from(document.querySelectorAll(".menu"));
 var openerArray = Array.from(document.querySelectorAll("[data-opens]"));
 
-openerArray.forEach(opener=>opener.addEventListener("click", showMenu, false));
-
-function showMenu(event){
-	var targetId = event.target.getAttribute("data-opens");
-	var menuToShow = document.getElementById(targetId);
-	menuArray.forEach(menu=>menu.style.display = "none");
-	menuToShow.style.display = "block";
-}
-
+// TEXT MENU VARIABLES
 var titleInput = document.getElementById("title-input");
 var authorInput = document.getElementById("author-input");
 var addText = document.getElementById("add-text");
 var fontButton = document.getElementById("font-button");
 var fontList = document.getElementById("font-list");
 
-
+// COLOR MENU VARIABLES
 var backgroundColor = document.getElementById("background");
 var detailColor = document.getElementById("set-color-box");
 var setColorBox = document.getElementById("set-color-box");
@@ -34,6 +27,7 @@ var stripesOff = document.getElementById("stripes-box");
 var stripesBox = document.getElementById("stripes-box"); 
 var stripes = "on";
 
+// IMAGE MENU VARIABLES
 var takePhotoButton = document.getElementById("take-photo");
 var coverFileButton = document.getElementById("cover-file");
 var currentFilename = document.getElementById("current-filename");
@@ -41,6 +35,7 @@ var file;
 var image = document.getElementById("image");
 var coverImage = "not loaded";
 
+// WORDCOUNT MENU VARIABLES
 var countInput = document.getElementById("count-input");
 var getCount = document.getElementById("get-count");
 
@@ -52,7 +47,26 @@ var width = 150;
 var height = 200;
 var depth = 50;
 
-// event listeners to add:
+// canvas variables
+var front = document.getElementById("front");
+var back = document.getElementById("back");
+var topp = document.getElementById("topp");
+var bottom = document.getElementById("bottom");
+var spine = document.getElementById("spine");
+var edge = document.getElementById("edge");
+
+var leftMargin = 0;
+var topMargin = 0;
+var imageWidth;
+var imageHeight;
+
+// 3D MODEL VARIABLES
+var camera, scene, renderer, bookBox, geometry;
+var frontTexture, backTexture, topTexture, bottomTexture, spineTexture, edgeTexture;
+
+// EVENT LISTENERS
+openerArray.forEach(opener=>opener.addEventListener("click", showMenu, false));
+
 addText.addEventListener("click", textOn, false);
 var fontClick = fontList.addEventListener("click", changeFont, false);
 
@@ -93,7 +107,25 @@ getCount.addEventListener("click", getDimensions, false);
 
 // loadConfig();
 
-//color toggle:
+// MAIN MENU FUNCTIONS
+function showMenu(event){
+	var targetId = event.target.getAttribute("data-opens");
+	var menuToShow = document.getElementById(targetId);
+	menuArray.forEach(menu=>menu.style.display = "none");
+	menuToShow.style.display = "block";
+}
+
+// TEXT MENU FUNCTIONS
+function changeFont(fontClick){
+	exampleBox.style.fontFamily = fontClick.target.id;
+}
+
+function textOn(){
+	// exampleTitle.innerHTML = titleInput.value;
+	// exampleAuthor.innerHTML = authorInput.value;
+}
+
+// COLOR MENU FUNCTIONS
 function colorToggle(){
 	if(colorMode === "background"){
 		backgroundColor.style.backgroundColor = "rgb(131,140,54)";
@@ -107,7 +139,6 @@ function colorToggle(){
 	}
 }
 
-//source toggle:
 function sourceToggle(event){
 	if(event.target.id == "palette-button"){
 		paletteButton.style.backgroundColor = "rgb(236,247,147)";
@@ -122,7 +153,6 @@ function sourceToggle(event){
 	}
 }
 
-//stripe toggle:
 function stripeToggle(){
 	if(stripes === "on"){
 		stripesOn.style.backgroundColor = "rgb(131,140,54)";
@@ -136,90 +166,82 @@ function stripeToggle(){
 	}
 }
 
-function changeFont(fontClick){
-	exampleBox.style.fontFamily = fontClick.target.id;
+function choosePaletteColor(){
+	paletteImage.style.display = "block";
+	console.log(setColorBox.getBoundingClientRect());
+	paletteImage.style.top = setColorBox.getBoundingClientRect().top + "px";
+	paletteImage.style.left = setColorBox.getBoundingClientRect().left + "px";
+	drawColorPicker();
+	paletteImage.addEventListener("mousemove", pickColor);
 }
 
-function textOn(){
-	// exampleTitle.innerHTML = titleInput.value;
-	// exampleAuthor.innerHTML = authorInput.value;
+function hidePalette(){
+	paletteImage.style.display = "none";
 }
 
-var leftMargin = 0;
-var topMargin = 0;
-var imageWidth;
-var imageHeight;
-
-
-// cover image function: 
-
-function loadCover(changeEvent){
-	file = changeEvent.target.files[0];
-	var reader = new FileReader();
-	reader.addEventListener("load", onCoverFileLoaded);
-	reader.readAsDataURL(file); 
+function drawColorPicker(){
+  var ctx = paletteImage.getContext("2d");           
+  var rainbowGradient = ctx.createLinearGradient( 0, 200, 200, 200);
+  rainbowGradient.addColorStop(0, '#ff0000');
+  rainbowGradient.addColorStop(1/8, '#ff8000');
+  rainbowGradient.addColorStop(2/8, '#ffff00');
+  rainbowGradient.addColorStop(3/8, '#00ff00');
+  rainbowGradient.addColorStop(4/8, ' #0066ff');
+  rainbowGradient.addColorStop(5/8, '#6600ff');
+  rainbowGradient.addColorStop(6/8, '#ff00ff');
+  rainbowGradient.addColorStop(7/8, '#ff0000');
+  rainbowGradient.addColorStop(1, '#000000');
+  ctx.fillStyle = rainbowGradient;
+  ctx.fillRect(0, 0, 200, 200);
+  
+  var whiteGradient = ctx.createLinearGradient(200, 200, 200, 0);
+  whiteGradient.addColorStop(0, 'hsla(0, 0%, 100%, 0)');
+  whiteGradient.addColorStop(1, 'hsla(0, 0%, 100%, 0.95)');
+  ctx.fillStyle = whiteGradient;
+  ctx.fillRect(0, 0, 200, 200);
+  
+  var blackGradient = ctx.createLinearGradient(200, 200, 200, 0);
+  blackGradient.addColorStop(0, 'hsla(0, 0%, 0%, 1)');
+  blackGradient.addColorStop(1, 'hsla(0, 0%, 0%, 0)');
+  ctx.fillStyle = blackGradient;
+  ctx.fillRect(0, 0, 200, 200);
 }
 
-function onCoverFileLoaded(fileLoadEvent){
-	image.src = fileLoadEvent.target.result;
-	currentFilename.innerHTML = file.name;
-	coverImage = "loaded";
+function pickColor(color){
+	paletteImage.style.cursor = "crosshair";
+	var paletteCtx = paletteImage.getContext("2d");
+	var offsetX = paletteImage.getBoundingClientRect().left;
+  	var offsetY = paletteImage.getBoundingClientRect().top;
+	var colorValue = paletteCtx.getImageData(color.clientX - offsetX, color.clientY - offsetY, 1, 1).data;
+	var rgba = 'rgba(' + colorValue[0] + ', ' + colorValue[1] + ', ' + colorValue[2] + ', ' + (colorValue[3] / 255) + ')';
+	console.log(rgba);
+	frontCtx.fillStyle = rgba;
+	backCtx.fillStyle = rgba;
+	spineCtx.fillStyle = rgba;
+	frontCtx.fillRect(0, 0, width, height);
+	backCtx.fillRect(0, 0, width, height);
+  	spineCtx.fillRect(0, 0, width, height);
+  	imageFit();
 }
 
-var geometry;
-
-// this is just a random adjustment at this point
-function getDimensions(){
-	// geometry = new THREE.BoxBufferGeometry( 100, 150, 200 );
-}
-
-// drawing the canvases for the design of the bookbox
-var front = document.getElementById("front");
-var back = document.getElementById("back");
-var topp = document.getElementById("topp");
-var bottom = document.getElementById("bottom");
-var spine = document.getElementById("spine");
-var edge = document.getElementById("edge");
-
-
-
-// drawing front canvas
+// CANVAS DRAWING FUNCTIONS
 front.width = width;
 front.height = height;
 
 var frontCtx = front.getContext("2d");
-	// frontCtx.fillStyle = "#838c36";
-	// frontCtx.fillRect(0, 0, width, height);
-	// frontCtx.font = "10px Arial";
-	// frontCtx.fillText("Little House on the Poorie", 10, 30);
 	frontCtx.fillStyle = "#838c36";
 	frontCtx.fillRect(0, 0, width, height);
+	coverText();
 
-image.onload = function(){
-		image = document.getElementById("image");
-		imageWidth = image.width;
-		imageHeight = image.height;	
-		imageFit();
-	};
-
-function imageFit(){
-	var boxAspect = width/height;
-	var imageAspect = imageWidth/imageHeight;
-   // if the box front is proportionally taller and thinner than the cover image,
-   // we need a margin at the top, and the image to be the width of the box front
-	if(boxAspect < imageAspect){
-		imageWidth = width;
-		imageHeight = width/imageAspect;
-		topMargin = (height - imageHeight)/2;
-		leftMargin = 0;
+function coverText(){
+	if(coverImage == "not loaded"){
+		console.log("no cover image");
+		frontCtx.fillStyle = "#838c36";
+		frontCtx.fillRect(0, 0, width, height);
+		frontCtx.fillStyle = "#ffffff";
+		frontCtx.font = "10px Arial";
+		frontCtx.fillText("Little House on the Poorie", 10, 30);
 	}
-	else if(boxAspect >= imageAspect){
-		imageWidth = height * imageAspect;
-		imageHeight = height;
-		leftMargin = (width - imageWidth)/2;
-		topMargin = 0;	
-	}
-	frontCtx.drawImage(image, leftMargin, topMargin, imageWidth, imageHeight);
 }
 
 // drawing spine canvas
@@ -289,9 +311,49 @@ var edgePattern = edgeCtx.createPattern(edge, "repeat");
   edgeCtx.fillStyle = edgePattern;
   edgeCtx.fillRect(0, 0, depth, height);
 
-var camera, scene, renderer, bookBox;
-var frontTexture, backTexture, topTexture, bottomTexture, spineTexture, edgeTexture;
+// IMAGE FUNCTIONS
+function loadCover(changeEvent){
+	file = changeEvent.target.files[0];
+	var reader = new FileReader();
+	reader.addEventListener("load", onCoverFileLoaded);
+	reader.readAsDataURL(file); 
+}
 
+function onCoverFileLoaded(fileLoadEvent){
+	image.src = fileLoadEvent.target.result;
+	currentFilename.innerHTML = file.name;
+	coverImage = "loaded";
+}
+
+image.onload = function(){
+		image = document.getElementById("image");
+		imageWidth = image.width;
+		imageHeight = image.height;	
+		imageFit();
+	};
+
+function imageFit(){
+	var boxAspect = width/height;
+	var imageAspect = imageWidth/imageHeight;
+   // if the box front is proportionally taller and thinner than the cover image,
+   // we need a margin at the top, and the image to be the width of the box front
+	if(boxAspect < imageAspect){
+		imageWidth = width;
+		imageHeight = width/imageAspect;
+		topMargin = (height - imageHeight)/2;
+		leftMargin = 0;
+	}
+	else if(boxAspect >= imageAspect){
+		imageWidth = height * imageAspect;
+		imageHeight = height;
+		leftMargin = (width - imageWidth)/2;
+		topMargin = 0;	
+	}
+	frontCtx.drawImage(image, leftMargin, topMargin, imageWidth, imageHeight);
+	frontTexture.needsUpdate = true;
+}
+
+// 3D MODEL FUNCTIONS
 init();
 animate();
 
@@ -342,7 +404,6 @@ function init() {
 
 function animate() {
 	requestAnimationFrame( animate );
-  	
   	frontTexture.needsUpdate = true;
   	backTexture.needsUpdate = true;
   	topTexture.needsUpdate = true;
@@ -350,63 +411,8 @@ function animate() {
   	spineTexture.needsUpdate = true;
   	edgeTexture.needsUpdate = true;
 	// bookBox.rotation.x += 0.01;
-	bookBox.rotation.y += 0.01;
+	bookBox.rotation.y -= 0.01;
 	renderer.render( scene, camera );
 }
 
-function choosePaletteColor(){
-	paletteImage.style.display = "block";
-	console.log(setColorBox.getBoundingClientRect());
-	paletteImage.style.top = setColorBox.getBoundingClientRect().top + "px";
-	paletteImage.style.left = setColorBox.getBoundingClientRect().left + "px";
-	drawColorPicker();
-	paletteImage.addEventListener("mousemove", pickColor);
-}
 
-function hidePalette(){
-	paletteImage.style.display = "none";
-}
-
-function drawColorPicker(){
-  var ctx = paletteImage.getContext("2d");           
-  var rainbowGradient = ctx.createLinearGradient( 0, 200, 200, 200);
-  rainbowGradient.addColorStop(0, '#ff0000');
-  rainbowGradient.addColorStop(1/8, '#ff8000');
-  rainbowGradient.addColorStop(2/8, '#ffff00');
-  rainbowGradient.addColorStop(3/8, '#00ff00');
-  rainbowGradient.addColorStop(4/8, ' #0066ff');
-  rainbowGradient.addColorStop(5/8, '#6600ff');
-  rainbowGradient.addColorStop(6/8, '#ff00ff');
-  rainbowGradient.addColorStop(7/8, '#ff0000');
-  rainbowGradient.addColorStop(1, '#000000');
-  ctx.fillStyle = rainbowGradient;
-  ctx.fillRect(0, 0, 200, 200);
-  
-  var whiteGradient = ctx.createLinearGradient(200, 200, 200, 0);
-  whiteGradient.addColorStop(0, 'hsla(0, 0%, 100%, 0)');
-  whiteGradient.addColorStop(1, 'hsla(0, 0%, 100%, 0.95)');
-  ctx.fillStyle = whiteGradient;
-  ctx.fillRect(0, 0, 200, 200);
-  
-  var blackGradient = ctx.createLinearGradient(200, 200, 200, 0);
-  blackGradient.addColorStop(0, 'hsla(0, 0%, 0%, 1)');
-  blackGradient.addColorStop(1, 'hsla(0, 0%, 0%, 0)');
-  ctx.fillStyle = blackGradient;
-  ctx.fillRect(0, 0, 200, 200);
-}
-
-function pickColor(color){
-	paletteImage.style.cursor = "crosshair";
-	var paletteCtx = paletteImage.getContext("2d");
-	var offsetX = paletteImage.getBoundingClientRect().left;
-  	var offsetY = paletteImage.getBoundingClientRect().top;
-	var colorValue = paletteCtx.getImageData(color.clientX - offsetX, color.clientY - offsetY, 1, 1).data;
-	var rgba = 'rgba(' + colorValue[0] + ', ' + colorValue[1] + ', ' + colorValue[2] + ', ' + (colorValue[3] / 255) + ')';
-	console.log(rgba);
-	frontCtx.fillStyle = rgba;
-	backCtx.fillStyle = rgba;
-	spineCtx.fillStyle = rgba;
-	frontCtx.fillRect(0, 0, width, height);
-	backCtx.fillRect(0, 0, width, height);
-  	spineCtx.fillRect(0, 0, width, height);
-}
