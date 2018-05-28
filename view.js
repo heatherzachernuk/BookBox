@@ -20,7 +20,8 @@ var colorMode = "background";
 var paletteButton = document.getElementById("palette-button");
 var coverButton = document.getElementById("cover-color-button");
 var colorSourceBox = document.getElementById("color-source-box");
-var paletteImage = document.getElementById("gradient");
+var palettePicker = document.getElementById("palette-picker");
+var imagePicker = document.getElementById("image-picker");
 
 var stripesOn = document.getElementById("stripes-on");
 var stripesOff = document.getElementById("stripes-box");
@@ -55,10 +56,12 @@ var bottom = document.getElementById("bottom");
 var spine = document.getElementById("spine");
 var edge = document.getElementById("edge");
 
+var frontCtx = front.getContext("2d");
+var backCtx = back.getContext("2d");
+var spineCtx = spine.getContext("2d");
+
 var leftMargin = 0;
 var topMargin = 0;
-var imageWidth;
-var imageHeight;
 
 // 3D MODEL VARIABLES
 var camera, scene, renderer, bookBox, geometry;
@@ -73,16 +76,17 @@ var fontClick = fontList.addEventListener("click", changeFont, false);
 setColorBox.addEventListener("click", colorToggle, false);
 coverButton.addEventListener("click", sourceToggle, false);
 paletteButton.addEventListener("click", sourceToggle, false);
-paletteImage.addEventListener("click", hidePalette, false);
+palettePicker.addEventListener("click", hidePalette, false);
+imagePicker.addEventListener("click", hideImagePicker, false);
 
 stripesBox.addEventListener("click", stripeToggle, false);
 
 takePhotoButton.addEventListener("change", loadCover);
 coverFileButton.addEventListener("change", loadCover);
 
-getCount.addEventListener("click", getDimensions, false);
+// getCount.addEventListener("click", getDimensions, false);
 
-// local storage:
+//  **LOCAL STORAGE FUNCTIONS**
 // var config = {};
 
 // function saveConfig(){
@@ -107,7 +111,9 @@ getCount.addEventListener("click", getDimensions, false);
 
 // loadConfig();
 
-// MAIN MENU FUNCTIONS
+
+
+// **MAIN MENU FUNCTIONS**
 function showMenu(event){
 	var targetId = event.target.getAttribute("data-opens");
 	var menuToShow = document.getElementById(targetId);
@@ -115,7 +121,7 @@ function showMenu(event){
 	menuToShow.style.display = "block";
 }
 
-// TEXT MENU FUNCTIONS
+// **TEXT MENU FUNCTIONS**
 function changeFont(fontClick){
 	exampleBox.style.fontFamily = fontClick.target.id;
 }
@@ -125,7 +131,7 @@ function textOn(){
 	// exampleAuthor.innerHTML = authorInput.value;
 }
 
-// COLOR MENU FUNCTIONS
+// **COLOR MENU FUNCTIONS**
 function colorToggle(){
 	if(colorMode === "background"){
 		backgroundColor.style.backgroundColor = "rgb(131,140,54)";
@@ -143,12 +149,13 @@ function sourceToggle(event){
 	if(event.target.id == "palette-button"){
 		paletteButton.style.backgroundColor = "rgb(236,247,147)";
 		colorSourceBox.style.backgroundColor = "rgb(131,140,54)";
-		choosePaletteColor();
+		showPalette();
 	}
-	else if(event.target.id == "cover-color-button") {
+	if(event.target.id == "cover-color-button") {
 		if(coverImage == "loaded"){
 			paletteButton.style.backgroundColor = "rgb(131,140,54)";
 			colorSourceBox.style.backgroundColor = "rgb(236,247,147)";
+			showImage();
 		}		
 	}
 }
@@ -166,21 +173,36 @@ function stripeToggle(){
 	}
 }
 
-function choosePaletteColor(){
-	paletteImage.style.display = "block";
-	console.log(setColorBox.getBoundingClientRect());
-	paletteImage.style.top = setColorBox.getBoundingClientRect().top + "px";
-	paletteImage.style.left = setColorBox.getBoundingClientRect().left + "px";
+function showPalette(){
+	palettePicker.style.display = "block";
+	palettePicker.style.top = setColorBox.getBoundingClientRect().top + "px";
+	palettePicker.style.left = setColorBox.getBoundingClientRect().left + "px";
 	drawColorPicker();
-	paletteImage.addEventListener("mousemove", pickColor);
+	palettePicker.addEventListener("mousemove", pickPaletteColor);
+}
+
+function showImage(){
+	imagePicker.width = image.width;
+	imagePicker.height = image.height;
+	imagePicker.style.display = "block";
+	imagePicker.style.top = setColorBox.getBoundingClientRect().top + "px";
+	imagePicker.style.left = setColorBox.getBoundingClientRect().left + "px";
+	var imageCtx = imagePicker.getContext("2d");
+	imageCtx.drawImage(image, 0, 0, image.width, image.height);
+	imagePicker.addEventListener("mousemove", pickImageColor);
 }
 
 function hidePalette(){
-	paletteImage.style.display = "none";
+	palettePicker.style.display = "none";
 }
 
+function hideImagePicker(){
+	imagePicker.style.display = "none";
+}
+
+
 function drawColorPicker(){
-  var ctx = paletteImage.getContext("2d");           
+  var ctx = palettePicker.getContext("2d");           
   var rainbowGradient = ctx.createLinearGradient( 0, 200, 200, 200);
   rainbowGradient.addColorStop(0, '#ff0000');
   rainbowGradient.addColorStop(1/8, '#ff8000');
@@ -207,14 +229,14 @@ function drawColorPicker(){
   ctx.fillRect(0, 0, 200, 200);
 }
 
-function pickColor(color){
-	paletteImage.style.cursor = "crosshair";
-	var paletteCtx = paletteImage.getContext("2d");
-	var offsetX = paletteImage.getBoundingClientRect().left;
-  	var offsetY = paletteImage.getBoundingClientRect().top;
+function pickPaletteColor(color){
+	palettePicker.style.cursor = "crosshair";
+	var paletteCtx = palettePicker.getContext("2d");
+	var offsetX = palettePicker.getBoundingClientRect().left;
+  	var offsetY = palettePicker.getBoundingClientRect().top;
 	var colorValue = paletteCtx.getImageData(color.clientX - offsetX, color.clientY - offsetY, 1, 1).data;
 	var rgba = 'rgba(' + colorValue[0] + ', ' + colorValue[1] + ', ' + colorValue[2] + ', ' + (colorValue[3] / 255) + ')';
-	console.log(rgba);
+	// console.log(rgba);
 	frontCtx.fillStyle = rgba;
 	backCtx.fillStyle = rgba;
 	spineCtx.fillStyle = rgba;
@@ -224,31 +246,35 @@ function pickColor(color){
   	imageFit();
 }
 
-// CANVAS DRAWING FUNCTIONS
-front.width = width;
-front.height = height;
+function pickImageColor(color){
+	imagePicker.style.cursor = "crosshair";
+	var imageCtx = imagePicker.getContext("2d");
+	var offsetX = imagePicker.getBoundingClientRect().left;
+  	var offsetY = imagePicker.getBoundingClientRect().top;
+	var colorValue = imageCtx.getImageData(color.clientX - offsetX, color.clientY - offsetY, 1, 1).data;
+	var rgba = 'rgba(' + colorValue[0] + ', ' + colorValue[1] + ', ' + colorValue[2] + ', ' + (colorValue[3] / 255) + ')';
+	frontCtx.fillStyle = rgba;
+	backCtx.fillStyle = rgba;
+	spineCtx.fillStyle = rgba;
+	frontCtx.fillRect(0, 0, width, height);
+	backCtx.fillRect(0, 0, width, height);
+  	spineCtx.fillRect(0, 0, width, height);
+  	imageFit();
+}
 
-var frontCtx = front.getContext("2d");
+// **CANVAS DRAWING FUNCTIONS**
+function drawCanvases() {
+	front.width = width;
+	front.height = height;
+
 	frontCtx.fillStyle = "#838c36";
 	frontCtx.fillRect(0, 0, width, height);
 	coverText();
 
-function coverText(){
-	if(coverImage == "not loaded"){
-		console.log("no cover image");
-		frontCtx.fillStyle = "#838c36";
-		frontCtx.fillRect(0, 0, width, height);
-		frontCtx.fillStyle = "#ffffff";
-		frontCtx.font = "10px Arial";
-		frontCtx.fillText("Little House on the Poorie", 10, 30);
-	}
-}
+	// drawing spine canvas
+	spine.width = depth;
+	spine.height = height;
 
-// drawing spine canvas
-spine.width = depth;
-spine.height = height;
-
-var spineCtx = spine.getContext("2d");
 	spineCtx.fillStyle = "#5b631b";
 	spineCtx.fillRect(0, 0, depth, height);
 
@@ -262,56 +288,68 @@ var spineCtx = spine.getContext("2d");
 	spineCtx.fillStyle = "#ffffff";
 	spineCtx.fillText("Laura Ingalls", 10, (height/10)*9);
 
+	// drawing back canvas
+	back.width = width;
+	back.height = height;
 
-// drawing back canvas
-back.width = width;
-back.height = height;
 
-var backCtx = back.getContext("2d");
-  backCtx.fillStyle = "#838c36";
-  backCtx.fillRect(0, 0, width, height);
+	backCtx.fillStyle = "#838c36";
+	backCtx.fillRect(0, 0, width, height);
 
-// drawing top canvas
-topp.width = width;
-topp.height = 3;
+	// drawing top canvas
+	topp.width = width;
+	topp.height = 3;
 
-var topCtx = topp.getContext("2d");
-var endGradient = topCtx.createLinearGradient(width, 0, width, 3);
-  endGradient.addColorStop(0, 'rgb(211, 218, 209)');
-  endGradient.addColorStop(1, 'rgb(190, 173, 121)');
-  topCtx.fillStyle = endGradient;
-  topCtx.fillRect(0, 0, width, 3);
-var endPattern = topCtx.createPattern(topp, "repeat");
+	var topCtx = topp.getContext("2d");
+	var endGradient = topCtx.createLinearGradient(width, 0, width, 3);
+	  endGradient.addColorStop(0, 'rgb(211, 218, 209)');
+	  endGradient.addColorStop(1, 'rgb(190, 173, 121)');
+	  topCtx.fillStyle = endGradient;
+	  topCtx.fillRect(0, 0, width, 3);
+	var endPattern = topCtx.createPattern(topp, "repeat");
 
-  topp.width = width;
-  topp.height = depth;
-  topCtx.fillStyle = endPattern;
-  topCtx.fillRect(0, 0, width, depth);
+	  topp.width = width;
+	  topp.height = depth;
+	  topCtx.fillStyle = endPattern;
+	  topCtx.fillRect(0, 0, width, depth);
 
- // drawing bottom canvas
-var bottomCtx = bottom.getContext("2d");
-  bottom.width = width;
-  bottom.height = depth;
-  bottomCtx.fillStyle = endPattern;
-  bottomCtx.fillRect(0, 0, width, depth);
+	 // drawing bottom canvas
+	var bottomCtx = bottom.getContext("2d");
+	  bottom.width = width;
+	  bottom.height = depth;
+	  bottomCtx.fillStyle = endPattern;
+	  bottomCtx.fillRect(0, 0, width, depth);
 
-// drawing edge canvas
-edge.width = 3;
-edge.height = height;
+	// drawing edge canvas
+	edge.width = 3;
+	edge.height = height;
 
-var edgeCtx = edge.getContext("2d");
-var edgeGradient = edgeCtx.createLinearGradient(0, height, 3, height);
-  edgeGradient.addColorStop(0, 'rgb(211, 218, 209)');
-  edgeGradient.addColorStop(1, 'rgb(190, 173, 121)');
-  edgeCtx.fillStyle = edgeGradient;
-  edgeCtx.fillRect(0, 0, 3, height);
-var edgePattern = edgeCtx.createPattern(edge, "repeat");
-  edge.width = depth;
-  edge.height = height;
-  edgeCtx.fillStyle = edgePattern;
-  edgeCtx.fillRect(0, 0, depth, height);
+	var edgeCtx = edge.getContext("2d");
+	var edgeGradient = edgeCtx.createLinearGradient(0, height, 3, height);
+	  edgeGradient.addColorStop(0, 'rgb(211, 218, 209)');
+	  edgeGradient.addColorStop(1, 'rgb(190, 173, 121)');
+	  edgeCtx.fillStyle = edgeGradient;
+	  edgeCtx.fillRect(0, 0, 3, height);
+	var edgePattern = edgeCtx.createPattern(edge, "repeat");
+	  edge.width = depth;
+	  edge.height = height;
+	  edgeCtx.fillStyle = edgePattern;
+	  edgeCtx.fillRect(0, 0, depth, height);
+}
+drawCanvases();
 
-// IMAGE FUNCTIONS
+function coverText(){
+	if(coverImage == "not loaded"){
+		console.log("no cover image");
+		frontCtx.fillStyle = "#838c36";
+		frontCtx.fillRect(0, 0, width, height);
+		frontCtx.fillStyle = "#ffffff";
+		frontCtx.font = "10px Arial";
+		frontCtx.fillText("Little House on the Poorie", 10, 30);
+	}
+}  
+
+// **IMAGE FUNCTIONS**
 function loadCover(changeEvent){
 	file = changeEvent.target.files[0];
 	var reader = new FileReader();
@@ -327,33 +365,31 @@ function onCoverFileLoaded(fileLoadEvent){
 
 image.onload = function(){
 		image = document.getElementById("image");
-		imageWidth = image.width;
-		imageHeight = image.height;	
 		imageFit();
 	};
 
 function imageFit(){
 	var boxAspect = width/height;
-	var imageAspect = imageWidth/imageHeight;
+	var imageAspect = image.width/image.height;
    // if the box front is proportionally taller and thinner than the cover image,
    // we need a margin at the top, and the image to be the width of the box front
 	if(boxAspect < imageAspect){
-		imageWidth = width;
-		imageHeight = width/imageAspect;
-		topMargin = (height - imageHeight)/2;
+		image.width = width;
+		image.height = width/imageAspect;
+		topMargin = (height - image.height)/2;
 		leftMargin = 0;
 	}
 	else if(boxAspect >= imageAspect){
-		imageWidth = height * imageAspect;
-		imageHeight = height;
-		leftMargin = (width - imageWidth)/2;
+		image.width = height * imageAspect;
+		image.height = height;
+		leftMargin = (width - image.width)/2;
 		topMargin = 0;	
 	}
-	frontCtx.drawImage(image, leftMargin, topMargin, imageWidth, imageHeight);
+	frontCtx.drawImage(image, leftMargin, topMargin, image.width, image.height);
 	frontTexture.needsUpdate = true;
 }
 
-// 3D MODEL FUNCTIONS
+// **3D MODEL FUNCTIONS**
 init();
 animate();
 

@@ -457,7 +457,13 @@ input[type="file"] {
 	display: block;
 }
 
-#gradient{
+#palette-picker{
+  display: none;
+  position: fixed;
+  z-index: 2;
+}
+
+#image-picker{
   display: none;
   position: fixed;
   z-index: 2;
@@ -504,7 +510,7 @@ input[type="file"] {
 }
 
 #image {
-	/*display: none;*/
+
 }
 
 #spine {
