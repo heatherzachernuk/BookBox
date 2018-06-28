@@ -10,6 +10,7 @@ var authorInput = document.getElementById("author-input");
 var addText = document.getElementById("add-text");
 var fontButton = document.getElementById("font-button");
 var fontList = document.getElementById("font-list");
+var currentFont = "Arial";
 
 // COLOR MENU VARIABLES
 var backgroundColor = document.getElementById("background");
@@ -35,6 +36,8 @@ var currentFilename = document.getElementById("current-filename");
 var file;
 var image = document.getElementById("image");
 var coverImage = "not loaded";
+var imageWidth;
+var imageHeight;
 
 // WORDCOUNT MENU VARIABLES
 var countInput = document.getElementById("count-input");
@@ -64,8 +67,7 @@ var leftMargin = 0;
 var topMargin = 0;
 
 // 3D MODEL VARIABLES
-var camera, scene, renderer, bookBox, geometry;
-var frontTexture, backTexture, topTexture, bottomTexture, spineTexture, edgeTexture;
+var threeD; 
 
 // EVENT LISTENERS
 openerArray.forEach(opener=>opener.addEventListener("click", showMenu, false));
@@ -123,12 +125,14 @@ function showMenu(event){
 
 // **TEXT MENU FUNCTIONS**
 function changeFont(fontClick){
-	exampleBox.style.fontFamily = fontClick.target.id;
+	currentFont = fontClick.target.id;
+	frontTexture.needsUpdate = true;
+	spineTexture.needsUpdate = true;
+	bookBox.rotation.y = 0;
 }
 
 function textOn(){
-	// exampleTitle.innerHTML = titleInput.value;
-	// exampleAuthor.innerHTML = authorInput.value;
+
 }
 
 // **COLOR MENU FUNCTIONS**
@@ -182,13 +186,14 @@ function showPalette(){
 }
 
 function showImage(){
-	imagePicker.width = image.width;
-	imagePicker.height = image.height;
+	// imagePicker.width = image.width;
+	// imagePicker.height = image.height;
 	imagePicker.style.display = "block";
 	imagePicker.style.top = setColorBox.getBoundingClientRect().top + "px";
 	imagePicker.style.left = setColorBox.getBoundingClientRect().left + "px";
 	var imageCtx = imagePicker.getContext("2d");
-	imageCtx.drawImage(image, 0, 0, image.width, image.height);
+	// imageCtx.drawImage(image, 0, 0, image.width, image.height);
+	imageCtx.drawImage(image, 0, 0, imageWidth, imageHeight);
 	imagePicker.addEventListener("mousemove", pickImageColor);
 }
 
@@ -267,9 +272,7 @@ function drawCanvases() {
 	front.width = width;
 	front.height = height;
 
-	frontCtx.fillStyle = "#838c36";
-	frontCtx.fillRect(0, 0, width, height);
-	coverText();
+	drawCover();
 
 	// drawing spine canvas
 	spine.width = depth;
@@ -281,7 +284,7 @@ function drawCanvases() {
 	spineCtx.save();
 	spineCtx.translate(depth, 0);
 	spineCtx.rotate(Math.PI/2);
-	spineCtx.font = "10px Arial";
+	spineCtx.font = "10px" + currentFont;
 	spineCtx.fillStyle = "#ffffff";
 	spineCtx.fillText("Little House on the Poorie", 10, 30);
 	spineCtx.restore();
@@ -338,14 +341,18 @@ function drawCanvases() {
 }
 drawCanvases();
 
-function coverText(){
+function drawCover(){
 	if(coverImage == "not loaded"){
 		console.log("no cover image");
 		frontCtx.fillStyle = "#838c36";
 		frontCtx.fillRect(0, 0, width, height);
 		frontCtx.fillStyle = "#ffffff";
-		frontCtx.font = "10px Arial";
+		frontCtx.font = "10px" + currentFont;
 		frontCtx.fillText("Little House on the Poorie", 10, 30);
+	}
+	else {
+		// frontCtx.fillStyle = "#838c36";
+		// frontCtx.fillRect(0, 0, width, height);
 	}
 }  
 
@@ -364,91 +371,97 @@ function onCoverFileLoaded(fileLoadEvent){
 }
 
 image.onload = function(){
-		image = document.getElementById("image");
 		imageFit();
 	};
 
 function imageFit(){
+	// console.log(image);
 	var boxAspect = width/height;
 	var imageAspect = image.width/image.height;
    // if the box front is proportionally taller and thinner than the cover image,
    // we need a margin at the top, and the image to be the width of the box front
 	if(boxAspect < imageAspect){
-		image.width = width;
-		image.height = width/imageAspect;
-		topMargin = (height - image.height)/2;
+		imageWidth = width;
+		imageHeight = width/imageAspect;
+		topMargin = (height - imageHeight)/2;
 		leftMargin = 0;
 	}
 	else if(boxAspect >= imageAspect){
-		image.width = height * imageAspect;
-		image.height = height;
-		leftMargin = (width - image.width)/2;
+		imageWidth = height * imageAspect;
+		imageHeight = height;
+		leftMargin = (width - imageWidth)/2;
 		topMargin = 0;	
 	}
-	frontCtx.drawImage(image, leftMargin, topMargin, image.width, image.height);
+	drawCover();
+	frontCtx.drawImage(image, leftMargin, topMargin, imageWidth, imageHeight);
 	frontTexture.needsUpdate = true;
+	bookBox.rotation.y = 0;
 }
 
-// **3D MODEL FUNCTIONS**
-init();
-animate();
+// instantiates a 3D 
+threeD = new ThreeD();
 
-function init() {
-	camera = new THREE.PerspectiveCamera( 35, 1, 1, 600 );
-	camera.position.z = 425;
-  	camera.position.y = 150;
- 	camera.lookAt(new THREE.Vector3());
 
-	scene = new THREE.Scene();
+// // **3D MODEL FUNCTIONS**
+// init();
+// animate();
 
- 	edgeTexture = new THREE.Texture(edge);
- 	spineTexture = new THREE.Texture(spine);
- 	topTexture = new THREE.Texture(topp);
- 	bottomTexture = new THREE.Texture(bottom);
- 	frontTexture = new THREE.Texture(front);
- 	backTexture = new THREE.Texture(back);
+// function init() {
+// 	camera = new THREE.PerspectiveCamera( 35, 1, 1, 600 );
+// 	camera.position.z = 425;
+//   	camera.position.y = 150;
+//  	camera.lookAt(new THREE.Vector3());
 
-// this hack was added in unwitting response to the error "image is not power of two"
- 	edgeTexture.minFilter = THREE.LinearFilter;
- 	spineTexture.minFilter = THREE.LinearFilter;
- 	topTexture.minFilter = THREE.LinearFilter;
- 	bottomTexture.minFilter = THREE.LinearFilter;
- 	frontTexture.minFilter = THREE.LinearFilter;
- 	backTexture.minFilter = THREE.LinearFilter;
+// 	scene = new THREE.Scene();
 
- 	// FYI depth, width, and height are variables set by me at the top
-	geometry = new THREE.BoxBufferGeometry( width, height, depth );
+//  	edgeTexture = new THREE.Texture(edge);
+//  	spineTexture = new THREE.Texture(spine);
+//  	topTexture = new THREE.Texture(topp);
+//  	bottomTexture = new THREE.Texture(bottom);
+//  	frontTexture = new THREE.Texture(front);
+//  	backTexture = new THREE.Texture(back);
 
-	var materials = [
-	  new THREE.MeshBasicMaterial({map: edgeTexture}),
-	  new THREE.MeshBasicMaterial({map: spineTexture}),
-	  new THREE.MeshBasicMaterial({map: topTexture}),
-	  new THREE.MeshBasicMaterial({map: bottomTexture}),
-	  new THREE.MeshBasicMaterial({map: frontTexture}),
-	  new THREE.MeshBasicMaterial({map: backTexture})
-	];
+// // this hack was added in unwitting response to the error "image is not power of two"
+//  	edgeTexture.minFilter = THREE.LinearFilter;
+//  	spineTexture.minFilter = THREE.LinearFilter;
+//  	topTexture.minFilter = THREE.LinearFilter;
+//  	bottomTexture.minFilter = THREE.LinearFilter;
+//  	frontTexture.minFilter = THREE.LinearFilter;
+//  	backTexture.minFilter = THREE.LinearFilter;
 
-	bookBox = new THREE.Mesh( geometry, materials );
-	scene.add( bookBox );
+//  	// FYI depth, width, and height are variables set by me at the top
+// 	geometry = new THREE.BoxBufferGeometry( width, height, depth );
 
-	renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-	renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( upper.offsetHeight, upper.offsetHeight );
-	upper.appendChild( renderer.domElement );
-	renderer.domElement.style.margin = "0 auto";
-}
+// 	var materials = [
+// 	  new THREE.MeshBasicMaterial({map: edgeTexture}),
+// 	  new THREE.MeshBasicMaterial({map: spineTexture}),
+// 	  new THREE.MeshBasicMaterial({map: topTexture}),
+// 	  new THREE.MeshBasicMaterial({map: bottomTexture}),
+// 	  new THREE.MeshBasicMaterial({map: frontTexture}),
+// 	  new THREE.MeshBasicMaterial({map: backTexture})
+// 	];
 
-function animate() {
-	requestAnimationFrame( animate );
-  	frontTexture.needsUpdate = true;
-  	backTexture.needsUpdate = true;
-  	topTexture.needsUpdate = true;
-  	bottomTexture.needsUpdate = true;
-  	spineTexture.needsUpdate = true;
-  	edgeTexture.needsUpdate = true;
-	// bookBox.rotation.x += 0.01;
-	bookBox.rotation.y -= 0.01;
-	renderer.render( scene, camera );
-}
+// 	bookBox = new THREE.Mesh( geometry, materials );
+// 	scene.add( bookBox );
+
+// 	renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+// 	renderer.setPixelRatio( window.devicePixelRatio );
+// 	renderer.setSize( upper.offsetHeight, upper.offsetHeight );
+// 	upper.appendChild( renderer.domElement );
+// 	renderer.domElement.style.margin = "0 auto";
+// }
+
+// function animate() {
+// 	requestAnimationFrame( animate );
+//   	frontTexture.needsUpdate = true;
+//   	backTexture.needsUpdate = true;
+//   	topTexture.needsUpdate = true;
+//   	bottomTexture.needsUpdate = true;
+//   	spineTexture.needsUpdate = true;
+//   	edgeTexture.needsUpdate = true;
+// 	// bookBox.rotation.x += 0.01;
+// 	bookBox.rotation.y -= 0.01;
+// 	renderer.render( scene, camera );
+// }
 
 
