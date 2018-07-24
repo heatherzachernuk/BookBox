@@ -10,20 +10,6 @@ class ThreeD {
 
 		this.animate();
 	}
-	animate(){
-		// requestAnimationFrame does not respect existing class scope
-		// so we need to force it with an explicitly scoped anonymous function
-		requestAnimationFrame( ()=>this.animate());
-	  	this.frontTexture.needsUpdate = true;
-	  	this.backTexture.needsUpdate = true;
-	  	this.topTexture.needsUpdate = true;
-	  	this.bottomTexture.needsUpdate = true;
-	  	this.spineTexture.needsUpdate = true;
-	  	this.edgeTexture.needsUpdate = true;
-		// this.bookBox.rotation.x += 0.01;
-		this.bookBox.rotation.y -= 0.01;
-		this.renderer.render( this.scene, this.camera );
-	}
 
 	initCamera(){
 		this.camera = new THREE.PerspectiveCamera( 35, 1, 1, 600 );
@@ -33,6 +19,7 @@ class ThreeD {
 	}
 
 	initTextures(){
+		// TODO: make a function that creates a texture and then adds LinearFilter
 		this.edgeTexture = new THREE.Texture(edge);
 	 	this.spineTexture = new THREE.Texture(spine);
 	 	this.topTexture = new THREE.Texture(topp);
@@ -49,7 +36,7 @@ class ThreeD {
 	 	this.backTexture.minFilter = THREE.LinearFilter;
 	}
 	initScene(){
-				this.geometry = new THREE.BoxBufferGeometry( width, height, depth );
+		this.geometry = new THREE.BoxBufferGeometry( width, height, depth );
 
 		const materials = [
 		  new THREE.MeshBasicMaterial({map: this.edgeTexture}),
@@ -73,6 +60,30 @@ class ThreeD {
 		this.renderer.setSize( upper.offsetHeight, upper.offsetHeight );
 		upper.appendChild( this.renderer.domElement );
 		this.renderer.domElement.style.margin = "0 auto";
+	}
+
+	animate(){
+		// requestAnimationFrame does not respect existing class scope
+		// so we need to force it with an explicitly scoped anonymous function
+		requestAnimationFrame( ()=>this.animate());
+	  	this.updateTextures();
+		// this.bookBox.rotation.x += 0.01;
+		this.bookBox.rotation.y -= 0.01;
+		this.renderer.render( this.scene, this.camera );
+	}
+
+	updateTextures(){
+		this.frontTexture.needsUpdate = true;
+	  	this.backTexture.needsUpdate = true;
+	  	this.topTexture.needsUpdate = true;
+	  	this.bottomTexture.needsUpdate = true;
+	  	this.spineTexture.needsUpdate = true;
+	  	this.edgeTexture.needsUpdate = true;
+	}
+
+	resetView(){
+		this.bookBox.rotation.y = 0;
+		this.updateTextures();
 	}
 }
 
