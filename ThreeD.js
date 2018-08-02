@@ -1,13 +1,9 @@
 class ThreeD {
 	constructor(){
 		this.initCamera();
-
 		this.initTextures();
-
 		this.initScene();
-
 		this.initRenderer();
-
 		this.animate();
 	}
 
