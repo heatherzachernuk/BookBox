@@ -41,6 +41,7 @@ class TextureRenderer{
 		this.drawFront();
 		this.drawBack();
 		this.drawSpine();
+		this.drawStripes();
 	}
 
 	imageFit(){
@@ -168,6 +169,7 @@ class TextureRenderer{
 				ctx.lineWidth = 1;
 				ctx.stroke();
 			}
+
 			drawToContext(this.spineCtx, config.depth);
 			drawToContext(this.frontCtx, width);
 			drawToContext(this.backCtx, width);
