@@ -13,7 +13,7 @@ class ColorMenu {
 		this.imagePicker = document.getElementById("image-picker");
 
 		this.stripesOn = document.getElementById("stripes-on");
-		this.stripesOff = document.getElementById("stripes-box");
+		this.stripesOff = document.getElementById("stripes-off");
 		this.stripesBox = document.getElementById("stripes-box"); 
 
 		this.setColorBox.addEventListener("click", event=>this.setColorToggle(event), false);
@@ -39,7 +39,6 @@ class ColorMenu {
 	}
 
 	colorSourceToggle(event){
-		// console.log(event);
 		if(event.target.id == "palette-button"){
 			this.paletteButton.style.backgroundColor = "rgb(236,247,147)";
 			this.colorSourceBox.style.backgroundColor = "rgb(131,140,54)";
@@ -54,16 +53,16 @@ class ColorMenu {
 		}
 	}
 
-	stripesToggle(){
-		if(config.stripes){
-			this.stripesOn.style.backgroundColor = "rgb(131,140,54)";
-			this.stripesOff.style.backgroundColor = "rgb(236,247,147)";
-			config.stripes = false;
-		}
-		else {
+	stripesToggle(event){
+		if(event.target.id == "stripes-on"){
 			this.stripesOn.style.backgroundColor = "rgb(236,247,147)";
-			this.stripesOff.style.backgroundColor = "rgb(131,140,54)";
-			config.stripes = true;
+			this.stripesBox.style.backgroundColor = "rgb(131,140,54)";
+			config.set("stripes", true);
+		}
+		else if(event.target.id == "stripes-off"){
+			this.stripesOn.style.backgroundColor = "rgb(131,140,54)";
+			this.stripesBox.style.backgroundColor = "rgb(236,247,147)";
+			config.set("stripes", false);
 		}
 	}
 
@@ -81,7 +80,7 @@ class ColorMenu {
 		this.imagePicker.style.left = this.setColorBox.getBoundingClientRect().left + "px";
 		var imageCtx = this.imagePicker.getContext("2d");
 		// when the image menu is separated, we'll need to figure out the plumbing to "image"
-		imageCtx.drawImage(image, 0, 0, width, height);
+		imageCtx.drawImage(image, 0, 0, width, config.height);
 		this.imagePicker.addEventListener("mousemove", event=>this.pickImageColor(event));
 	}
 
@@ -129,12 +128,10 @@ class ColorMenu {
 		var colorValue = paletteCtx.getImageData(color.clientX - offsetX, color.clientY - offsetY, 1, 1).data;
 		var rgba = 'rgba(' + colorValue[0] + ', ' + colorValue[1] + ', ' + colorValue[2] + ', ' + (colorValue[3] / 255) + ')';
 		// console.log(rgba);
-
 		this.updateColors(rgba);
 	}
 
 	updateColors(rgba) {
-
 		if(this.colorMode=="background") {
 			config.set("backgroundColor", rgba);
 		} else {

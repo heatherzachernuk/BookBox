@@ -5,6 +5,8 @@ class ThreeD {
 		this.initScene();
 		this.initRenderer();
 		this.animate();
+		config.onChange("height", ()=> {this.updateScale()});
+		config.onChange("depth", ()=> {this.updateScale()});
 	}
 
 	initCamera(){
@@ -32,7 +34,7 @@ class ThreeD {
 	 	this.backTexture.minFilter = THREE.LinearFilter;
 	}
 	initScene(){
-		this.geometry = new THREE.BoxBufferGeometry( width, height, depth );
+		this.geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
 
 		const materials = [
 		  new THREE.MeshBasicMaterial({map: this.edgeTexture}),
@@ -44,10 +46,14 @@ class ThreeD {
 		];
 
 		this.bookBox = new THREE.Mesh( this.geometry, materials );
-		
+		this.updateScale();
 		this.scene = new THREE.Scene();
 
 		this.scene.add( this.bookBox );
+	}
+
+	updateScale(){
+		this.bookBox.scale.set(width, config.height, config.depth);
 	}
 
 	initRenderer(){

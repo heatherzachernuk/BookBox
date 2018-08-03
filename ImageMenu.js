@@ -24,5 +24,5 @@ class ImageMenu {
 		this.currentFilename.innerHTML = this.file.name;
 		config.coverImage = true;
 	}
-	
+
 }

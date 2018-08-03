@@ -5,9 +5,10 @@ class Config{
 		this.titleText = "Little House on the Poorie";
 		this.authorText = "Laura Ingalls Wilder";
 		this.font = "Arial";
-		this.wordcount = 100000;
+		this.height = 200;
+		this.depth = 50;
 		this.coverImage = false;
-		this.stripes = false;
+		this.stripes = true;
 		this.subscribers = {}; 
 	}
 
@@ -22,4 +23,6 @@ class Config{
 	onChange(name, callback){
 		this.subscribers[name] = callback;
 	}
+
+
 }

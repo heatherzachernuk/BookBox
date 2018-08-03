@@ -12,13 +12,10 @@ var image = document.getElementById("image");
 // WORDCOUNT MENU VARIABLES
 
 var width = 150;
-var height = 200;
-var depth = 50;
 
 // canvas variables
 
 // 3D MODEL VARIABLES
-var threeD; 
 
 // EVENT LISTENERS
 openerArray.forEach(opener=>opener.addEventListener("click", showMenu, false));
@@ -49,13 +46,13 @@ var imageMenu = new ImageMenu(image);
 
 var textureRenderer = new TextureRenderer();
 
-var textMenu = new TextMenu(textureRenderer);	
+var textMenu = new TextMenu();	
 
-var colorMenu = new ColorMenu(textureRenderer);
+var colorMenu = new ColorMenu();
 
 var wordcountMenu = new WordcountMenu();
 
 // instantiates a 3D 
-threeD = new ThreeD();
+var threeD = new ThreeD(textureRenderer);
 
 
