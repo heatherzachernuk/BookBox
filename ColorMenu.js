@@ -22,7 +22,8 @@ class ColorMenu {
 		this.palettePicker.addEventListener("click", event=>this.hidePalette(event), false);
 		this.imagePicker.addEventListener("click", event=>this.hideImagePicker(event), false);
 
-		this.stripesBox.addEventListener("click", event=>this.stripesToggle(event), false);
+		this.stripesOn.addEventListener("click", event=>this.stripesToggle(event), false);
+		this.stripesOff.addEventListener("click", event=>this.stripesToggle(event), false);
 	}
 
 	setColorToggle(){
@@ -59,7 +60,7 @@ class ColorMenu {
 			this.stripesBox.style.backgroundColor = "rgb(131,140,54)";
 			config.set("stripes", true);
 		}
-		else if(event.target.id == "stripes-off"){
+		if(event.target.id != "stripes-on"){
 			this.stripesOn.style.backgroundColor = "rgb(131,140,54)";
 			this.stripesBox.style.backgroundColor = "rgb(236,247,147)";
 			config.set("stripes", false);
@@ -79,9 +80,9 @@ class ColorMenu {
 		this.imagePicker.style.top = this.setColorBox.getBoundingClientRect().top + "px";
 		this.imagePicker.style.left = this.setColorBox.getBoundingClientRect().left + "px";
 		var imageCtx = this.imagePicker.getContext("2d");
-		// when the image menu is separated, we'll need to figure out the plumbing to "image"
-		imageCtx.drawImage(image, 0, 0, width, config.height);
-		this.imagePicker.addEventListener("mousemove", event=>this.pickImageColor(event));
+
+		imageCtx.drawImage(image, 0, 0, 200, (image.height/image.width)*200);
+		this.imagePicker.addEventListener("mousemove", event=> this.pickImageColor(event));
 	}
 
 	hidePalette(){

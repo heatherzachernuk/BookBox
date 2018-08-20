@@ -44,13 +44,14 @@ image.onload = function(){
 
 var imageMenu = new ImageMenu(image);
 
-var textureRenderer = new TextureRenderer();
-
 var textMenu = new TextMenu();	
 
 var colorMenu = new ColorMenu();
 
 var wordcountMenu = new WordcountMenu();
+
+var textureRenderer = new TextureRenderer();
+
 
 // instantiates a 3D 
 var threeD = new ThreeD(textureRenderer);

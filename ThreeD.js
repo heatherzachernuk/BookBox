@@ -70,7 +70,7 @@ class ThreeD {
 		requestAnimationFrame( ()=>this.animate());
 	  	this.updateTextures();
 		// this.bookBox.rotation.x += 0.01;
-		this.bookBox.rotation.y -= 0.01;
+		this.bookBox.rotation.y += 0.01;
 		this.renderer.render( this.scene, this.camera );
 	}
 

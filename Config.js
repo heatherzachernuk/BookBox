@@ -2,13 +2,14 @@ class Config{
 	constructor(){
 		this.backgroundColor = "red";
 		this.detailColor = "black";
-		this.titleText = "Little House on the Poorie";
-		this.authorText = "Laura Ingalls Wilder";
+		this.titleText = "The Englishman Who Went Up a Hill and Came Down a Poorie";
+		this.authorText = "Brad Bird Ingalls";
 		this.font = "Arial";
 		this.height = 200;
 		this.depth = 50;
 		this.coverImage = false;
 		this.stripes = true;
+		this.frontStripes = true;
 		this.subscribers = {}; 
 	}
 

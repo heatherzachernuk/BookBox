@@ -18,17 +18,17 @@ class TextureRenderer{
 
 		this.drawCanvases();
 
-		config.onChange("backgroundColor", ()=> {this.onCoverDetailChanged()})
-		config.onChange("detailColor", ()=> {this.onCoverDetailChanged()})
-		config.onChange("font", ()=> {this.drawFront(), this.drawSpine()});
-		config.onChange("titleText", ()=> {this.drawFront(), this.drawSpine()});
-		config.onChange("authorText", ()=> {this.drawFront(), this.drawSpine()});
+		config.onChange("depth", ()=> {this.drawCanvases()});
+		config.onChange("coverImage", ()=> {this.onCoverDetailChanged()});
+		config.onChange("backgroundColor", ()=> {this.onCoverDetailChanged()});
+		config.onChange("detailColor", ()=> {this.onCoverDetailChanged()});
+		config.onChange("font", ()=> {this.onCoverDetailChanged()});
+		config.onChange("titleText", ()=> {this.onCoverDetailChanged()});
+		config.onChange("authorText", ()=> {this.onCoverDetailChanged()});
 		config.onChange("stripes", ()=> {this.onCoverDetailChanged()});
-		config.onChange("height", ()=> {this.drawCanvases()});
 	}
 
 	drawCanvases() {
-		this.front.height = config.height;
 		this.drawFront();
 		this.drawBack();
 		this.drawSpine();
@@ -54,32 +54,122 @@ class TextureRenderer{
 			this.imageHeight = width/imageAspect;
 			this.topMargin = (config.height - this.imageHeight)/2;
 			this.leftMargin = 0;
+			if(this.imageHeight > config.height*9/10){
+				console.log(this.imageHeight);
+				config.set("frontStripes", false);
+				this.frontCtx.fillStyle = config.backgroundColor;
+				this.frontCtx.fillRect(0, 0, width, config.height);
+			}
+			else {
+				config.set("frontStripes", true);
+			}
 		}
 		else if(boxAspect >= imageAspect){
 			this.imageWidth = config.height * imageAspect;
 			this.imageHeight = config.height;
 			this.leftMargin = (width - this.imageWidth)/2;
 			this.topMargin = 0;	
+			config.set("frontStripes", false);
+			this.frontCtx.fillStyle = config.backgroundColor;
+			this.frontCtx.fillRect(0, 0, width, config.height);
 		}
+		this.drawStripes();
 		this.frontCtx.drawImage(image, this.leftMargin, this.topMargin, this.imageWidth, this.imageHeight);
-		threeD.resetView();
 	}
 
 	drawFront(){
+			this.front.height = config.height;
 			this.frontCtx.fillStyle = config.backgroundColor;
 			this.frontCtx.fillRect(0, 0, width, config.height);
 		if(config.coverImage == false){
 			// add the title to the front
-			this.frontCtx.fillStyle = config.detailColor;
-			this.frontCtx.font = "10px " + config.font;
-			this.frontCtx.fillText(config.titleText, 10, 30);
+			this.textFit(config.titleText, this.frontCtx, width, config.height, width*0.1, config.height*0.15);
+			this.authorFit();
 		}
 		else {
 			// add the cover image to the front
 			this.imageFit();
 		}
 	}
- 
+
+	textFit(sourceText, context, boundingWidth, boundingHeight, xLocation, yLocation){
+		var fontSize = config.depth;
+		var wordsArray = sourceText.split(" ");
+		var breakArray = [];
+		var textHeight = 0;
+
+		const measureWidth =() =>{
+			var accumulator = 0;
+			context.font = fontSize + "px " + config.font;
+			for(var i=0; i<wordsArray.length; i++){
+				var wordWidth = context.measureText(wordsArray[i]+" ").width;
+				while(wordWidth > boundingWidth*0.85){
+					fontSize *= 0.9;
+					context.font = fontSize + "px " + config.font;
+					wordWidth = context.measureText(wordsArray[i]+" ").width;
+				}
+				if(accumulator + wordWidth > boundingWidth*0.85){
+					breakArray.push("~");
+					textHeight += fontSize;
+					accumulator = wordWidth;
+				}
+				else {
+					accumulator += wordWidth; 
+				}
+				breakArray.push(wordsArray[i]);
+			}
+			breakArray.push("~");
+			textHeight += fontSize;
+			measureHeight();
+		}
+
+		const measureHeight = ()=>{
+			if(textHeight > boundingHeight * 0.7){
+				fontSize *= 0.9; 
+				textHeight = 0;
+				breakArray = [];
+				measureWidth();
+			}
+			else {
+				renderTitle();
+			}
+		}
+
+		const renderTitle = ()=>{
+			console.log(breakArray);
+			var y = yLocation;
+			context.fillStyle = config.detailColor;
+			context.textBaseline = "middle";
+			var lineArray = [];
+			for(var j=0; j<breakArray.length; j++){
+				if(breakArray[j] === "~"){
+					context.fillText(lineArray.join(' '), xLocation, y);
+					y += fontSize;
+					lineArray = [];
+				}
+				else {
+					lineArray.push(breakArray[j]);  
+				}
+			} 
+		}
+		measureWidth();
+	}
+
+	authorFit() {
+		var fontSize = config.depth/2.5;
+		this.frontCtx.font = fontSize + "px " + config.font;
+		var wordWidth = this.frontCtx.measureText(config.authorText).width;
+		while(wordWidth > width*0.85){
+			fontSize *= 0.9;
+			this.frontCtx.font = fontSize + "px " + config.font;
+			wordWidth = this.frontCtx.measureText(config.authorText).width;
+		}
+		this.frontCtx.fillStyle = config.detailColor;
+		this.frontCtx.textBaseline = bottom;
+		this.frontCtx.fillText(config.authorText, width*0.1, config.height*0.85);
+	}
+
+
 	drawSpine(){
 		// drawing spine canvas
 		this.spine.width = config.depth;
@@ -88,16 +178,15 @@ class TextureRenderer{
 		this.spineCtx.fillRect(0, 0, config.depth, config.height);
 		this.spineCtx.save();
 		this.spineCtx.translate(config.depth, 0);
-		// rotates for vertical spine text
-		this.spineCtx.rotate(Math.PI/2);
-		this.spineCtx.fillStyle = config.detailColor;
-		this.spineCtx.font = "10px " + config.font;
-		this.spineCtx.fillText(config.titleText, (config.height/10)*1, (config.depth/2+config.depth/20));
+		this.spineCtx.rotate(90 * Math.PI / 180);
+		this.textFit(config.titleText, this.spineCtx, config.height*0.85, config.depth/2, config.height*0.1, config.depth/2);
 		this.spineCtx.restore();
-		this.spineCtx.fillStyle = config.detailColor;
-		this.spineCtx.font = "10px " + config.font;
-		this.spineCtx.fillText(config.authorText, 10, (config.height/10)*8);
+		this.spineCtx.translate(config.depth/2, 0);
+		this.spineCtx.textAlign = "center";
+		this.textFit(config.authorText, this.spineCtx, config.depth, config.height/8, 0, config.height*0.85);
+		this.spineCtx.translate(-config.depth/2, 0);
 	}
+
 
 	drawBack(){
 		// drawing back canvas
@@ -140,13 +229,13 @@ class TextureRenderer{
 		topCtx.fillRect(0, 0, width, 3);
 		var endPattern = topCtx.createPattern(topp, "repeat");
 
-		// applying the pattern to the top and bottom
 		var addPattern = (canvas, ctx)=> {
 			canvas.width = width;
 			canvas.height = config.depth;
 			ctx.fillStyle = endPattern;
 			ctx.fillRect(0, 0, width, config.depth);
 		}
+		// applying the pattern to the top and bottom
 		addPattern(this.bottom, bottomCtx);
 		addPattern(this.topp, topCtx);
 	}
@@ -155,7 +244,6 @@ class TextureRenderer{
 		if(config.stripes == true){
 			var drawToContext = (ctx, width)=> {
 				ctx.beginPath();
-
 				var drawLines = (end)=> {
 					ctx.moveTo(0, end);
 					ctx.lineTo(width, end);	
@@ -164,19 +252,22 @@ class TextureRenderer{
 				drawLines((config.height/10)*0.5)
 				drawLines((config.height/10)*9.5)
 				drawLines((config.height/10)*9.7)
-
 				ctx.strokeStyle = config.detailColor;
 				ctx.lineWidth = 1;
 				ctx.stroke();
 			}
-
 			drawToContext(this.spineCtx, config.depth);
-			drawToContext(this.frontCtx, width);
 			drawToContext(this.backCtx, width);
-		} else {
+			if(config.frontStripes == true){
+				drawToContext(this.frontCtx, width);
+			}
+			// threeD.resetView();
+		} 
+		else {
 			this.drawFront();
 			this.drawBack();
 			this.drawSpine();
+			threeD.resetView();
 		} 
 	}
 }  

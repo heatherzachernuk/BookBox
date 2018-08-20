@@ -381,7 +381,21 @@ input[type="file"] {
  	line-height: 2em;
 }
 
+#filename {
+
+}
+
+#remove-image {
+	font-size: 0.4em;
+	font-weight: bold;
+	display: none;
+	padding: 0.5em 0.7em 0.5em 0.7em;
+	background-color: rgb(131,140,54);
+	margin-left: 0.5em;
+}
+
 #current-filename {
+	display: inline;
 	overflow-wrap: break-word;
 }
 
