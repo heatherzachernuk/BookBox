@@ -22,6 +22,12 @@ class ImageMenu {
 
 	onCoverFileLoaded(fileLoadEvent){
 		this.image.src = fileLoadEvent.target.result;
+		if(this.file.name.length > 20){
+			this.currentFilename.style.fontSize = "0.3em";
+		}
+		else {
+			this.currentFilename.style.fontSize = "0.5em";
+		}
 		this.currentFilename.innerHTML = this.file.name;
 		config.set("coverImage", true);
 		this.removeImageButton.style.display = "inline";

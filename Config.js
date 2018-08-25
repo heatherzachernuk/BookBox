@@ -1,6 +1,6 @@
 class Config{
 	constructor(){
-		this.backgroundColor = "red";
+		this.backgroundColor = "rgba(168, 212, 167, 1)";
 		this.detailColor = "black";
 		this.titleText = "The Englishman Who Went Up a Hill and Came Down a Poorie";
 		this.authorText = "Brad Bird Ingalls";
