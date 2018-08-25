@@ -1,6 +1,7 @@
 class Config{
 	constructor(){
-		this.backgroundColor = "rgb(212, 255, 191)";
+		this.backgroundColor = "red";
+		//rgb(212, 255, 191)
 		this.detailColor = "black";
 		this.titleText = "The Very Hungry Poorie";
 		this.authorText = "Brad Bird Ingalls";
