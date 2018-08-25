@@ -9,20 +9,28 @@ class Config{
 		this.depth = 50;
 		this.coverImage = false;
 		this.stripes = true;
-		this.frontStripes = true;
 		this.subscribers = {}; 
+	}
+	get(name) {
+		return this[name];
 	}
 
 	set(name, value){
 		console.log("setting", name, "to", value);
 		this[name] = value;
 		if(this.subscribers[name]){
-			this.subscribers[name]();
+			for(var i =0;i<this.subscribers[name].length;i++) {
+				this.subscribers[name][i]();
+			}
 		}
 	}
 
 	onChange(name, callback){
-		this.subscribers[name] = callback;
+
+		if(this.subscribers[name]==null) {
+			this.subscribers[name] = [];
+		} 
+		this.subscribers[name].push(callback);
 	}
 
 

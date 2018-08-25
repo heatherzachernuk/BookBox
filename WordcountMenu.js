@@ -7,11 +7,10 @@ class WordcountMenu{
 
  	adjust(event){
  		var wordcount = this.countInput.value;
- 		var height = config.height;
- 		height = (height * Math.log(wordcount)/Math.log(100000) - height) * 2 + height;
-  		config.set("height", height);
-  		var depth = config.depth;
-  		depth = (depth * Math.log(wordcount)/Math.log(100000) - depth) * 2 + depth;
-  		config.set("depth", depth);
+ 		console.log("the depth was", config.get('depth'));
+ 		const newDepth = (50 * Math.log(wordcount)/Math.log(100000) - 50) * 2 + 50;
+ 		console.log("and we'll make it", newDepth);
+  		config.set("height", (200 * Math.log(wordcount)/Math.log(100000) - 200) * 2 + 200);
+  		config.set("depth", newDepth);
  	}
 }

@@ -18,7 +18,7 @@ class TextureRenderer{
 
 		this.drawCanvases();
 
-		config.onChange("depth", ()=> {this.drawCanvases()});
+		config.onChange("depth", ()=> {this.onCoverDetailChanged()});
 		config.onChange("coverImage", ()=> {this.onCoverDetailChanged()});
 		config.onChange("backgroundColor", ()=> {this.onCoverDetailChanged()});
 		config.onChange("detailColor", ()=> {this.onCoverDetailChanged()});
@@ -56,12 +56,8 @@ class TextureRenderer{
 			this.leftMargin = 0;
 			if(this.imageHeight > config.height*9/10){
 				console.log(this.imageHeight);
-				config.set("frontStripes", false);
 				this.frontCtx.fillStyle = config.backgroundColor;
 				this.frontCtx.fillRect(0, 0, width, config.height);
-			}
-			else {
-				config.set("frontStripes", true);
 			}
 		}
 		else if(boxAspect >= imageAspect){
@@ -69,7 +65,6 @@ class TextureRenderer{
 			this.imageHeight = config.height;
 			this.leftMargin = (width - this.imageWidth)/2;
 			this.topMargin = 0;	
-			config.set("frontStripes", false);
 			this.frontCtx.fillStyle = config.backgroundColor;
 			this.frontCtx.fillRect(0, 0, width, config.height);
 		}
@@ -81,10 +76,10 @@ class TextureRenderer{
 			this.front.height = config.height;
 			this.frontCtx.fillStyle = config.backgroundColor;
 			this.frontCtx.fillRect(0, 0, width, config.height);
-		if(config.coverImage == false){
+		if(config.coverImage === false){
 			// add the title to the front
 			this.textFit(config.titleText, this.frontCtx, width, config.height, width*0.1, config.height*0.15);
-			this.authorFit();
+			this.frontAuthorFit();
 		}
 		else {
 			// add the cover image to the front
@@ -155,7 +150,7 @@ class TextureRenderer{
 		measureWidth();
 	}
 
-	authorFit() {
+	frontAuthorFit() {
 		var fontSize = config.depth/2.5;
 		this.frontCtx.font = fontSize + "px " + config.font;
 		var wordWidth = this.frontCtx.measureText(config.authorText).width;
@@ -258,7 +253,7 @@ class TextureRenderer{
 			}
 			drawToContext(this.spineCtx, config.depth);
 			drawToContext(this.backCtx, width);
-			if(config.frontStripes == true){
+			if(this.imageHeight === undefined || this.imageHeight < config.height*9/10){
 				drawToContext(this.frontCtx, width);
 			}
 			// threeD.resetView();
