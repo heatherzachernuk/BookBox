@@ -20,6 +20,7 @@
    }
    	#current-filename {
 		font-size: 0.4em;
+		text-overflow: ellipsis;
 	}
    #count-input {
    		width: 5em;
