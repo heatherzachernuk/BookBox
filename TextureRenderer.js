@@ -16,7 +16,7 @@ class TextureRenderer{
 		this.leftMargin = 0;
 		this.topMargin = 0;
 
-		this.drawCanvases();
+		this.initializeCanvases();
 
 		config.onChange("depth", ()=> {this.onCoverDetailChanged()});
 		config.onChange("coverImage", ()=> {this.onCoverDetailChanged()});
@@ -28,7 +28,7 @@ class TextureRenderer{
 		config.onChange("stripes", ()=> {this.onCoverDetailChanged()});
 	}
 
-	drawCanvases() {
+	initializeCanvases() {
 		this.drawFront();
 		this.drawBack();
 		this.drawSpine();
@@ -42,42 +42,14 @@ class TextureRenderer{
 		this.drawBack();
 		this.drawSpine();
 		this.drawStripes();
-	}
-
-	imageFit(){
-		console.log("drawing");
-		var boxAspect = width/config.height;
-		var imageAspect = image.width/image.height;
-	   // if the box front is proportionally taller and thinner than the cover image,
-	   // we need a margin at the top, and the image to be the width of the box front
-		if(boxAspect < imageAspect){
-			this.imageWidth = width;
-			this.imageHeight = width/imageAspect;
-			this.topMargin = (config.height - this.imageHeight)/2;
-			this.leftMargin = 0;
-			if(this.imageHeight > config.height*9/10){
-				console.log(this.imageHeight);
-				this.frontCtx.fillStyle = config.backgroundColor;
-				this.frontCtx.fillRect(0, 0, width, config.height);
-			}
-		}
-		else if(boxAspect >= imageAspect){
-			this.imageWidth = config.height * imageAspect;
-			this.imageHeight = config.height;
-			this.leftMargin = (width - this.imageWidth)/2;
-			this.topMargin = 0;	
-			this.frontCtx.fillStyle = config.backgroundColor;
-			this.frontCtx.fillRect(0, 0, width, config.height);
-		}
-		this.drawStripes();
-		this.frontCtx.drawImage(image, this.leftMargin, this.topMargin, this.imageWidth, this.imageHeight);
+		threeD.resetView();
 	}
 
 	drawFront(){
 			this.front.height = config.height;
 			this.frontCtx.fillStyle = config.backgroundColor;
 			this.frontCtx.fillRect(0, 0, width, config.height);
-		if(config.coverImage === false){
+		if(!config.coverImage){
 			// add the title to the front
 			this.textFit(config.titleText, this.frontCtx, width, config.height, width*0.1, config.height*0.15);
 			this.frontAuthorFit();
@@ -87,6 +59,30 @@ class TextureRenderer{
 			this.imageFit();
 		}
 	}
+
+	imageFit(){
+		var boxAspect = width/config.height;
+		var imageAspect = image.width/image.height;
+	   // if the box front is  taller and thinner than the cover image,
+	   // add margin at top, and image is width of box front
+		if(boxAspect < imageAspect){
+			this.imageWidth = width;
+			this.imageHeight = width/imageAspect;
+			this.topMargin = (config.height - this.imageHeight)/2;
+			this.leftMargin = 0;
+		}
+		else if(boxAspect >= imageAspect){
+			this.imageWidth = config.height * imageAspect;
+			this.imageHeight = config.height;
+			this.leftMargin = (width - this.imageWidth)/2;
+			this.topMargin = 0;	
+			// clear stripes for tall images
+			this.frontCtx.fillStyle = config.backgroundColor;
+			this.frontCtx.fillRect(0, 0, width, config.height);
+		}
+		this.frontCtx.drawImage(image, this.leftMargin, this.topMargin, this.imageWidth, this.imageHeight);
+	}
+
 
 	textFit(sourceText, context, boundingWidth, boundingHeight, xLocation, yLocation){
 		var fontSize = config.depth;
@@ -236,7 +232,7 @@ class TextureRenderer{
 	}
 
 	drawStripes(){
-		if(config.stripes == true){
+		if(config.stripes){
 			var drawToContext = (ctx, width)=> {
 				ctx.beginPath();
 				var drawLines = (end)=> {
@@ -253,16 +249,14 @@ class TextureRenderer{
 			}
 			drawToContext(this.spineCtx, config.depth);
 			drawToContext(this.backCtx, width);
-			if(this.imageHeight < config.height*9/10 || !this.coverImage){
+			if(this.imageHeight < config.height*9/10 || !config.coverImage){
 				drawToContext(this.frontCtx, width);
 			}
-			// threeD.resetView();
 		} 
-		else {
+		else if (!config.stripes){
 			this.drawFront();
 			this.drawBack();
 			this.drawSpine();
-			threeD.resetView();
 		} 
-	}
+	} 
 }  

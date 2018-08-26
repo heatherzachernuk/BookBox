@@ -55,12 +55,12 @@ class ColorMenu {
 	}
 
 	stripesToggle(event){
-		if(event.target.id == "stripes-on"){
+		if(event.target.id === "stripes-on"){
 			this.stripesOn.style.backgroundColor = "#BCF8EC";
 			this.stripesBox.style.backgroundColor = "#56A3A6";
 			config.set("stripes", true);
 		}
-		if(event.target.id != "stripes-on"){
+		if(event.target.id === "stripes-off"){
 			this.stripesOn.style.backgroundColor = "#56A3A6";
 			this.stripesBox.style.backgroundColor = "#BCF8EC";
 			config.set("stripes", false);
@@ -77,10 +77,12 @@ class ColorMenu {
 
 	showImage(){
 		this.imagePicker.style.display = "block";
-		this.imagePicker.style.top = this.setColorBox.getBoundingClientRect().top + "px";
-		this.imagePicker.style.left = this.setColorBox.getBoundingClientRect().left + "px";
+		// this.imagePicker.style.top = this.setColorBox.getBoundingClientRect().top + "px";
+		// this.imagePicker.style.left = this.setColorBox.getBoundingClientRect().left + "px";
+		var colorMenuPage = document.getElementById("color-menu");
+		this.imagePicker.style.top = colorMenuPage.getBoundingClientRect().bottom - 10 - (image.height/image.width)*200 + "px";
+		this.imagePicker.style.left = colorMenuPage.getBoundingClientRect().right - 210 + "px";
 		var imageCtx = this.imagePicker.getContext("2d");
-
 		imageCtx.drawImage(image, 0, 0, 200, (image.height/image.width)*200);
 		this.imagePicker.addEventListener("mousemove", event=> this.pickImageColor(event));
 	}
@@ -146,8 +148,7 @@ class ColorMenu {
 		var offsetX = this.imagePicker.getBoundingClientRect().left;
 	  	var offsetY = this.imagePicker.getBoundingClientRect().top;
 		var colorValue = imageCtx.getImageData(color.clientX - offsetX, color.clientY - offsetY, 1, 1).data;
-		var rgba = 'rgba(' + colorValue[0] + ', ' + colorValue[1] + ', ' + colorValue[2] + ', ' + (colorValue[3] / 255) + ')';
-		
+		var rgba = 'rgba(' +colorValue[0]+', '+colorValue[1]+', '+colorValue[2]+', '+(colorValue[3]/255)+')';
 		this.updateColors(rgba);
 	}
 

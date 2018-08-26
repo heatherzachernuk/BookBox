@@ -46,6 +46,9 @@
    	.selector-box {
 	margin-left: -1.4em;
 	}
+	#palette-picker, #image-picker {
+		margin-left: -1em;
+	}
 }
 
 /* TINY MOBILE RULES */
@@ -118,6 +121,7 @@
    	}
    	.custom-file-upload {
    		width: 12em;
+   		margin-left: -3em;
    	}
    	#current-filename {
 		font-size: 0.65em;

@@ -26,7 +26,7 @@ class ImageMenu {
 			this.currentFilename.innerHTML = this.file.name;
 		}
 		else {
-			this.currentFilename.innerHTML = this.file.name.substring(0,33)+"...";
+			this.currentFilename.innerHTML = this.file.name.substring(0,32)+"...";
 		}
 		this.removeImageButton.style.display = "inline";
 		config.set("coverImage", true);
