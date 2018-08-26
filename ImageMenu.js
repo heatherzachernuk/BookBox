@@ -28,14 +28,20 @@ class ImageMenu {
 		else {
 			this.currentFilename.innerHTML = this.file.name.substring(0,33)+"...";
 		}
-		config.set("coverImage", true);
 		this.removeImageButton.style.display = "inline";
+		config.set("coverImage", true);
 	}
 
 	removeImage(){
 		this.currentFilename.innerHTML = "current_file.jpg";
 		this.removeImageButton.style.display = "none";
 		config.set("coverImage", false);
+		var newUploader = document.createElement("input");
+		newUploader.setAttribute("type", "file");
+		newUploader.setAttribute("name", "pic");
+		newUploader.setAttribute("accept", "image/*");
+		var oldUploader = this.coverFileButton.querySelector("input");
+		this.coverFileButton.insertBefore(newUploader, oldUploader);
+		this.coverFileButton.removeChild(oldUploader);
 	}
-
 }

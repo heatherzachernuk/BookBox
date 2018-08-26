@@ -7,6 +7,9 @@ class WordcountMenu{
 
  	adjust(event){
  		var wordcount = this.countInput.value;
+ 		if(this.countInput.value < 5000){
+ 			wordcount = 100000;
+ 		}
  		console.log("the depth was", config.get('depth'));
  		const newDepth = (50 * Math.log(wordcount)/Math.log(100000) - 50) * 2 + 50;
  		console.log("and we'll make it", newDepth);

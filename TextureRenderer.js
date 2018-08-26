@@ -45,6 +45,7 @@ class TextureRenderer{
 	}
 
 	imageFit(){
+		console.log("drawing");
 		var boxAspect = width/config.height;
 		var imageAspect = image.width/image.height;
 	   // if the box front is proportionally taller and thinner than the cover image,
@@ -131,7 +132,6 @@ class TextureRenderer{
 		}
 
 		const renderTitle = ()=>{
-			console.log(breakArray);
 			var y = yLocation;
 			context.fillStyle = config.detailColor;
 			context.textBaseline = "middle";
@@ -253,7 +253,7 @@ class TextureRenderer{
 			}
 			drawToContext(this.spineCtx, config.depth);
 			drawToContext(this.backCtx, width);
-			if(this.imageHeight === undefined || this.imageHeight < config.height*9/10){
+			if(this.imageHeight < config.height*9/10 || !this.coverImage){
 				drawToContext(this.frontCtx, width);
 			}
 			// threeD.resetView();

@@ -37,12 +37,12 @@ class ThreeD {
 		this.geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
 
 		const materials = [
-		  new THREE.MeshBasicMaterial({map: this.edgeTexture}),
-		  new THREE.MeshBasicMaterial({map: this.spineTexture}),
-		  new THREE.MeshBasicMaterial({map: this.topTexture}),
-		  new THREE.MeshBasicMaterial({map: this.bottomTexture}),
-		  new THREE.MeshBasicMaterial({map: this.frontTexture}),
-		  new THREE.MeshBasicMaterial({map: this.backTexture})
+		  new THREE.MeshPhongMaterial({map: this.edgeTexture}),
+		  new THREE.MeshPhongMaterial({map: this.spineTexture}),
+		  new THREE.MeshPhongMaterial({map: this.topTexture}),
+		  new THREE.MeshPhongMaterial({map: this.bottomTexture}),
+		  new THREE.MeshPhongMaterial({map: this.frontTexture}),
+		  new THREE.MeshPhongMaterial({map: this.backTexture})
 		];
 
 		this.bookBox = new THREE.Mesh( this.geometry, materials );
@@ -50,6 +50,13 @@ class ThreeD {
 		this.scene = new THREE.Scene();
 
 		this.scene.add( this.bookBox );
+
+		this.light = new THREE.PointLight(0xFFFFEE, 0.7);
+		this.scene.add(this.light);
+		this.light.position.set(200, 500, 425);
+		this.light = new THREE.PointLight(0xFFEEFF, 0.7);
+		this.scene.add(this.light);
+		this.light.position.set(-200, 500, 425);
 	}
 
 	updateScale(){
