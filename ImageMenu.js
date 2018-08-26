@@ -22,11 +22,11 @@ class ImageMenu {
 
 	onCoverFileLoaded(fileLoadEvent){
 		this.image.src = fileLoadEvent.target.result;
-		if(this.file.name.length < 40){
+		if(this.file.name.length < 35){
 			this.currentFilename.innerHTML = this.file.name;
 		}
 		else {
-			this.currentFilename.innerHTML = this.file.name.substring(0,39)+"...";
+			this.currentFilename.innerHTML = this.file.name.substring(0,33)+"...";
 		}
 		config.set("coverImage", true);
 		this.removeImageButton.style.display = "inline";
