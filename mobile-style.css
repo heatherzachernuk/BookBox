@@ -348,7 +348,7 @@ input[type=text]{
   display: none;
   font-size: 0.6em;
   position: absolute;
-  background-color: rgb(224,241,76);
+  background-color: #BCF8EC;
   opacity: 0.9;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   z-index: 1;
@@ -357,7 +357,7 @@ input[type=text]{
 }
 
 #font-list div:hover {
-  background-color: rgb(238,252,121);
+  background-color: #56A3A6;
 }
 /**/
 /* image menu styles*/
@@ -414,11 +414,10 @@ input[type="file"] {
 	height: 2em;
 	width: 2em;
 	background-color: white;
-	outline: thin solid black;
+	/*outline: thin solid black;*/
 	text-align: center;
 	line-height: 0.35em;
 }
-
 #background-color{
 	display: inline-block;
 }
@@ -432,7 +431,7 @@ input[type="file"] {
 	height: 1.8em;
 	width: 5.5em;
 	background-color: #BCF8EC;
-	outline: thin solid black;
+	/*outline: thin solid black;*/
 	position: relative;
 }
 
