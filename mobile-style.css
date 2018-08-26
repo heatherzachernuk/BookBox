@@ -430,7 +430,7 @@ input[type="file"] {
 	display: inline-block;
 	height: 1.8em;
 	width: 5.5em;
-	background-color: #BCF8EC;
+	background-color: #56A3A6;
 	/*outline: thin solid black;*/
 	position: relative;
 }
@@ -450,8 +450,8 @@ input[type="file"] {
 
 .selector-on{
 	width: 2.75em;
-	background-color: #56A3A6;
-	box-shadow: 1px 0 black; 
+	background-color: #BCF8EC;
+	/*box-shadow: 1px 0 black; */
 }
 
 .selector-off{
