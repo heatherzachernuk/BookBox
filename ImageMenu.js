@@ -33,10 +33,9 @@ class ImageMenu {
 	}
 
 	removeImage(){
-		config.set("frontStripes", true);
-		config.set("coverImage", false);
 		this.currentFilename.innerHTML = "current_file.jpg";
 		this.removeImageButton.style.display = "none";
+		config.set("coverImage", false);
 	}
 
 }

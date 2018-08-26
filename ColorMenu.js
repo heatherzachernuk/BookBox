@@ -28,27 +28,27 @@ class ColorMenu {
 
 	setColorToggle(){
 		if(this.colorMode === "background"){
-			this.backgroundColorButton.style.backgroundColor = "rgb(131,140,54)";
-			this.detailColorButton.style.backgroundColor = "rgb(236,247,147)";
+			this.backgroundColorButton.style.backgroundColor = "#BCF8EC";
+			this.detailColorButton.style.backgroundColor = "#56A3A6";
 			this.colorMode = "detail";
 		}
 		else if(this.colorMode === "detail") {
-			this.backgroundColorButton.style.backgroundColor = "rgb(236,247,147)";
-			this.detailColorButton.style.backgroundColor = "rgb(131,140,54)";
+			this.backgroundColorButton.style.backgroundColor = "#56A3A6";
+			this.detailColorButton.style.backgroundColor = "#BCF8EC";
 			this.colorMode = "background";
 		}
 	}
 
 	colorSourceToggle(event){
 		if(event.target.id == "palette-button"){
-			this.paletteButton.style.backgroundColor = "rgb(236,247,147)";
-			this.colorSourceBox.style.backgroundColor = "rgb(131,140,54)";
+			this.paletteButton.style.backgroundColor = "#56A3A6";
+			this.colorSourceBox.style.backgroundColor = "#BCF8EC";
 			this.showPalette();
 		}
 		if(event.target.id == "cover-color-button") {
 			if(config.coverImage == true){
-				this.paletteButton.style.backgroundColor = "rgb(131,140,54)";
-				this.colorSourceBox.style.backgroundColor = "rgb(236,247,147)";
+				this.paletteButton.style.backgroundColor = "#BCF8EC";
+				this.colorSourceBox.style.backgroundColor = "#56A3A6";
 				this.showImage();
 			}		
 		}
@@ -56,13 +56,13 @@ class ColorMenu {
 
 	stripesToggle(event){
 		if(event.target.id == "stripes-on"){
-			this.stripesOn.style.backgroundColor = "rgb(236,247,147)";
-			this.stripesBox.style.backgroundColor = "rgb(131,140,54)";
+			this.stripesOn.style.backgroundColor = "#56A3A6";
+			this.stripesBox.style.backgroundColor = "#BCF8EC";
 			config.set("stripes", true);
 		}
 		if(event.target.id != "stripes-on"){
-			this.stripesOn.style.backgroundColor = "rgb(131,140,54)";
-			this.stripesBox.style.backgroundColor = "rgb(236,247,147)";
+			this.stripesOn.style.backgroundColor = "#BCF8EC";
+			this.stripesBox.style.backgroundColor = "#56A3A6";
 			config.set("stripes", false);
 		}
 	}
