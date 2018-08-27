@@ -126,8 +126,12 @@
 		    					<div class="selector-box" id="color-source-box">
 									<div class="selector-button selector-on" id="palette-button"><span>PALETTE</span></div>
 									<div class="selector-button selector-off" id="cover-color-button"><span>COVER</span></div>
-									<canvas id="palette-picker" width="200" height="200">
-		   							</canvas>
+									<div id="palette-picker">
+										<canvas class="palette" id="brightness" width="200" height="200">
+										 </canvas>
+										<canvas class="palette" id="hue" width="50" height="200">
+										</canvas>
+		   							</div>
 									<canvas id="image-picker" width="200" height="500">
 										<img id="image" src="" alt="this-shiz">
         							</canvas>
