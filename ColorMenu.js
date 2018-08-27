@@ -22,7 +22,7 @@ class ColorMenu {
 		this.setColorBox.addEventListener("click", event=>this.setColorToggle(event), false);
 		this.coverButton.addEventListener("click", event=>this.colorSourceToggle(event), false);
 		this.paletteButton.addEventListener("click", event=>this.colorSourceToggle(event), false);
-		this.palettePicker.addEventListener("click", event=>this.hidePalette(event), false);
+		this.brightness.addEventListener("click", event=>this.hidePalette(event), false);
 		this.imagePicker.addEventListener("click", event=>this.hideImagePicker(event), false);
 
 		this.stripesOn.addEventListener("click", event=>this.stripesToggle(event), false);

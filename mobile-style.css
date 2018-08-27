@@ -46,14 +46,14 @@
    	.selector-box {
 	margin-left: -1.4em;
 	}
-	#palette-picker, #image-picker {
+	#palette-picker {
 		margin-left: -3em;
 	}
 }
 
 /* TINY MOBILE RULES */
 @media only screen 
-   and (max-device-width: 375px){
+   and (max-device-width: 320px){
    	.subtitle {
    		font-size: 1em;
    	}
@@ -67,6 +67,10 @@
 
 	.menu-text{
 		line-height: 0.9em;
+	}
+	#palette-picker {
+		margin-left: -7em;
+		margin-top: -2em;
 	}
 }
 
@@ -90,6 +94,10 @@
    	.menu-text{
 		line-height: 1.2em;
 	}
+	#palette-picker {
+		margin-left: -4em;
+	}
+
 }
 
 /* NON-MOBILE RULES */
