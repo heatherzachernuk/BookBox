@@ -167,7 +167,8 @@ body {
 }
 
 #container{
-
+	overflow: hidden;
+	position: fixed;
 }
 
 #upper {
