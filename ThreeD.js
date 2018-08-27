@@ -37,10 +37,10 @@ class ThreeD {
 		this.geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
 
 		const materials = [
-		  new THREE.MeshPhongMaterial({map: this.edgeTexture}),
+		  new THREE.MeshPhongMaterial({map: this.edgeTexture,bumpMap:this.edgeTexture}),
 		  new THREE.MeshPhongMaterial({map: this.spineTexture}),
-		  new THREE.MeshPhongMaterial({map: this.topTexture}),
-		  new THREE.MeshPhongMaterial({map: this.bottomTexture}),
+		  new THREE.MeshPhongMaterial({map: this.topTexture,bumpMap:this.topTexture}),
+		  new THREE.MeshPhongMaterial({map: this.bottomTexture,bumpMap:this.bottomTexture}),
 		  new THREE.MeshPhongMaterial({map: this.frontTexture}),
 		  new THREE.MeshPhongMaterial({map: this.backTexture})
 		];
