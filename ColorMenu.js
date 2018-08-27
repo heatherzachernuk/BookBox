@@ -22,11 +22,13 @@ class ColorMenu {
 		this.setColorBox.addEventListener("click", event=>this.setColorToggle(event), false);
 		this.coverButton.addEventListener("click", event=>this.colorSourceToggle(event), false);
 		this.paletteButton.addEventListener("click", event=>this.colorSourceToggle(event), false);
-		this.brightness.addEventListener("click", event=>this.hidePalette(event), false);
-		this.imagePicker.addEventListener("click", event=>this.hideImagePicker(event), false);
+		this.brightness.addEventListener("click", event=>this.hidePickers(event), false);
+		this.imagePicker.addEventListener("click", event=>this.hidePickers(event), false);
 
 		this.stripesOn.addEventListener("click", event=>this.stripesToggle(event), false);
 		this.stripesOff.addEventListener("click", event=>this.stripesToggle(event), false);
+
+		config.onChange("currentMenu", event=>this.hidePickers());
 	}
 
 	setColorToggle(){
@@ -92,11 +94,8 @@ class ColorMenu {
 		this.imagePicker.addEventListener("mousemove", event=> this.pickImageColor(event));
 	}
 
-	hidePalette(){
+	hidePickers(){
 		this.palettePicker.style.display = "none";
-	}
-
-	hideImagePicker(){
 		this.imagePicker.style.display = "none";
 	}
 

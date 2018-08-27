@@ -10,6 +10,7 @@ class Config{
 		this.coverImage = false;
 		this.stripes = true;
 		this.subscribers = {}; 
+		this.currentMenu = "Main";
 	}
 	get(name) {
 		return this[name];
