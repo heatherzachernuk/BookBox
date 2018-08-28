@@ -20,7 +20,6 @@
    input[type=text] {
    		width: 7em;
    		margin-left: -3em;
-
    }
    	#current-filename {
 		font-size: 0.4em;
@@ -332,6 +331,10 @@ input[type=text]{
 	background-color: #56A3A6;
 	position: absolute;
  	margin-left: 0.5em;
+}
+
+input:focus{
+	outline: none;
 }
 
 #add-text {
