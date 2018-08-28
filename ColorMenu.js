@@ -55,7 +55,10 @@ class ColorMenu {
 				this.paletteButton.style.backgroundColor = "#56A3A6";
 				this.colorSourceBox.style.backgroundColor = "#BCF8EC";
 				this.showImage();
-			}		
+			}	
+			else {
+				alert("Upload a cover in the Image menu");
+			}	
 		}
 	}
 
