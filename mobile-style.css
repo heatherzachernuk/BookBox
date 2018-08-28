@@ -333,7 +333,7 @@ input[type=text]{
  	margin-left: 0.5em;
 }
 
-input:focus{
+input[type=submit]:focus{
 	outline: none;
 }
 
