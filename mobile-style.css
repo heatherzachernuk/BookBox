@@ -10,6 +10,9 @@
    		height: 100%;
    		position: fixed;
    }
+   	.menu-item {
+		height: 11vh;
+	}
    input[type=number] {
    	margin-left: -2em;
    	
@@ -112,6 +115,9 @@
    .row{
 		width: 130%;
 	}
+	.menu-item {
+		height: 12vh;
+	}
    input[type=number] {
    		margin-left: 1em;
    		margin-bottom: 1em;
@@ -189,9 +195,6 @@ body {
 	width: 100%;
 	height: 50%;
 	font-size: 2em;
-	background-color: #848484;
-	/*background: linear-gradient(-175deg, #ffffff, #a7a7a7);*/
-	/*outline: thin solid red;*/
 }
 
 #main-menu {
@@ -199,7 +202,6 @@ body {
 }
 
 .menu-item {
-	height: 12vh;
 	/*outline: thin solid red;*/
 	/*background-color: hsla(223, 24%, 84%, 1);*/
 	border-top: 2px solid rgb(7,3,44);
