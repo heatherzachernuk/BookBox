@@ -14,6 +14,22 @@ function showMenu(event){
 	config.set("currentMenu", targetId);
 }
 
+var countInput = document.getElementById("count-input");
+countInput.addEventListener("focusin", adjustDisplay, false);
+countInput.addEventListener("focusout", shrank, false);
+
+function adjustDisplay(){
+	console.log("focus",);
+	if(document.body.clientWidth <= 768){
+		console.log(document.body.clientWidth);
+		document.getElementById("upper").style.display = "none";
+	}
+}
+
+function shrank(){
+	document.getElementById("upper").style.display = "inline-block";
+}
+
 var config = new Config();
 
 image.onload = function(){
