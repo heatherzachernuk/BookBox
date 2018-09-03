@@ -15,18 +15,19 @@ function showMenu(event){
 }
 
 var countInput = document.getElementById("count-input");
-countInput.addEventListener("focusin", adjustDisplay, false);
-countInput.addEventListener("focusout", shrank, false);
+countInput.addEventListener("focusin", focusInput, false);
+countInput.addEventListener("focusout", unfocusInput, false);
 
-function adjustDisplay(){
+function focusInput(){
 	console.log("focus",);
 	if(document.body.clientWidth <= 768){
 		console.log(document.body.clientWidth);
 		document.getElementById("upper").style.display = "none";
+		document.getElementById("lower").style.height = "100%";
 	}
 }
 
-function shrank(){
+function unfocusInput(){
 	document.getElementById("upper").style.display = "inline-block";
 }
 
