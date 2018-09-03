@@ -39,6 +39,12 @@
    		width: 70%;
    		margin-left: 1em;
    	}
+
+   	#cover-alert-scrim {
+   		width: 90%;
+   		left: 5%;
+   	}
+
    	#font-list{
    		width: 12em;
 		margin-left: -9em;
@@ -146,6 +152,10 @@
    	.selector-box {
 	margin-left: 1.5em;
 	}
+	#cover-alert-scrim {
+   		width: 25%;
+   		left: 38%;
+   	}
 }
 /*GENERAL RULES*/
 @import url(//fonts.googleapis.com/css?family=Dosis|Abril+Fatface|Play|Alegreya|Neuton|Anton|Barrio|Chango|Irish+Grover|Londrina+Solid|Sue+Ellen+Francisco|PT+Mono|Ceviche+One|Chicle|Lato);
@@ -511,11 +521,11 @@ input[type="file"] {
 #cover-alert-scrim {
 	/*display: none;*/
 	position: fixed;
-	width: 25%;
+	/*width: 25%;*/
 	height: 6em;
 	background-color: rgba(1, 22, 56, 0.8);
 	top: 40%;
-	left: 38%;
+	/*left: 38%;*/
 	color: #BCF8EC;
 }
 
