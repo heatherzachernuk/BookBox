@@ -519,13 +519,11 @@ input[type="file"] {
 }
 
 #cover-alert-scrim {
-	/*display: none;*/
+	display: none;
 	position: fixed;
-	/*width: 25%;*/
 	height: 6em;
 	background-color: rgba(1, 22, 56, 0.8);
 	top: 40%;
-	/*left: 38%;*/
 	color: #BCF8EC;
 }
 

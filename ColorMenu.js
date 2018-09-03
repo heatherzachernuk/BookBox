@@ -8,6 +8,7 @@ class ColorMenu {
 
 		this.paletteButton = document.getElementById("palette-button");
 		this.coverButton = document.getElementById("cover-color-button");
+		this.scrim = document.getElementById("cover-alert-scrim");
 		this.colorSourceBox = document.getElementById("color-source-box");
 		this.palettePicker = document.getElementById("palette-picker");
 		this.brightness = document.getElementById("brightness");
@@ -57,9 +58,15 @@ class ColorMenu {
 				this.showImage();
 			}	
 			else {
-				alert("Upload a cover in the Image menu");
+				//show the scrim
+				this.scrim.style.display = "block";
+				this.scrim.addEventListener("click", event=>this.hideScrim(event), false);
 			}	
 		}
+	}
+
+	hideScrim(event){
+		this.scrim.style.display = "none";
 	}
 
 	stripesToggle(event){
