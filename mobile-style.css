@@ -525,13 +525,13 @@ input[type="file"] {
 	background-color: rgba(1, 22, 56, 0.8);
 	top: 40%;
 	color: #BCF8EC;
+	border-radius: 0.5em;
 }
 
 #scrim-text {
 	margin: 1em;
 	text-align: center;
-	font-size: 0.9em;
-	line-height: 1.65em;
+	line-height: 1.4em;
 }
 
 .fa-eye-dropper{
