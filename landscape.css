@@ -1,7 +1,6 @@
 /* GENERAL MOBILE */
 @media only screen 
-   	and (max-device-width: 768px),
-   	and (orientation: portrait) {
+   	and (max-device-width: 768px) {
    	body {
 		width: 100%;
    		height: 100%;
@@ -12,14 +11,14 @@
    		position: fixed;
    }
    	.menu-item {
-		height: 11vh;
+		height: 24vh;
 	}
    input[type=number] {
    	margin-left: -2em;
    	
    }
    input[type=text] {
-   		width: 7em;
+   		width: 4em;
    		margin-left: -3em;
    }
    	#current-filename {
@@ -27,18 +26,17 @@
 		text-overflow: ellipsis;
 	}
    #count-input {
-   		width: 5em;
+   		width: 3em;
    		margin-left: -3em;
    	}
    	#font-button {
    		margin-left: -3em;
    	}
    	#image-right {
-   		margin-left: -1em;
+   		margin-left: -2em;
    	}
    	#color-left{
-   		width: 70%;
-   		margin-left: 1em;
+   		width: 20%;
    	}
 
    	#cover-alert-scrim {
@@ -54,7 +52,7 @@
    		width: 7em;
    	}
    	.selector-box {
-	margin-left: -1.4em;
+	margin-left: -2em;
 	}
 	#palette-picker {
 		margin-left: -3em;
@@ -63,8 +61,7 @@
 
 /* TINY MOBILE RULES */
 @media only screen 
-   and (max-device-width: 320px),
-   	and (orientation: portrait) {
+   and (max-device-width: 320px){
    	.subtitle {
    		font-size: 1em;
    	}
@@ -88,8 +85,7 @@
 /* BIGGER MOBILE RULES */
 @media only screen 
    	and (min-device-width: 375px)
-   	and (max-device-width: 768px),
-   	and (orientation: portrait)  {
+   	and (max-device-width: 768px) {
    	.row{
 		width: 150%;
 		font-size: 0.9em;
@@ -101,7 +97,7 @@
 	font-size: 0.65em;
 	}
 	.subtitle {
-   		font-size: 0.8em;
+   		font-size: 0.7em;
    }
    	.menu-text{
 		line-height: 1em;
@@ -109,56 +105,7 @@
 	#palette-picker {
 		margin-left: -4em;
 	}
-}
 
-/* NON-MOBILE RULES */
-@media only screen 
-   and (min-device-width: 768px){
-   	#container{
-   		width: 700px;
-   		margin: 0 auto;
-   		height: 100vh;
-   	}
-   .row{
-		width: 130%;
-	}
-	.menu-item {
-		height: 12vh;
-	}
-   input[type=number] {
-   		margin-left: 1em;
-   		margin-bottom: 1em;
-   }
-   input[type=text] {
-   		width: 12em;
-   		margin-left: -2em;
-   		margin-bottom: 0.5em;
-   }
-   #count-input {
-   		margin-left: -5em;
-   	}
-	#font-list{
-   		width: 12em;
-		margin-left: 10em;
-   	}
-   	.custom-file-upload {
-   		width: 12em;
-   		margin-left: -3em;
-   	}
-   	#current-filename {
-		font-size: 0.65em;
-	}
-	.menu-text{
-		line-height: 1.3em;
-	}
-   	.selector-box {
-	margin-left: 1.5em;
-	}
-	#cover-alert-scrim {
-   		width: 25%;
-   		left: 38%;
-   		z-index: -2;
-   	}
 }
 /*GENERAL RULES*/
 @import url(//fonts.googleapis.com/css?family=Dosis|Abril+Fatface|Play|Alegreya|Neuton|Anton|Barrio|Chango|Irish+Grover|Londrina+Solid|Sue+Ellen+Francisco|PT+Mono|Ceviche+One|Chicle|Lato);
@@ -189,9 +136,10 @@ body {
 }
 
 #upper {
-	display: inline-block;
-	width: 100%;
-	height: 50%;
+	/*display: inline;*/
+	width: 50%;
+	height: 100%;
+	float: left;
 	/*outline: thin solid red;*/
 	/*background-color: rgb(236,143,0);*/
 	/*background-color: rgb(241,176,76);*/
@@ -202,9 +150,10 @@ body {
 }
 
 #lower {
-	display: inline-block;
-	width: 100%;
-	height: 50%;
+	/*display: inline;*/
+	float: left;
+	width: 50%;
+	height: 100%;
 	font-size: 2em;
 }
 
@@ -277,16 +226,16 @@ body {
 
 .left-col {
 	display: inline-block;
-	margin-left: 2em;
-	margin: 0 auto;
+	/*margin-left: 1em;*/
+	margin-left: 0.5em !important; 
 	/*outline: thin solid red;*/
-	width: 40%;
+	width: 30%;
 }
 
 .right-col {
 	display: inline-block;
 	/*outline: thin solid red;*/
-	width: 40%;
+	width: 20%;
 	margin: 0 auto;
 }
 
@@ -360,7 +309,7 @@ input[type=submit]:focus{
 #font-button{
   background-color: #56A3A6;
   height: 2em;
-  width: 10em;
+  width: 8em;
   font-size: 0.65em;
   text-align: center;
   line-height: 2em;
@@ -529,6 +478,7 @@ input[type="file"] {
 	top: 40%;
 	color: #BCF8EC;
 	border-radius: 0.5em;
+	z-index: 1;
 }
 
 #scrim-text {
