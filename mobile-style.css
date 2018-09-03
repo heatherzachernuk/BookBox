@@ -75,7 +75,7 @@
 	}
 
 	.menu-text{
-		line-height: 0.9em;
+		line-height: 0.6em;
 	}
 	#palette-picker {
 		margin-left: -7em;
@@ -101,7 +101,7 @@
    		font-size: 0.8em;
    }
    	.menu-text{
-		line-height: 1.2em;
+		line-height: 1em;
 	}
 	#palette-picker {
 		margin-left: -4em;
