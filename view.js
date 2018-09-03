@@ -15,8 +15,16 @@ function showMenu(event){
 }
 
 var countInput = document.getElementById("count-input");
+var titleInput = document.getElementById("title-input");
+var authorInput = document.getElementById("author-input");
+
 countInput.addEventListener("focusin", focusInput, false);
 countInput.addEventListener("focusout", unfocusInput, false);
+titleInput.addEventListener("focusin", focusInput, false);
+titleInput.addEventListener("focusout", unfocusInput, false);
+authorInput.addEventListener("focusin", focusInput, false);
+authorInput.addEventListener("focusout", unfocusInput, false);
+
 
 function focusInput(){
 	console.log("focus",);
@@ -29,6 +37,7 @@ function focusInput(){
 
 function unfocusInput(){
 	document.getElementById("upper").style.display = "inline-block";
+	document.getElementById("lower").style.height = "50%";
 }
 
 var config = new Config();
