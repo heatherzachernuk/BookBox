@@ -25,10 +25,9 @@ titleInput.addEventListener("focusout", unfocusInput, false);
 authorInput.addEventListener("focusin", focusInput, false);
 authorInput.addEventListener("focusout", unfocusInput, false);
 
-
 function focusInput(){
 	console.log("focus",);
-	if(document.body.clientWidth <= 768){
+	if(document.body.clientWidth <= 768 && window.screen.orientation.type != "landscape-primary"){
 		console.log(document.body.clientWidth);
 		document.getElementById("upper").style.display = "none";
 		document.getElementById("lower").style.height = "100%";
