@@ -32,6 +32,7 @@ function focusInput(){
 		console.log(document.body.clientWidth);
 		document.getElementById("upper").style.display = "none";
 		document.getElementById("lower").style.height = "100%";
+		document.getElementById("lower").style.width = "100%";
 	}
 }
 
