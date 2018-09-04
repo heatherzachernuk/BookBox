@@ -26,8 +26,9 @@ authorInput.addEventListener("focusin", focusInput, false);
 authorInput.addEventListener("focusout", unfocusInput, false);
 
 function focusInput(){
-	console.log("focus",);
-	if(document.body.clientWidth <= 768 && window.screen.orientation.type != "landscape-primary"){
+	// && window.screen.orientation.type != "landscape-primary"
+	if(document.body.clientWidth <= 768 && window.screen.orientation.type === "portrait-primary"){
+		console.log("score");
 		console.log(document.body.clientWidth);
 		document.getElementById("upper").style.display = "none";
 		document.getElementById("lower").style.height = "100%";
@@ -35,8 +36,10 @@ function focusInput(){
 }
 
 function unfocusInput(){
+	if(document.body.clientWidth <= 768 && window.screen.orientation.type === "portrait-primary"){
 	document.getElementById("upper").style.display = "inline-block";
 	document.getElementById("lower").style.height = "50%";
+}
 }
 
 var config = new Config();
