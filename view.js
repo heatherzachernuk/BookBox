@@ -24,13 +24,12 @@ authorInput.addEventListener("focusin", focusInput, false);
 
 
 function focusInput(){
-	// && window.screen.orientation.type != "landscape-primary"
 	if(document.body.clientWidth <= 768 && window.screen.orientation.type === "portrait-primary"){
 		console.log(window.screen.orientation.type);
 		console.log(document.body.clientWidth);
-		document.getElementById("upper").style.display = "none";
-		document.getElementById("lower").style.height = "100%";
-		document.getElementById("lower").style.width = "100%";
+		document.getElementById("upper").setAttribute("style", "display: none");
+		document.getElementById("lower").setAttribute("style", "height: 100%");
+		document.getElementById("lower").setAttribute("style", "width: 100%");
 		titleInput.addEventListener("focusout", unfocusInput, false);
 		authorInput.addEventListener("focusout", unfocusInput, false);
 		countInput.addEventListener("focusout", unfocusInput, false);
@@ -41,8 +40,8 @@ function focusInput(){
 }
 
 function unfocusInput(){
-	document.getElementById("upper").style.display = "inline-block";
-	document.getElementById("lower").style.height = "50%";
+	document.getElementById("upper").setAttribute("style", "display: inline-block");
+	document.getElementById("lower").setAttribute("style", "height: 50%");
 }
 
 var config = new Config();
