@@ -19,11 +19,9 @@ var titleInput = document.getElementById("title-input");
 var authorInput = document.getElementById("author-input");
 
 countInput.addEventListener("focusin", focusInput, false);
-countInput.addEventListener("focusout", unfocusInput, false);
 titleInput.addEventListener("focusin", focusInput, false);
-titleInput.addEventListener("focusout", unfocusInput, false);
 authorInput.addEventListener("focusin", focusInput, false);
-authorInput.addEventListener("focusout", unfocusInput, false);
+
 
 function focusInput(){
 	// && window.screen.orientation.type != "landscape-primary"
@@ -33,14 +31,15 @@ function focusInput(){
 		document.getElementById("upper").style.display = "none";
 		document.getElementById("lower").style.height = "100%";
 		document.getElementById("lower").style.width = "100%";
+		titleInput.addEventListener("focusout", unfocusInput, false);
+		authorInput.addEventListener("focusout", unfocusInput, false);
+		countInput.addEventListener("focusout", unfocusInput, false);
 	}
 }
 
 function unfocusInput(){
-	if(document.body.clientWidth <= 768 && window.screen.orientation.type === "portrait-primary"){
 	document.getElementById("upper").style.display = "inline-block";
 	document.getElementById("lower").style.height = "50%";
-}
 }
 
 var config = new Config();
