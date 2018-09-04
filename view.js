@@ -28,7 +28,7 @@ authorInput.addEventListener("focusout", unfocusInput, false);
 function focusInput(){
 	// && window.screen.orientation.type != "landscape-primary"
 	if(document.body.clientWidth <= 768 && window.screen.orientation.type === "portrait-primary"){
-		console.log("score");
+		console.log(window.screen.orientation.type);
 		console.log(document.body.clientWidth);
 		document.getElementById("upper").style.display = "none";
 		document.getElementById("lower").style.height = "100%";
