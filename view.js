@@ -35,6 +35,9 @@ function focusInput(){
 		authorInput.addEventListener("focusout", unfocusInput, false);
 		countInput.addEventListener("focusout", unfocusInput, false);
 	}
+	else {
+		return;
+	}
 }
 
 function unfocusInput(){
