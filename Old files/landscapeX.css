@@ -1,7 +1,7 @@
 /* GENERAL MOBILE*/
 @media only screen 
    	and (max-device-width: 768px)
-   	and (orientation: landscape) {
+   	and (orientation: landscape){
    	.menu-item {
 		height: 21vh;
 	}
@@ -14,7 +14,7 @@
    		margin-left: -3em;
    	}
    	#image-right {
-   		margin-left: 1em;
+   		margin-left: -2em;
    	}
    	#color-left{
    		width: 20%;
@@ -24,6 +24,7 @@
 	}
 }
 @media only screen 
+   	and (min-device-width: 375px)
    	and (max-device-width: 850px)
    	and (orientation: landscape) {
 	.subtitle {
@@ -31,17 +32,16 @@
    	}
 	#upper {
 		width: 50%;
-		height: 90%;
+		height: 86%;
 		float: left;
 		display: flex;
 		align-items: center;
 		background: linear-gradient(-175deg, #ffffff, #BCF8EC);
 	}
 	#lower {
-		padding: none;
 		float: left;
 		width: 50%;
-		height: 90%;
+		height: 100%;
 	}
 	.left-col {
 		margin-left: 0.5em; 

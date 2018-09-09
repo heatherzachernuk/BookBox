@@ -4,31 +4,39 @@
 	<title></title>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<link rel="stylesheet" type="text/css" media="all" href="mobile-style.css"/>
-	<link rel="stylesheet"  type="text/css" media="screen and (max-device-width: 768px) and (orientation:landscape)" href="landscape.css"/>
+	<link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+	<link rel="stylesheet"  type="text/css" media="screen" href="landscape.css"/>
+	<link rel="stylesheet"  type="text/css" media="screen" href="portrait.css"/>
+	<link rel="stylesheet" href="print.css"/>
 
 	 <!-- <link href="boxprint.css" media="print" rel="stylesheet" /> -->
 	<link href="https://fonts.googleapis.com/css?family=Dosis|Abril+Fatface|Play|Alegreya|Neuton|Anton|Barrio|Chango|Irish+Grover|Londrina+Solid|Gaegu|Delius|PT+Mono|Ceviche+One|Chicle|Lato" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body>
 	<div id="container">
 		<div class="border">
 		</div>
 		<div id="upper">
-			<!-- <div id="example-box"> -->
-				<canvas id="front">
-        		</canvas>
-				<canvas id="topp">
-        		</canvas>
-				<canvas id="edge">
-        		</canvas>
-				<canvas id="bottom">
-        		</canvas>         
-				<canvas id="spine">
-        		</canvas>
-				<canvas id="back">
-        		</canvas>            
+			<div id="print-icon">
+				<i class="material-icons">
+				print
+				</i>	
+			</div>
+			<canvas id="front">
+    		</canvas>
+			<canvas id="topp">
+    		</canvas>
+			<canvas id="edge">
+    		</canvas>
+			<canvas id="bottom">
+    		</canvas>         
+			<canvas id="spine">
+    		</canvas>
+			<canvas id="back">
+    		</canvas>            
 			<!-- </div> -->
 		</div>	
 
