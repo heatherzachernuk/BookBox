@@ -30,9 +30,6 @@ function focusInput(){
 		document.getElementById("upper").setAttribute("style", "display: none");
 		document.getElementById("lower").setAttribute("style", "height: 100%");
 		document.getElementById("lower").setAttribute("style", "width: 100%");
-		// document.getElementById("upper").style.display = "none";
-		// document.getElementById("lower").style.height = "100%";
-		// document.getElementById("lower").style.width = "100%";
 		titleInput.addEventListener("focusout", unfocusInput, false);
 		authorInput.addEventListener("focusout", unfocusInput, false);
 		countInput.addEventListener("focusout", unfocusInput, false);
@@ -43,11 +40,9 @@ function focusInput(){
 }
 
 function unfocusInput(){
-	// debugger;
 	document.getElementById("upper").setAttribute("style", "display: inline-block");
+	document.getElementById("upper").setAttribute("style", "height: 50%");
 	document.getElementById("lower").setAttribute("style", "height: 50%");
-	// document.getElementById("upper").style.display = "inline-block";
-	// document.getElementById("lower").style.height = "50%";
 }
 
 var config = new Config();
