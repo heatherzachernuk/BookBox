@@ -31,9 +31,6 @@
 		width: 50%;
 		height: 100%;
 		float: left;
-		display: flex;
-		align-items: center;
-		background: linear-gradient(-175deg, #ffffff, #BCF8EC);
 	}
 	#lower {
 		padding: none;
