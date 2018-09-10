@@ -1,6 +1,7 @@
 /* GENERAL MOBILE*/
 @media only screen 
-   	and (max-device-width: 768px)
+	and (min-device-width: 300px)
+   	and (max-device-width: 850px)
    	and (orientation: landscape) {
    	.menu-item {
 		height: 21vh;
@@ -23,9 +24,6 @@
 	margin-left: -2em;
 	}
 }
-@media only screen 
-   	and (max-device-width: 850px)
-   	and (orientation: landscape) {
 	.subtitle {
    		font-size: 0.7em;
    	}
