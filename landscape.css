@@ -31,7 +31,7 @@
    	}
 	#upper {
 		width: 50%;
-		height: 90%;
+		height: 100%;
 		float: left;
 		display: flex;
 		align-items: center;
@@ -41,7 +41,7 @@
 		padding: none;
 		float: left;
 		width: 50%;
-		height: 90%;
+		height: 100%;
 	}
 	.left-col {
 		margin-left: 0.5em; 
