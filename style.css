@@ -174,8 +174,8 @@ body {
 
 #print-icon{
 	position: absolute;
-	top: 5px;
-	left: 5px;
+	top: 10px;
+	margin-left: 10px;
 	color: #011638;
 }
 

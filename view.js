@@ -3,6 +3,7 @@ var menuArray = Array.from(document.querySelectorAll(".menu"));
 var openerArray = Array.from(document.querySelectorAll("[data-opens]"));
 var image = document.getElementById("image");
 var width = 150;
+var printButton = document.getElementById("print-icon");
 
 openerArray.forEach(opener=>opener.addEventListener("click", showMenu, false));
 
@@ -21,7 +22,7 @@ var authorInput = document.getElementById("author-input");
 countInput.addEventListener("focusin", focusInput, false);
 titleInput.addEventListener("focusin", focusInput, false);
 authorInput.addEventListener("focusin", focusInput, false);
-
+printButton.addEventListener("click", loadPrint, false);
 
 function focusInput(){
 	if(document.body.clientWidth <= 768 && window.screen.orientation.type === "portrait-primary"){
@@ -63,4 +64,7 @@ var textureRenderer = new TextureRenderer();
 
 var threeD = new ThreeD(textureRenderer);
 
-
+function loadPrint(){
+	document.getElementById("spine").style.color = "red";
+	window.print()
+}

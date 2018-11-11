@@ -1,3 +1,27 @@
-@media print {
-	
-}
+/*@media print {*/
+	#print-icon {
+		display: none;
+	}
+	#lower {
+		display: none;
+	}	
+	#spine {
+
+	}
+	#front {
+
+	}
+	#edge {
+
+	}
+	#back {
+
+	}
+	#topp {
+
+	}
+	#bottom {
+
+	}
+/*}*/
+
