@@ -1,7 +1,6 @@
 @media print {
 	@page {
 		size: landscape; 
-		
 	}
 
 	html, body {
