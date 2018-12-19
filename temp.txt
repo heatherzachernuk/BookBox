@@ -1,0 +1,23 @@
+			<canvas class="net" id="spine-left-tab">
+			</canvas>
+
+			<canvas class="net" id="top-insert-tab">
+			</canvas>     
+
+			<canvas class="net" id="bottom-left-tab">
+			</canvas>
+
+			<canvas class="net" id="bottom-right-tab">
+			</canvas>
+			<canvas class="net" id="bottom-base-tab">
+
+drawBack(){
+		// drawing back canvas
+		this.back.width = width;
+		this.back.height = config.height;
+
+		this.backCtx.fillStyle = config.backgroundColor;
+		this.backCtx.fillRect(0, 0, width, config.height);
+	}
+
+this.frontCtx = this.front.getContext("2d");
