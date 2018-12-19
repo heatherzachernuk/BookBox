@@ -1,4 +1,4 @@
-textFit(){
+function textFit(){
 	var fontSize = config.depth/2;
 	var wordsArray = config.titleText.split(" ");
 	var breakArray = [];
@@ -74,5 +74,4 @@ textFit(){
 
 	measureWidth();
 
-	}
 }

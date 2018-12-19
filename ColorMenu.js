@@ -59,10 +59,21 @@ class ColorMenu {
 			}	
 			else {
 				//show the scrim
+				this.fadeIn(this.scrim);
 				this.scrim.style.display = "block";
 				this.scrim.addEventListener("click", event=>this.hideScrim(event), false);
 			}	
 		}
+	}
+	
+	fadeIn(object){
+		object.style.opacity = 0;
+		let brighten = setInterval(()=>{ 
+			object.style.opacity = parseFloat(object.style.opacity) + 0.05;
+			if(parseFloat(object.style.opacity) >= 1){
+				clearInterval(brighten)
+			}
+		}, 20);  
 	}
 
 	hideScrim(event){

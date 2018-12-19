@@ -1,7 +1,6 @@
-/* GENERAL MOBILE */
+/* GENERAL MOBILE*/
 @media only screen 
-   	and (max-device-width: 768px),
-   	and (orientation: portrait) {
+   	and (max-device-width: 768px){
    	body {
 		width: 100%;
    		height: 100%;
@@ -11,41 +10,22 @@
    		height: 100%;
    		position: fixed;
    }
-   	.menu-item {
-		height: 11vh;
-	}
    input[type=number] {
    	margin-left: -2em;
-   	
    }
-   input[type=text] {
-   		width: 7em;
-   		margin-left: -3em;
-   }
+
    	#current-filename {
 		font-size: 0.4em;
 		text-overflow: ellipsis;
 	}
-   #count-input {
-   		width: 5em;
-   		margin-left: -3em;
-   	}
+
    	#font-button {
    		margin-left: -3em;
    	}
-   	#image-right {
-   		margin-left: -1em;
-   	}
-   	#color-left{
-   		width: 70%;
-   		margin-left: 1em;
-   	}
-
    	#cover-alert-scrim {
    		width: 90%;
    		left: 5%;
    	}
-
    	#font-list{
    		width: 12em;
 		margin-left: -9em;
@@ -53,9 +33,7 @@
    	.custom-file-upload {
    		width: 7em;
    	}
-   	.selector-box {
-	margin-left: -1.4em;
-	}
+
 	#palette-picker {
 		margin-left: -3em;
 	}
@@ -63,8 +41,7 @@
 
 /* TINY MOBILE RULES */
 @media only screen 
-   and (max-device-width: 320px),
-   	and (orientation: portrait) {
+   and (max-device-width: 320px){
    	.subtitle {
    		font-size: 1em;
    	}
@@ -88,8 +65,7 @@
 /* BIGGER MOBILE RULES */
 @media only screen 
    	and (min-device-width: 375px)
-   	and (max-device-width: 768px),
-   	and (orientation: portrait)  {
+   	and (max-device-width: 768px){
    	.row{
 		width: 150%;
 		font-size: 0.9em;
@@ -100,9 +76,7 @@
 	#current-filename {
 	font-size: 0.65em;
 	}
-	.subtitle {
-   		font-size: 0.8em;
-   }
+
    	.menu-text{
 		line-height: 1em;
 	}
@@ -157,9 +131,10 @@
 	#cover-alert-scrim {
    		width: 25%;
    		left: 38%;
-   		z-index: -2;
+   		z-index: 1;
    	}
 }
+
 /*GENERAL RULES*/
 @import url(//fonts.googleapis.com/css?family=Dosis|Abril+Fatface|Play|Alegreya|Neuton|Anton|Barrio|Chango|Irish+Grover|Londrina+Solid|Sue+Ellen+Francisco|PT+Mono|Ceviche+One|Chicle|Lato);
 
@@ -192,53 +167,44 @@ body {
 	display: inline-block;
 	width: 100%;
 	height: 50%;
-	/*outline: thin solid red;*/
-	/*background-color: rgb(236,143,0);*/
-	/*background-color: rgb(241,176,76);*/
 	display: flex;
 	align-items: center;
-	/*background-color: #848484;*/
 	background: linear-gradient(-175deg, #ffffff, #BCF8EC)
 }
 
+#print-icon{
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	color: #011638;
+}
+
 #lower {
-	display: inline-block;
-	width: 100%;
-	height: 50%;
 	font-size: 2em;
 }
 
 #main-menu {
-	/*display: none;*/
 }
 
 .menu-item {
-	/*outline: thin solid red;*/
-	/*background-color: hsla(223, 24%, 84%, 1);*/
 	border-top: 2px solid rgb(7,3,44);
 	background-color: #36C9C6;
-	/*background: linear-gradient(-175deg, #ffffff, #a7a7a7);*/
 }
 
 .menu-text {
 	height: 1.5em;
 	margin-top: 0.7em;
 	margin-left: 1em;
-	/*text-shadow: -1px -1px 1px hsla(223, 24%, 55%, 1), 1px 1px 1px hsla(223, 24%, 8%, 1);*/
 	cursor: pointer;
-	/*outline: thin solid red;*/
 }
 
 .sub-menu {
-	/*display: none;*/
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	border-top: 2px solid rgb(7,3,44);
 	height: 100%;
 	background-color: #36C9C6;
-	/*background: linear-gradient(-175deg, #ffffff, #a7a7a7);*/
-	/*outline: thin solid blue;*/
 }
 
 .title {
@@ -246,7 +212,6 @@ body {
 	width: 100%;
 	line-height: 2em;
 	text-align: center;
-	/*outline: thin solid red;*/
 }
 
 .close-submenu {
@@ -263,7 +228,6 @@ body {
  	display: flex;
     flex-direction: column;
     height: 90%;
-    /*outline: thin solid red;*/
 }
 
 .horizontal-hold{
@@ -272,43 +236,29 @@ body {
     align-items: center;
     width: 100%;
     height: 80%;
-    /*outline: thin solid blue;*/
 }
 
 .left-col {
 	display: inline-block;
-	margin-left: 2em;
-	margin: 0 auto;
-	/*outline: thin solid red;*/
-	width: 40%;
 }
 
 .right-col {
 	display: inline-block;
-	/*outline: thin solid red;*/
-	width: 40%;
 	margin: 0 auto;
 }
 
 .row{
-	/*width: 100%;*/
 	padding-bottom: 0.5em;
-	/*outline: solid thin green;*/
 }
 
 .subtitle {
 	display: inline-block;
-	/*outline: thin solid red;*/
 	vertical-align: 0.6em;
 }
 
-/**/
-/* text menu styles*/
-/**/
 #text-menu {
 	display: none;
 }
-
 
 input[type=text], input[type=number] {
 	height: 2em;
@@ -328,8 +278,7 @@ input[type=text]{
  input[type=number] {
  	width: 6em;
  	padding-left: 1em;
- 	/*margin-left: 1em;*/
- }
+}
 
  input[type=submit] {
  	height: 3em;
@@ -383,15 +332,12 @@ input[type=submit]:focus{
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   z-index: 1;
   padding: 0.5em;
-  /*border: solid 1px red;*/
 }
 
 #font-list div:hover {
   background-color: #56A3A6;
 }
-/**/
-/* image menu styles*/
-/**/
+
 #image-menu {
 	display: none;
 }
@@ -401,7 +347,6 @@ input[type="file"] {
 }
 
 #cover-file {
-
 }
 
 .custom-file-upload {
@@ -416,7 +361,6 @@ input[type="file"] {
 }
 
 #filename {
-
 }
 
 #remove-image {
@@ -433,9 +377,6 @@ input[type="file"] {
 	overflow-wrap: break-word;
 }
 
-/**/
-/* color menu styles*/
-/**/
 #color-menu {
 	display: none;
 }
@@ -444,7 +385,6 @@ input[type="file"] {
 	height: 2em;
 	width: 2em;
 	background-color: white;
-	/*outline: thin solid black;*/
 	text-align: center;
 	line-height: 0.35em;
 }
@@ -461,12 +401,10 @@ input[type="file"] {
 	height: 1.8em;
 	width: 5.5em;
 	background-color: #56A3A6;
-	/*outline: thin solid black;*/
 	position: relative;
 }
 
 .selector-button {
-	/*outline: thin solid red;*/
 	display: inline-block;
 	height: 1.8em;
 	text-align: center;
@@ -481,7 +419,6 @@ input[type="file"] {
 .selector-on{
 	width: 2.75em;
 	background-color: #BCF8EC;
-	/*box-shadow: 1px 0 black; */
 }
 
 .selector-off{
@@ -491,7 +428,6 @@ input[type="file"] {
 #selector{
 	height: 4em;
 	width: 2em;
-	/*outline: thin solid yellow;*/
 	margin: 0 auto;
 	margin-top: -2em;
 }
@@ -529,6 +465,7 @@ input[type="file"] {
 	top: 40%;
 	color: #BCF8EC;
 	border-radius: 0.5em;
+	z-index: 1;
 }
 
 #scrim-text {
@@ -542,21 +479,14 @@ input[type="file"] {
 	padding: 0.4em 0.4em 0 0.4em;
 }
 
-/**/
-/* wordcount menu styles*/
-/**/
 #wordcount-menu {
 	display: none;
 }
 
-/* example box */
-
 #example-box {
 	height: 20em;
 	width: 20em;
-	/*outline: double black;*/
 	margin: 0 auto;
-	/*background: url("") center/contain no-repeat;*/
 	margin-top: -1.5em;
 }
 
@@ -573,7 +503,6 @@ input[type="file"] {
 }
 
 #image {
-
 }
 
 #spine {
@@ -595,6 +524,3 @@ input[type="file"] {
 #back {
 	display: none;
 }
-
-
-

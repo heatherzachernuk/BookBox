@@ -8,6 +8,7 @@
 	<link rel="stylesheet"  type="text/css" media="screen" href="landscape.css"/>
 	<link rel="stylesheet"  type="text/css" media="screen" href="portrait.css"/>
 	<link rel="stylesheet" href="print.css"/>
+	<!-- <link href="boxprint.css" media="print" rel="stylesheet" /> -->
 	<link href="https://fonts.googleapis.com/css?family=Dosis|Abril+Fatface|Play|Alegreya|Neuton|Anton|Barrio|Chango|Irish+Grover|Londrina+Solid|Gaegu|Delius|PT+Mono|Ceviche+One|Chicle|Lato" rel="stylesheet"/>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous"/>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -23,28 +24,18 @@
 					print
 				</i>	
 			</div>
-			<canvas class="net tab" id="spine-left-tab">
+			<canvas id="front">
 			</canvas>
-			<canvas class="net" id="spine">
+			<canvas id="topp">
 			</canvas>
-			<canvas class="net" id="front">
+			<canvas id="edge">
 			</canvas>
-			<canvas class="net" id="edge">
-			</canvas>
-			<canvas class="net" id="back">
-			</canvas>       
-			<canvas class="net tab" id="top-insert-tab">
-			</canvas>     
-			<canvas class="net" id="topp">
-			</canvas>
-			<canvas class="net tab" id="bottom-left-tab">
-			</canvas>
-			<canvas class="net" id="bottom">
+			<canvas id="bottom">
 			</canvas>         
-			<canvas class="net tab" id="bottom-right-tab">
+			<canvas id="spine">
 			</canvas>
-			<canvas class="net tab" id="bottom-base-tab">
-			</canvas>
+			<canvas id="back">
+			</canvas>            
 		</div>	
 
 		<div id="lower">
@@ -267,6 +258,6 @@
 <script src="ImageMenu.js"></script>
 <script src="WordcountMenu.js"></script>
 <script src="TextureRenderer.js"></script>
-<script src="PrintPosition.js"></script>
 <script src="view.js"></script>
+<script src="controller.js"></script>
 </html>   

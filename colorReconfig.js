@@ -6,7 +6,7 @@ hue.addEventListener("click", event=> hueListen(event));
 brightness.addEventListener("click", event=> brightListen(event));
 
 function hueListen(){
-  hue.addEventListener("mousemove", event=> pickHue(event));
+  hue.addEventListener("mousemove", event=> pickColor(event, hue));
 }
 
 function brightListen(){
@@ -48,26 +48,11 @@ function hueBow(){
   hueCtx.fillRect(0, 0, 50, 200);
 }
 
-function pickHue(color){
-  hue.style.cursor = "crosshair";
-  var huePickCtx = hue.getContext("2d");
-  var offsetX = hue.getBoundingClientRect().left;
-  var offsetY = hue.getBoundingClientRect().top;
-  var colorValue = huePickCtx.getImageData(color.clientX - offsetX, color.clientY - offsetY, 1, 1).data;
-  var rgba = 'rgba(' + colorValue[0] + ', ' + colorValue[1] + ', ' + colorValue[2] + ', ' + (colorValue[3] / 255) + ')';
-  console.log(rgba);
-  currentColor = rgba;
-  drawBright();
+function pickColor(color, element){
+  element.style.cursor = "crosshair";
+  var ctx = element.getContext("2d");
+  var offsetX = element.getBoundingClientRect().left;
+  var offsetY = element.getBoundingClientRect().top;
+  var colorValue = ctx.getImageData(color.clientX - offsetX, color.clientY - offsetY, 1, 1).data;
+  var rgba = 'rgba(' + colorValue[0] + ', ' + colorValue[1] + ', ' + colorValue[2] + ', ' + (colorValue[3] / 255) + ')'; 
 }
-
-function pickColor(color){
-  brightness.style.cursor = "crosshair";
-  var brightCtx = brightness.getContext("2d");
-  var offsetX = brightness.getBoundingClientRect().left;
-  var offsetY = brightness.getBoundingClientRect().top;
-  var colorValue = brightCtx.getImageData(color.clientX - offsetX, color.clientY - offsetY, 1, 1).data;
-  var rgba = 'rgba(' + colorValue[0] + ', ' + colorValue[1] + ', ' + colorValue[2] + ', ' + (colorValue[3] / 255) + ')';
-  console.log("set config", rgba);
-
-}
-

@@ -1,0 +1,358 @@
+ @media only screen 
+   and (min-device-width: 850px){
+   	#container{
+   		width: 700px;
+   		margin: 0 auto;
+   		height: 100vh;
+   	}
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: hsla(223, 24%, 12%, 1);
+  font-family: 'Play';
+  user-select: none;
+  overflow: hidden;
+}
+
+.border {
+	height: 1vh;
+	background: hsla(223, 24%, 12%, 1);
+}
+
+#container{
+
+}
+
+#upper {
+	display: inline-block;
+	width: 100%;
+	height: 49%;
+	/*outline: thin solid red;*/
+	background-color: hsla(223, 24%, 84%, 1);
+}
+
+#lower {
+	display: inline-block;
+	width: 100%;
+	height: 49%;
+	font-size: 2em;
+	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
+	/*outline: thin solid red;*/
+}
+
+#main-menu {
+	/*display: none;*/
+}
+
+.menu-item {
+	height: 12vh;
+	/*outline: thin solid red;*/
+	/*background-color: hsla(223, 24%, 84%, 1);*/
+	border-top: 2px solid black;
+	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
+}
+
+.menu-text {
+	height: 1.5em;
+	margin-top: 0.7em;
+	/*text-shadow: -1px -1px 1px hsla(223, 24%, 55%, 1), 1px 1px 1px hsla(223, 24%, 8%, 1);*/
+	/*line-height: 2.5em;*/
+	cursor: pointer;
+	/*outline: thin solid red;*/
+}
+
+.sub-menu {
+	/*display: none;*/
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-top: 2px solid black;
+	height: 100%;
+	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
+	/*outline: thin solid blue;*/
+}
+
+.title {
+	position: relative;
+	width: 100%;
+	line-height: 2em;
+	text-align: center;
+	/*outline: thin solid red;*/
+}
+
+.close-submenu {
+	display: inline;
+	position: absolute;
+	top: -0.9em;
+	right: 0.5em;
+	font-size: 0.5em;
+	cursor: pointer;
+}
+
+
+.vertical-hold{
+ 	display: flex;
+    flex-direction: column;
+    height: 90%;
+    /*outline: thin solid red;*/
+}
+
+.horizontal-hold{
+ 	display: flex;
+ 	flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+    /*outline: thin solid blue;*/
+}
+
+.left-col {
+	display: inline-block;
+	margin-left: 2em;
+	margin: 0 auto;
+	/*outline: thin solid red;*/
+	width: 40%;
+}
+
+.right-col {
+	display: inline-block;
+	/*outline: thin solid red;*/
+	width: 40%;
+	margin: 0 auto;
+}
+
+.row{
+	width: 100%;
+	padding-bottom: 0.5em;
+	/*outline: solid thin green;*/
+}
+
+.subtitle {
+	display: inline-block;
+	/*outline: thin solid red;*/
+	vertical-align: 0.6em;
+}
+
+/**/
+/* text menu styles*/
+/**/
+#text-menu {
+	display: none;
+}
+
+
+input[type=text], input[type=number] {
+	height: 2em;
+	font-size: 0.65em;
+	font-family: "Play";
+	line-height: 2em;
+	border: none;
+	border-radius: 0;
+	outline: none;
+	display: inline-block;
+}
+
+input[type=text]{
+	width: 12em;
+	margin-left: -1.5em;
+	padding-left: 0.5em;
+}
+
+ input[type=number] {
+ 	width: 6em;
+ 	padding-left: 1em;
+ 	margin-left: 1em;
+ }
+
+ input[type=submit] {
+ 	height: 3em;
+	font-size: 0.5em;
+	font-family: "Play";
+	width: 4em;
+	border: none;
+	border-radius: 0;
+	outline: none;
+	white-space: normal;
+	background-color: hsla(223, 24%, 64%, 1);
+	position: absolute;
+ 	margin-left: 0.5em;
+}
+
+#get-details {
+	margin-top: -2em;
+}
+
+.font{
+  overflow: hidden;
+}
+
+#font-button{
+  background-color: hsla(223, 24%, 64%, 1);
+  height: 2em;
+  width: 10em;
+  font-size: 0.65em;
+  text-align: center;
+  font-family: "Play";
+  line-height: 2em;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+#font-selector:hover #font-list {
+  display: block;
+  bottom: 1em;
+}
+
+#font-list {
+  display: none;
+  width: 15em;
+  color: hsla(223, 24%, 12%, 1);
+  font-size: 0.6em;
+  position: absolute;
+  background-color: hsla(223, 24%, 90%, 1);
+  opacity: 0.9;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-left: 10em;
+  padding: 0.5em;
+  /*border: solid 1px red;*/
+}
+
+#font-list div:hover {
+  background-color: hsla(223, 24%, 98%, 1);
+}
+/**/
+/* image menu styles*/
+/**/
+#image-menu {
+	display: none;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#cover-file {
+
+}
+
+.custom-file-upload {
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    background-color: hsla(223, 24%, 64%, 1);
+    height: 2em;
+  	width: 10em;
+  	font-size: 0.65em;
+	text-align: center;
+  	font-family: "Play";
+  	line-height: 2em;
+}
+
+#current-filename {
+	font-size: 0.65em;
+	overflow-wrap: break-word;
+}
+
+/**/
+/* color menu styles*/
+/**/
+#color-menu {
+	display: none;
+}
+
+.color{
+	height: 2em;
+	width: 2em;
+	background-color: white;
+	outline: thin solid black;
+	text-align: center;
+	line-height: 0.35em;
+}
+
+#background-color{
+	display: inline-block;
+}
+
+#detail-color{
+	display: inline-block;
+}
+
+#stripes-box {
+	top: -1em;
+	display: inline-block;
+	height: 1.5em;
+	width: 3em;
+	background-color: lightgray;
+	outline: thin solid black;
+	margin-left: 1em;
+	position: relative;
+    top: -0.7em;
+}
+
+.toggle {
+	/*outline: thin solid red;*/
+	display: inline-block;
+	height: 1.5em;
+	text-align: center;
+}
+
+.toggle > span {
+	font-size: 0.5em;
+
+}
+
+#toggle-on{
+	width: 1.5em;
+	background-color: white;
+	border-right: thin solid black; 
+}
+
+#toggle-off{
+}
+
+#selector{
+	height: 4em;
+	width: 2em;
+	/*outline: thin solid yellow;*/
+	margin: 0 auto;
+	margin-top: -2em;
+}
+
+.selector-label {
+	font-size: 0.4em;
+}
+
+#palette {
+	display: block;
+}
+
+#cover-select {
+	display: block;
+	background-color: lightgray;
+}
+
+.fa-eye-dropper{
+	font-size: 1.5em;
+	padding: 0.4em 0.4em 0 0.4em;
+}
+
+/**/
+/* wordcount menu styles*/
+/**/
+#wordcount-menu {
+	display: none;
+}
+
+
+
+
+

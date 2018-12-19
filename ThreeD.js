@@ -31,7 +31,7 @@ class ThreeD {
 	 	this.topTexture.minFilter = THREE.LinearFilter;
 	 	this.bottomTexture.minFilter = THREE.LinearFilter;
 	 	this.frontTexture.minFilter = THREE.LinearFilter;
-	 	this.backTexture.minFilter = THREE.LinearFilter;
+		 this.backTexture.minFilter = THREE.LinearFilter;
 	}
 	initScene(){
 		this.geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
@@ -48,7 +48,7 @@ class ThreeD {
 		this.bookBox = new THREE.Mesh( this.geometry, materials );
 		this.updateScale();
 		this.scene = new THREE.Scene();
-
+		
 		this.scene.add( this.bookBox );
 
 		this.light = new THREE.PointLight(0xFFFFEE, 0.7);
@@ -69,6 +69,7 @@ class ThreeD {
 		this.renderer.setSize( upper.offsetHeight, upper.offsetHeight );
 		upper.appendChild( this.renderer.domElement );
 		this.renderer.domElement.style.margin = "0 auto";
+		this.renderer.domElement.id = "model";
 	}
 
 	animate(){

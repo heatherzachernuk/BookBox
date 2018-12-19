@@ -18,7 +18,8 @@ class TextureRenderer{
 
 		this.initializeCanvases();
 
-		config.onChange("depth", ()=> {this.onCoverDetailChanged()});
+		// config.onChange("depth", ()=> {this.onCoverDetailChanged()});
+		config.onChange("depth", ()=> {this.initializeCanvases()});
 		config.onChange("coverImage", ()=> {this.onCoverDetailChanged()});
 		config.onChange("backgroundColor", ()=> {this.onCoverDetailChanged()});
 		config.onChange("detailColor", ()=> {this.onCoverDetailChanged()});

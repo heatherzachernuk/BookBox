@@ -3,6 +3,7 @@ var menuArray = Array.from(document.querySelectorAll(".menu"));
 var openerArray = Array.from(document.querySelectorAll("[data-opens]"));
 var image = document.getElementById("image");
 var width = 150;
+var printButton = document.getElementById("print-icon");
 
 openerArray.forEach(opener=>opener.addEventListener("click", showMenu, false));
 
@@ -21,7 +22,7 @@ var authorInput = document.getElementById("author-input");
 countInput.addEventListener("focusin", focusInput, false);
 titleInput.addEventListener("focusin", focusInput, false);
 authorInput.addEventListener("focusin", focusInput, false);
-
+printButton.addEventListener("click", loadPrint, false);
 
 function focusInput(){
 	if(document.body.clientWidth <= 768 && window.screen.orientation.type === "portrait-primary"){
@@ -41,6 +42,7 @@ function focusInput(){
 
 function unfocusInput(){
 	document.getElementById("upper").setAttribute("style", "display: inline-block");
+	document.getElementById("upper").setAttribute("style", "height: 50%");
 	document.getElementById("lower").setAttribute("style", "height: 50%");
 }
 
@@ -62,4 +64,12 @@ var textureRenderer = new TextureRenderer();
 
 var threeD = new ThreeD(textureRenderer);
 
+function loadPrint(){
+	new PrintPosition();
+	window.print();
+}
+
+window.onafterprint = function(){
+	document.getElementById("model").style.display = "block";
+ }
 
