@@ -33,4 +33,7 @@
 	.tab{
 		opacity: 0.5;
 	}
+	#model {
+		display: none;
+	}
 }
