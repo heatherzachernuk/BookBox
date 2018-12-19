@@ -3,69 +3,103 @@
 <head>
 	<title></title>
 	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="style.css" rel="stylesheet" type="text/css" media="all">
-	 <!-- <link href="boxprint.css" media="print" rel="stylesheet" /> -->
-	<link href="https://fonts.googleapis.com/css?family=Dosis|Abril+Fatface|Play|Alegreya|Neuton|Anton|Barrio|Chango|Irish+Grover|Londrina+Solid|Sue+Ellen+Francisco|PT+Mono|Ceviche+One|Chicle" rel="stylesheet">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+	<link rel="stylesheet"  type="text/css" media="screen" href="landscape.css"/>
+	<link rel="stylesheet"  type="text/css" media="screen" href="portrait.css"/>
+	<link rel="stylesheet" href="print.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Dosis|Abril+Fatface|Play|Alegreya|Neuton|Anton|Barrio|Chango|Irish+Grover|Londrina+Solid|Gaegu|Delius|PT+Mono|Ceviche+One|Chicle|Lato" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous"/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet"/>
 </head>
 <body>
 	<div id="container">
-<!-- 		<div class="border">
-		</div> -->
+		<div class="border">
+		</div>
 		<div id="upper">
+			<div id="print-icon">
+				<i class="material-icons">
+					print
+				</i>	
+			</div>
+			<canvas class="net tab" id="spine-left-tab">
+			</canvas>
+			<canvas class="net" id="spine">
+			</canvas>
+			<canvas class="net" id="front">
+			</canvas>
+			<canvas class="net" id="edge">
+			</canvas>
+			<canvas class="net" id="back">
+			</canvas>       
+			<canvas class="net tab" id="top-insert-tab">
+			</canvas>     
+			<canvas class="net" id="topp">
+			</canvas>
+			<canvas class="net tab" id="bottom-left-tab">
+			</canvas>
+			<canvas class="net" id="bottom">
+			</canvas>         
+			<canvas class="net tab" id="bottom-right-tab">
+			</canvas>
+			<canvas class="net tab" id="bottom-base-tab">
+			</canvas>
 		</div>	
 
 		<div id="lower">
+
 			<div id="main-menu" class="menu">
 				<div class="menu-item">
 					<div class="menu-text" data-opens="text-menu" id="text-button">
-					&nbsp;&nbsp;TEXT
+						TEXT
 					</div>
 				</div>
 				<div class="menu-item">
 					<div class="menu-text" data-opens="color-menu" id="color-button">
-					&nbsp;&nbsp;COLOR
+						COLOR
 					</div>
 				</div>
 				<div class="menu-item">
 					<div class="menu-text" data-opens="image-menu" id="image-button">
-					&nbsp;&nbsp;IMAGE
+						IMAGE
 					</div>
 				</div>
 				<div class="menu-item">
 					<div class="menu-text" data-opens="wordcount-menu" id="wordcount-button">
-					&nbsp;&nbsp;WORD COUNT
+						WORD COUNT
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="menu sub-menu" id="image-menu">
 				<div class="title">
 					IMAGE
 					<span class="close-submenu" data-opens="main-menu">
 						X
-					<span>
+					</span>
 				</div>
 				<div class="vertical-hold">
 					<div class="horizontal-hold">
 						<div class="left-col">
-		    				<div class="subtitle">CHOOSE IMAGE:</div>
-		    			</div>
-		    			<div class="right-col">
-		    				<label id="take-photo" class="custom-file-upload">
-								<input type="file" name="photo" accept="image/*;capture=camera">
-							    TAKE PHOTO
+							<div class="subtitle no-row-subtitle">CHOOSE<br/>IMAGE:</div>
+						</div>
+						<div class="right-col" id="image-right">
+
+							<label id="cover-file" class="custom-file-upload">
+								<input type="file" name="pic" accept="image/*"/>
+							CHOOSE FILE
 							</label>
-			    			<label id="cover-file" class="custom-file-upload">
-							    <input type="file" name="pic" accept="image/*">
-							    CHOOSE FILE
-							</label>
-							<div id="current-filename">
-								current_file.jpg
+							<div id="filename">
+								<div id="current-filename">
+									current_file.jpg
+								</div>
+								<div id="remove-image">
+									X
+								</div>	
 							</div>
-		        		</div>
-		        	</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -74,38 +108,61 @@
 					COLOR
 					<span class="close-submenu" data-opens="main-menu">
 						X
-					<span>
+					</span>
 				</div>
 				<div class="vertical-hold">
 					<div class="horizontal-hold">
-						<div class="left-col">
+						<div class="left-col" id="color-left">
 							<div class="row">
-			    				<div class="color" id="background-color"></div>
-			    				<div class="subtitle">BACKGROUND</div>
-			    			</div>
-			    			<div class="row">
-			    				<div class="color" id="detail-color"></div>
-				        		<div class="subtitle">DETAIL</div> 
-				        	</div>
-				        	<div class="row">
-								<div class="subtitle">STRIPES</div>
-								<div id="stripes-box">
-									<div class="toggle" id="toggle-on"><span>ON</span></div>
-									<div class="toggle" id="toggle-off"><span>OFF</span></div>
+								<div class="subtitle">
+									SET COLOR
+								</div>
+							</div>
+							<div class="row">
+								<div class="subtitle">
+									COLOR SOURCE
+								</div>
+							</div>
+							<div class="row">
+								<div class="subtitle">
+									STRIPES
+								</div>
+							</div>
+						</div>
+						<div class="right-col">
+							<div class="row">
+								<div class="selector-box" id="set-color-box">
+									<div class="selector-button selector-on" id="background"><span>BACKGROUND</span></div>
+									<div class="selector-button selector-off" id="detail"><span>DETAIL</span></div>
+								</div> 
+							</div>
+							<div class="row">
+								<div class="selector-box" id="color-source-box">
+									<div class="selector-button selector-on" id="palette-button"><span>PALETTE</span></div>
+									<div class="selector-button selector-off" id="cover-color-button"><span>COVER</span></div>
+									<div id="cover-alert-scrim"> 
+										<div id="scrim-text"> UPLOAD A COVER <br/> IN THE <br/> IMAGE MENU
+										</div>
+									</div>
+									<div id="palette-picker">
+										<canvas class="palette" id="brightness" width="200" height="200">
+										</canvas>
+										<canvas class="palette" id="hue" width="50" height="200">
+										</canvas>
+									</div>
+									<canvas id="image-picker" width="200" height="500">
+										<img id="image" src="" alt="this-shiz"/>
+									</canvas>
+								</div> 
+							</div>
+							<div class="row">
+								<div class="selector-box" id="stripes-box">
+									<div class="selector-button selector-on" id="stripes-on"><span>ON</span></div>
+									<div class="selector-button selector-off" id="stripes-off"><span>OFF</span></div>
 								</div> 
 							</div>
 						</div>
-		    			<div class="right-col">
-		    				<div id="selector">
-		    					<div class="color" id="palette">
-		    						<br/><label class="selector-label"><i class="fas fa-eye-dropper"></i><br/>PALETTE</label>
-		    					</div>
-		    					<div class="color" id="cover-select">
-		    						<label class="selector-label"><i class="fas fa-eye-dropper"></i>COVER IMAGE</label>
-		    					</div>
-			    			</div>
-		    			</div>
-		    		</div>
+					</div>
 				</div>
 			</div>
 
@@ -114,66 +171,68 @@
 					TEXT
 					<span class="close-submenu" data-opens="main-menu">
 						X
-					<span>
+					</span>
 				</div>
 				<div class="vertical-hold">
 					<div class="horizontal-hold">
 						<div class="left-col">
 							<div class="row">
-			        			<div class="subtitle">TITLE</div>
-			        		</div>
-			        		<div class="row">
-			        			<div class="subtitle">AUTHOR</div> 
-			        		</div>
+								<div class="subtitle">TITLE</div>
+							</div>
+							<div class="row">
+								<div class="subtitle">AUTHOR</div> 
+							</div>
 							<div class="row">		        		
 								<div class="subtitle">FONT</div> 
 							</div>
-			        	</div>
+						</div>
 						<div class="right-col">	
 							<div class="row">						
-			        			<input type="text" id="title-input"/>
-			        		</div>
+								<input type="text" id="title-input"/>
+							</div>
 							<div class="row">		        		
-			        			<input type="text" id="author-input"/>
-			        		<input id="get-details" type=submit value="ADD TEXT"> 
-			        		</div>
+								<input type="text" id="author-input"/>
+								<input id="add-text" type="submit" value="ADD TEXT"/> 
+							</div>
 							<div class="row">		        		
 								<div id="font-selector">
-				          			<div id=font-button>CHOOSE FONT
-				          			</div>
-				      				<div id="font-list">
-							            <div class="font" id="Alegreya" style="font-family: Alegreya">Book Title and Author
-							            </div>
-							            <div class="font" id="Neuton" style="font-family: Neuton">Book Title and Author
-							            </div>          
-							            <div class="font" id="Abril Fatface" style="font-family: 'Abril Fatface'">Book Title and Author
-							            </div>
-							            <div class="font" id="Dosis" style="font-family: Dosis">Book Title and Author
-							            </div>
-							            <div class="font" id="Play" style="font-family: Play">Book Title and Author
-							            </div>
-							            <div class="font" id="Anton" style="font-family: Anton">Book Title and Author
-							            </div>
-							            <div class="font" id="Chango" style="font-family: Chango">Book Title and Author
-							            </div>
-							            <div class="font" id="Londrina Solid" style="font-family: 'Londrina Solid'">Book Title and Author
-							            </div>
-							            <div class="font" id="PT Mono" style="font-family: 'PT Mono'">Book Title and Author
-							            </div>
-							            <div class="font" id="Chicle" style="font-family: Chicle">Book Title and Author
-							            </div>
-							            <div class="font" id="Ceviche One" style="font-family: 'Ceviche One'">Book Title and Author
-							            </div>
-							            <div class="font" id="Sue Ellen Francisco" style="font-family: 'Sue Ellen Francisco'">Book Title and Author
-							            </div>
-							            <div class="font" id="Irish Grover" style="font-family: 'Irish Grover'">Book Title and Author
-							            </div>
-							            <div class="font" id="Barrio" style="font-family: Barrio">Book Title and Author
-							            </div>
-							    	</div>
-			      				</div>
-			      			</div>
-			      		</div>
+									<div id="font-button">CHOOSE FONT
+									</div>
+									<div id="font-list">
+										<div class="font" id="Alegreya" style="font-family: Alegreya">Book Title and Author
+										</div>
+										<div class="font" id="Neuton" style="font-family: Neuton">Book Title and Author
+										</div>          
+										<div class="font" id="Abril Fatface" style="font-family: 'Abril Fatface'">Book Title and Author
+										</div>
+										<div class="font" id="Dosis" style="font-family: Dosis">Book Title and Author
+										</div>
+										<div class="font" id="Play" style="font-family: Play">Book Title and Author
+										</div>
+										<div class="font" id="Anton" style="font-family: Anton">Book Title and Author
+										</div>
+										<div class="font" id="Chango" style="font-family: Chango">Book Title and Author
+										</div>
+										<div class="font" id="Londrina Solid" style="font-family: 'Londrina Solid'">Book Title and Author
+										</div>
+										<div class="font" id="PT Mono" style="font-family: 'PT Mono'">Book Title and Author
+										</div>
+										<div class="font" id="Chicle" style="font-family: Chicle">Book Title and Author
+										</div>
+										<div class="font" id="Ceviche One" style="font-family: 'Ceviche One'">Book Title and Author
+										</div>
+										<div class="font" id="Delius" style="font-family: 'Delius'">Book Title and Author
+										</div>
+										<div class="font" id="Gaegu" style="font-family: 'Gaegu'">Book Title and Author
+										</div>
+										<div class="font" id="Irish Grover" style="font-family: 'Irish Grover'">Book Title and Author
+										</div>
+										<div class="font" id="Barrio" style="font-family: Barrio">Book Title and Author
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -183,22 +242,31 @@
 					WORD COUNT
 					<span class="close-submenu" data-opens="main-menu">
 						X
-					<span>
+					</span>
 				</div>
 				<div class="vertical-hold">
 					<div class="horizontal-hold">
 						<div class="left-col">
-			    			<div class="subtitle">WORDCOUNT:</div>
-			    		</div>
-		    		<div class="right-col">
-		    			<input id="count-input" type = "number" step="20000" min="20000" max="600000">
-		    			<input id="get-count" type=submit value="GO">
+							<div class="subtitle no-row-subtitle">WORD<br/>COUNT:</div>
+						</div>
+						<div class="right-col">
+							<input id="count-input" type = "number" step="20000" min="20000" max="600000"/>
+							<input id="get-count" type="submit" value="GO"/>
+						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </body>
-<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
+<script src="Config.js"></script>
+<script src="ThreeD.js"></script>
+<script src="TextMenu.js"></script>
+<script src="ColorMenu.js"></script>
+<script src="ImageMenu.js"></script>
+<script src="WordcountMenu.js"></script>
+<script src="TextureRenderer.js"></script>
+<script src="PrintPosition.js"></script>
+<script src="view.js"></script>
 </html>   
