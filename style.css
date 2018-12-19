@@ -536,3 +536,7 @@ input[type="file"] {
 .tab {
 	display: none
 }
+
+#model{
+	display: block;
+}
