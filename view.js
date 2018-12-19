@@ -70,6 +70,9 @@ function loadPrint(){
 }
 
 window.onafterprint = function(){
-	document.getElementById("model").style.display = "block";
+	setTimeout(function () {
+		document.getElementById("model").style.display = "block";
+	}, 500);
+	
  }
 
