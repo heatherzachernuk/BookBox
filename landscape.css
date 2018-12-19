@@ -1,0 +1,52 @@
+/* GENERAL MOBILE*/
+@media only screen 
+	and (min-device-width: 300px)
+   	and (max-device-width: 850px)
+   	and (orientation: landscape) {
+   	.menu-item {
+		height: 21vh;
+	}
+	input[type=text] {
+   		width: 4em;
+   		margin-left: -3em;
+   }
+    #count-input {
+   		width: 3em;
+   		margin-left: -3em;
+   	}
+   	#image-right {
+   		margin-left: 1em;
+   	}
+   	#color-left{
+   		width: 20%;
+   	}
+   	.selector-box {
+	margin-left: -2em;
+	}
+}
+	.subtitle {
+   		font-size: 0.7em;
+   	}
+	#upper {
+		width: 50%;
+		height: 100%;
+		float: left;
+	}
+	#lower {
+		padding: none;
+		float: left;
+		width: 50%;
+		height: 100%;
+	}
+	.left-col {
+		margin-left: 0.5em; 
+		width: 30%;
+	}
+	.right-col {
+		width: 20%;
+	}
+	#font-button {
+		width: 8em;
+	}
+
+}

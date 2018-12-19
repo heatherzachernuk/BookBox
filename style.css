@@ -1,95 +1,218 @@
- @media only screen 
-   and (min-device-width: 850px){
+/* GENERAL MOBILE*/
+@media only screen 
+   	and (max-device-width: 768px){
+   	body {
+		width: 100%;
+   		height: 100%;
+   	}
+   	#container {
+   		width: 100%;
+   		height: 100%;
+   		position: fixed;
+   }
+   input[type=number] {
+   	margin-left: -2em;
+   }
+
+   	#current-filename {
+		font-size: 0.4em;
+		text-overflow: ellipsis;
+	}
+
+   	#font-button {
+   		margin-left: -3em;
+   	}
+   	#cover-alert-scrim {
+   		width: 90%;
+   		left: 5%;
+   	}
+   	#font-list{
+   		width: 12em;
+		margin-left: -9em;
+   	}
+   	.custom-file-upload {
+   		width: 7em;
+   	}
+
+	#palette-picker {
+		margin-left: -3em;
+	}
+}
+
+/* TINY MOBILE RULES */
+@media only screen 
+   and (max-device-width: 320px){
+   	.subtitle {
+   		font-size: 1em;
+   	}
+   	.no-row-subtitle {
+   		font-size: 0.7em;
+   	}
+   	.row{
+		width: 150%;
+		font-size: 0.6em;
+	}
+
+	.menu-text{
+		line-height: 0.6em;
+	}
+	#palette-picker {
+		margin-left: -7em;
+		margin-top: -2em;
+	}
+}
+
+/* BIGGER MOBILE RULES */
+@media only screen 
+   	and (min-device-width: 375px)
+   	and (max-device-width: 768px){
+   	.row{
+		width: 150%;
+		font-size: 0.9em;
+	}
+	.no-row-subtitle {
+   		font-size: 0.8em;
+   	}
+	#current-filename {
+	font-size: 0.65em;
+	}
+
+   	.menu-text{
+		line-height: 1em;
+	}
+	#palette-picker {
+		margin-left: -4em;
+	}
+}
+
+/* NON-MOBILE RULES */
+@media only screen 
+   and (min-device-width: 768px){
    	#container{
    		width: 700px;
    		margin: 0 auto;
    		height: 100vh;
    	}
+   .row{
+		width: 130%;
+	}
+	.menu-item {
+		height: 12vh;
+	}
+   input[type=number] {
+   		margin-left: 1em;
+   		margin-bottom: 1em;
+   }
+   input[type=text] {
+   		width: 12em;
+   		margin-left: -2em;
+   		margin-bottom: 0.5em;
+   }
+   #count-input {
+   		margin-left: -5em;
+   	}
+	#font-list{
+   		width: 12em;
+		margin-left: 10em;
+   	}
+   	.custom-file-upload {
+   		width: 12em;
+   		margin-left: -3em;
+   	}
+   	#current-filename {
+		font-size: 0.65em;
+	}
+	.menu-text{
+		line-height: 1.3em;
+	}
+   	.selector-box {
+	margin-left: 1.5em;
+	}
+	#scrim-overlay{
+		position: fixed;
+		display: none;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+	}
+	#cover-alert-scrim {
+   		left: 38%;
+   		z-index: 1;
+   	}
 }
 
-@media only screen 
-   and (max-device-width: 500px){
-	html {
-		height: 100%;
-		width: 100%;
-	}
+/*GENERAL RULES*/
+@import url(//fonts.googleapis.com/css?family=Dosis|Abril+Fatface|Play|Alegreya|Neuton|Anton|Barrio|Chango|Irish+Grover|Londrina+Solid|Sue+Ellen+Francisco|PT+Mono|Ceviche+One|Chicle|Lato);
 
-   	body {
-		width: 100%;
-   		height: 100%;
-        /*font-size: 2em;*/
-   	}
-   	#container {
-   		width: 100%;
-   		height: 100%;
-   }
+html {
+	height: 100%;
+	width: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: hsla(223, 24%, 12%, 1);
-  font-family: 'Play';
+  background-color: #011638;
+  font-family: "Lato";
+  /*color: rgb(66,14,7);*/
+  color: "black";
   user-select: none;
   overflow: hidden;
 }
 
 .border {
-	height: 0.5vh;
-	background: hsla(223, 24%, 12%, 1);
+	/*height: 0.5vh;*/
+	background: #011638;
 }
 
 #container{
-
+	overflow: hidden;
 }
 
 #upper {
 	display: inline-block;
 	width: 100%;
 	height: 50%;
-	/*outline: thin solid red;*/
-	background-color: hsla(223, 24%, 84%, 1);
+	display: flex;
+	align-items: center;
+	background: linear-gradient(-175deg, #ffffff, #BCF8EC)
+}
+
+#print-icon{
+	position: absolute;
+	top: 10px;
+	margin-left: 10px;
+	color: #011638;
 }
 
 #lower {
-	display: inline-block;
-	width: 100%;
-	height: 50%;
 	font-size: 2em;
-	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
-	/*outline: thin solid red;*/
 }
 
 #main-menu {
-	/*display: none;*/
 }
 
 .menu-item {
-	height: 12vh;
-	/*outline: thin solid red;*/
-	/*background-color: hsla(223, 24%, 84%, 1);*/
-	border-top: 2px solid black;
-	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
+	border-top: 2px solid rgb(7,3,44);
+	background-color: #36C9C6;
 }
 
 .menu-text {
 	height: 1.5em;
 	margin-top: 0.7em;
-	/*text-shadow: -1px -1px 1px hsla(223, 24%, 55%, 1), 1px 1px 1px hsla(223, 24%, 8%, 1);*/
-	/*line-height: 2.5em;*/
+	margin-left: 1em;
 	cursor: pointer;
-	/*outline: thin solid red;*/
 }
 
 .sub-menu {
-	/*display: none;*/
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	border-top: 2px solid black;
+	border-top: 2px solid rgb(7,3,44);
 	height: 100%;
-	background: linear-gradient(-175deg, hsla(223, 24%, 88%, 1), hsla(223, 24%, 78%, 1));
-	/*outline: thin solid blue;*/
+	background-color: #36C9C6;
 }
 
 .title {
@@ -97,7 +220,6 @@ body {
 	width: 100%;
 	line-height: 2em;
 	text-align: center;
-	/*outline: thin solid red;*/
 }
 
 .close-submenu {
@@ -114,7 +236,6 @@ body {
  	display: flex;
     flex-direction: column;
     height: 90%;
-    /*outline: thin solid red;*/
 }
 
 .horizontal-hold{
@@ -123,82 +244,69 @@ body {
     align-items: center;
     width: 100%;
     height: 80%;
-    /*outline: thin solid blue;*/
 }
 
 .left-col {
 	display: inline-block;
-	margin-left: 2em;
-	margin: 0 auto;
-	/*outline: thin solid red;*/
-	width: 40%;
 }
 
 .right-col {
 	display: inline-block;
-	/*outline: thin solid red;*/
-	width: 40%;
 	margin: 0 auto;
 }
 
 .row{
-	width: 100%;
 	padding-bottom: 0.5em;
-	/*outline: solid thin green;*/
 }
 
 .subtitle {
 	display: inline-block;
-	/*outline: thin solid red;*/
 	vertical-align: 0.6em;
 }
 
-/**/
-/* text menu styles*/
-/**/
 #text-menu {
 	display: none;
 }
 
-
 input[type=text], input[type=number] {
 	height: 2em;
 	font-size: 0.65em;
-	font-family: "Play";
 	line-height: 2em;
 	border: none;
 	border-radius: 0;
 	outline: none;
 	display: inline-block;
+	background-color: #BCF8EC;
 }
 
 input[type=text]{
-	width: 12em;
-	margin-left: -1.5em;
 	padding-left: 0.5em;
 }
 
  input[type=number] {
  	width: 6em;
  	padding-left: 1em;
- 	margin-left: 1em;
- }
+}
 
  input[type=submit] {
  	height: 3em;
 	font-size: 0.5em;
-	font-family: "Play";
+	font-family: "Lato";
+	color: rgb(7,3,44);
 	width: 4em;
 	border: none;
 	border-radius: 0;
-	outline: none;
 	white-space: normal;
-	background-color: hsla(223, 24%, 64%, 1);
+	background-color: #56A3A6;
 	position: absolute;
  	margin-left: 0.5em;
 }
 
-#get-details {
+input[type=submit]:focus{
+	outline: none;
+}
+
+#add-text {
 	margin-top: -2em;
 }
 
@@ -207,12 +315,11 @@ input[type=text]{
 }
 
 #font-button{
-  background-color: hsla(223, 24%, 64%, 1);
+  background-color: #56A3A6;
   height: 2em;
   width: 10em;
   font-size: 0.65em;
   text-align: center;
-  font-family: "Play";
   line-height: 2em;
   cursor: pointer;
   display: inline-block;
@@ -226,25 +333,19 @@ input[type=text]{
 
 #font-list {
   display: none;
-  width: 15em;
-  color: hsla(223, 24%, 12%, 1);
   font-size: 0.6em;
   position: absolute;
-  background-color: hsla(223, 24%, 90%, 1);
+  background-color: #BCF8EC;
   opacity: 0.9;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   z-index: 1;
-  margin-left: 10em;
   padding: 0.5em;
-  /*border: solid 1px red;*/
 }
 
 #font-list div:hover {
-  background-color: hsla(223, 24%, 98%, 1);
+  background-color: #56A3A6;
 }
-/**/
-/* image menu styles*/
-/**/
+
 #image-menu {
 	display: none;
 }
@@ -254,30 +355,36 @@ input[type="file"] {
 }
 
 #cover-file {
-
 }
 
 .custom-file-upload {
     border: none;
     display: inline-block;
     cursor: pointer;
-    background-color: hsla(223, 24%, 64%, 1);
+    background-color: #56A3A6;
     height: 2em;
-  	width: 10em;
   	font-size: 0.65em;
 	text-align: center;
-  	font-family: "Play";
-  	line-height: 2em;
+ 	line-height: 2em;
+}
+
+#filename {
+}
+
+#remove-image {
+	font-size: 0.4em;
+	font-weight: bold;
+	display: none;
+	padding: 0.5em 0.7em 0.5em 0.7em;
+	background-color: #56A3A6;
+	margin-left: 0.5em;
 }
 
 #current-filename {
-	font-size: 0.65em;
-	overflow-wrap: break-word;
+	display: inline;
+	word-wrap: break-word;
 }
 
-/**/
-/* color menu styles*/
-/**/
 #color-menu {
 	display: none;
 }
@@ -286,11 +393,9 @@ input[type="file"] {
 	height: 2em;
 	width: 2em;
 	background-color: white;
-	outline: thin solid black;
 	text-align: center;
 	line-height: 0.35em;
 }
-
 #background-color{
 	display: inline-block;
 }
@@ -299,58 +404,82 @@ input[type="file"] {
 	display: inline-block;
 }
 
-#stripes-box {
-	top: -1em;
+.selector-box {
 	display: inline-block;
-	height: 1.5em;
-	width: 3em;
-	background-color: lightgray;
-	outline: thin solid black;
-	margin-left: 1em;
+	height: 1.8em;
+	width: 5.5em;
+	background-color: #56A3A6;
 	position: relative;
-    top: -0.7em;
 }
 
-.toggle {
-	/*outline: thin solid red;*/
+.selector-button {
 	display: inline-block;
-	height: 1.5em;
+	height: 1.8em;
 	text-align: center;
 }
 
-.toggle > span {
-	font-size: 0.5em;
-
+.selector-button > span {
+	font-size: 0.34em;
+	font-weight: bold;
+	pointer-events: none;
 }
 
-#toggle-on{
-	width: 1.5em;
-	background-color: white;
-	border-right: thin solid black; 
+.selector-on{
+	width: 2.75em;
+	background-color: #BCF8EC;
 }
 
-#toggle-off{
+.selector-off{
+	width: 2.5em;
 }
 
 #selector{
 	height: 4em;
 	width: 2em;
-	/*outline: thin solid yellow;*/
 	margin: 0 auto;
 	margin-top: -2em;
 }
 
 .selector-label {
-	font-size: 0.4em;
+	font-size: 0.35em;
 }
 
-#palette {
+#palette-color {
 	display: block;
 }
 
-#cover-select {
+#palette-picker{
+  display: none;
+  position: fixed;
+  z-index: 2;
+}
+
+#image-picker{
+  display: none;
+  position: fixed;
+  z-index: 2;
+}
+
+#cover-color {
 	display: block;
 	background-color: lightgray;
+}
+
+#cover-alert-scrim {
+	display: none;
+	position: fixed;
+	height: 6em;
+	background-color: rgba(1, 22, 56, 0.8);
+	top: 40%;
+	color: #BCF8EC;
+	border-radius: 0.5em;
+	z-index: 1;
+}
+
+#scrim-text {
+	margin: 1em;
+	text-align: center;
+	line-height: 1.4em;
 }
 
 .fa-eye-dropper{
@@ -358,14 +487,52 @@ input[type="file"] {
 	padding: 0.4em 0.4em 0 0.4em;
 }
 
-/**/
-/* wordcount menu styles*/
-/**/
 #wordcount-menu {
 	display: none;
 }
 
+#example-box {
+	height: 20em;
+	width: 20em;
+	margin: 0 auto;
+	margin-top: -1.5em;
+}
 
+#example-title {
+	margin-top: 2em;
+}
 
+#example-author {
+	margin-top: 2em;
+}
 
+#front {
+	display: none;
+}
 
+#image {
+}
+
+#spine {
+	display: none;
+}
+
+#topp {
+	display: none;
+}
+
+#edge {
+	display: none;
+}
+
+#bottom {
+	display: none;
+}
+
+#back {
+	display: none;
+}
+
+.tab {
+	display: none
+}

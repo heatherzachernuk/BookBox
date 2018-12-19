@@ -1,0 +1,37 @@
+@media print {
+	@page {
+		size: A4 landscape; 
+		
+	}
+
+	html, body {
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+	}
+	#print-icon {
+		display: none;
+	}
+	#container {
+		display: flex;
+		justify-content: center;
+		margin: 0 auto;
+	}
+	#upper{
+		background-color: lightgray;
+		width: 50vw;
+		transform: scale(1.5);
+	}
+	#lower {
+		display: none;
+	}	
+	.net {
+		/* margin: 5em 10em; */
+		position: fixed;
+	}
+	.tab{
+		opacity: 0.5;
+	}
+}
