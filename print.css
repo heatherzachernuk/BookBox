@@ -1,6 +1,7 @@
 @media print {
 	@page {
-		size: landscape; 
+		size: A4 landscape; 
+		
 	}
 
 	html, body {
@@ -32,8 +33,5 @@
 	}
 	.tab{
 		opacity: 0.5;
-	}
-	#model {
-		display: none;
 	}
 }
