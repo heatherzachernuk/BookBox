@@ -128,16 +128,8 @@
    	.selector-box {
 	margin-left: 1.5em;
 	}
-	#scrim-overlay{
-		position: fixed;
-		display: none;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-	}
 	#cover-alert-scrim {
+   		width: 25%;
    		left: 38%;
    		z-index: 1;
    	}
@@ -163,7 +155,7 @@ body {
 }
 
 .border {
-	/*height: 0.5vh;*/
+	height: 0.5vh;
 	background: #011638;
 }
 
@@ -182,8 +174,8 @@ body {
 
 #print-icon{
 	position: absolute;
-	top: 10px;
-	margin-left: 10px;
+	top: 5px;
+	left: 5px;
 	color: #011638;
 }
 
@@ -382,7 +374,7 @@ input[type="file"] {
 
 #current-filename {
 	display: inline;
-	word-wrap: break-word;
+	overflow-wrap: break-word;
 }
 
 #color-menu {
@@ -531,12 +523,4 @@ input[type="file"] {
 
 #back {
 	display: none;
-}
-
-.tab {
-	display: none
-}
-
-#model{
-	display: block;
 }

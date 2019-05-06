@@ -24,13 +24,8 @@ class PrintPosition {
 
         this.tabWidth;
 
-        this.hide3DModel();
         this.drawTabs();
         this.positionCanvases();
-    }
-
-    hide3DModel(){
-        document.getElementById("model").style.display = "none";
     }
 
     positionCanvases() {
