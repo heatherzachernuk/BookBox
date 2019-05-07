@@ -12,8 +12,6 @@
 	}
 	body {
 		transform: rotate(-90deg);
-		margin-top: 0%;
-		margin-left: 50%;
 	}
 	#print-icon {
 		display: none;
