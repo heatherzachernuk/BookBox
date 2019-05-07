@@ -10,7 +10,7 @@
 		width: 100%;
 		overflow: hidden;
 		-webkit-transform: rotate(-45deg);
-		-webkit-margin-top-left: 6em;
+		-webkit-margin-top: 6em;
 	}
 	#print-icon {
 		display: none;
