@@ -9,6 +9,7 @@
 		height: 100%;
 		width: 100%;
 		overflow: hidden;
+		transform: rotate(-90deg);
 	}
 	#print-icon {
 		display: none;
