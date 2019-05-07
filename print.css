@@ -9,6 +9,8 @@
 		height: 100%;
 		width: 100%;
 		overflow: hidden;
+	}
+	body {
 		-webkit-transform: rotate(-45deg);
 		-webkit-margin-top: 6em;
 	}
