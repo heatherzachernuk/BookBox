@@ -11,9 +11,9 @@
 		overflow: hidden;
 	}
 	body {
-		-webkit-transform: rotate(-90deg);
-		-webkit-margin-top: 6em;
-		-webkit-margin-left: 60em;
+		transform: rotate(-90deg);
+		margin-top: 30%;
+		margin-left: 30%;
 	}
 	#print-icon {
 		display: none;
