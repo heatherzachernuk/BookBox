@@ -12,7 +12,7 @@ class TextMenu{
 
 		this.addText.addEventListener("click", event => this.changeText(event), false);
 
-		this.titleInput.addEventListener("input", this.changeText(event), false);
+// 		this.titleInput.addEventListener("input", this.changeText(event), false);
 	}
 
 	changeFont(fontClick){
