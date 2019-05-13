@@ -2,8 +2,8 @@ class Config{
 	constructor(){
 		this.backgroundColor = "rgb(212, 255, 191)";
 		this.detailColor = "black";
-		this.titleText = "The Very Hungry Whatever";
-		this.authorText = "Brad Bird Ingalls";
+		this.titleText = "The Grapes of Wrath";
+		this.authorText = "John Steinbeck";
 		this.font = "Abril Fatface";
 		this.height = 200;
 		this.depth = 50;
