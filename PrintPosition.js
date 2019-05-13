@@ -10,12 +10,10 @@ class PrintPosition {
 
         this.topInsert = document.getElementById("top-insert-tab");
         this.spineLeft = document.getElementById("spine-left-tab");
-        // find out why this height was not as expected
         this.spineLeft.height = config.height;
         this.bottomLeft = document.getElementById("bottom-left-tab");
         this.bottomRight = document.getElementById("bottom-right-tab");
         this.bottomBase = document.getElementById("bottom-base-tab");
-
         this.topInsertCtx = this.topInsert.getContext("2d");
         this.spineLeftCtx = this.spineLeft.getContext("2d");
         this.bottomLeftCtx = this.bottomLeft.getContext("2d");
