@@ -307,6 +307,8 @@ input[type=submit]:focus{
 }
 
 #add-text {
+	font-size: 0.4em;
+    	width: 5em; 
 	margin-top: -2em;
 }
 
